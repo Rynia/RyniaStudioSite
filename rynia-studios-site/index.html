@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RYNIA STUDIOS</title>
+  <meta
+    name="description"
+    content="Rynia Studios is a long-term, disciplined game development practice. Currently building Kombo Kart, a mobile auto-battler card game."
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&display=swap" rel="stylesheet" />
+
+
+  <link rel="icon" type="image/png" href="./assets/rynia-logo.png" />
+
+  <meta property="og:title" content="Rynia Studios" />
+  <meta property="og:description" content="A long-term, disciplined game development journey. Rynia Studios is building Kombo Kart, a mobile auto-battler card game." />
+  <meta property="og:image" content="https://ryniastudios.netlify.app/assets/rynia-logo.png" />
+  <meta property="og:url" content="https://ryniastudios.netlify.app/" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Rynia Studios" />
+  <meta name="twitter:description" content="A long-term, disciplined game development journey." />
+  <meta name="twitter:image" content="https://ryniastudios.netlify.app/assets/rynia-logo.png" />
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0HTFZXKBYQ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-0HTFZXKBYQ');
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://ryniastudios.netlify.app/#organization",
+        "name": "Rynia Studios",
+        "url": "https://ryniastudios.netlify.app/",
+        "logo": "https://ryniastudios.netlify.app/assets/rynia-logo.png",
+        "sameAs": [
+          "https://discord.gg/AmHTh8eyA",
+          "https://x.com/RyniaStudio",
+          "https://www.instagram.com/ryniastudio/",
+          "https://www.youtube.com/@RyniaStudio"
+        ]
+      },
+      {
+        "@type": "VideoGame",
+        "name": "Kombo Kart",
+        "description": "Kombo Kart is a mobile auto-battler card game built around drafting, card evolution, positioning, and elemental synergies.",
+        "genre": ["Auto-battler", "Card Game"],
+        "gamePlatform": "iOS",
+        "applicationCategory": "Game",
+        "author": {
+          "@id": "https://ryniastudios.netlify.app/#organization"
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script type="module" src="./src/main.ts"></script>
+</head>
+
+<body id="top">
+  <!-- STICKY NAV -->
+  <nav class="nav" id="site-nav">
+    <div class="brand">
+      <img src="./assets/rynia-logo.png" alt="Rynia Studios Logo" class="brand-logo" />
+      <span data-i18n="nav.brand">Rynia Studios</span>
+    </div>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+    <div class="nav-links" id="navLinks">
+      <a href="#top" data-i18n="nav.home">Home</a>
+      <a href="#origin" data-i18n="nav.about">About</a>
+      <a href="#games" data-i18n="nav.games">Games</a>
+      <a href="#development" data-i18n="nav.development">Development</a>
+      <a href="#devlog" data-i18n="nav.devlog">Devlog</a>
+      <a href="#announcements" data-i18n="nav.announcements">Announcements</a>
+      <a href="#community" data-i18n="nav.community">Community</a>
+    </div>
+
+    <button class="lang-toggle" id="langToggle" aria-label="Switch language" title="Switch language">
+      EN
+    </button>
+    <a class="button primary nav-cta" href="https://discord.gg/AmHTh8eyA" target="_blank" rel="noopener noreferrer" data-i18n="nav.joinDiscord">
+      Join Discord
+    </a>
+  </nav>
+
+  <!-- 01 HERO -->
+  <header class="hero">
+    <div class="hero-content">
+      <div id="hero-canvas-container" class="hero-canvas-container" aria-hidden="true"></div>
+      <img src="./assets/hero-fallback.webp" alt="" class="hero-fallback" id="hero-fallback" style="display:none" aria-hidden="true">
+      
+      <div class="hero-text-block">
+        <img src="./assets/rynia-logo.png" alt="Rynia Studios Logo" class="hero-logo" />
+        <p class="eyebrow" data-i18n="hero.eyebrow">Game Development</p>
+        <h1 data-i18n="hero.title" data-i18n-html="true">The Dance of Elements.<br>The Peak of Strategy.</h1>
+        <p class="hero-text" data-i18n="hero.text">
+          Kombo Kart is a strategic card game of automatic battles shaped by drafting, evolution, positioning, and elemental synergies.
+        </p>
+
+        <div class="hero-buttons">
+          <a class="button primary" href="#games" data-i18n="hero.cta1">Explore Our Games</a>
+          <a class="button secondary" href="https://discord.gg/AmHTh8eyA" target="_blank" rel="noopener noreferrer" data-i18n="hero.cta2">
+            Join the Community
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- 02 ORIGIN -->
+    <section class="section section--plain reveal" id="origin" data-number="02">
+      <div class="section-label" data-i18n="origin.label">02 — Origin</div>
+      <h2 data-i18n="origin.title">From nickname to studio.</h2>
+      <p data-i18n="origin.p1">
+        Rynia was never meant to be a studio name. Years ago, it was simply a personal nickname—
+        a digital identity I carried through various projects and communities. Over time, it became
+        more than that: a symbol of consistency, discipline, and creative persistence.
+      </p>
+      <p data-i18n="origin.p2">
+        When I committed to game development as a serious, long-term practice, the choice was natural.
+        Rynia Studios isn't a company building games. It's a person with a vision, building games with
+        intention, learning in public, and evolving through every iteration.
+      </p>
+    </section>
+
+    <!-- 03 VISION / MISSION -->
+    <section class="section section--plain reveal" id="vision" data-number="03">
+      <div class="section-label" data-i18n="vision.label">03 — Vision & Mission</div>
+      <h2 data-i18n="vision.title">Discipline, Iteration, Evolution.</h2>
+
+      <div class="info-grid">
+        <div class="info-card">
+          <h3 data-i18n="vision.visionTitle">Vision</h3>
+          <p data-i18n="vision.visionText">
+            To build a recognizable indie game studio by creating simple, focused, and
+            iterative games that evolve over time.
+          </p>
+        </div>
+
+        <div class="info-card">
+          <h3 data-i18n="vision.missionTitle">Mission</h3>
+          <p data-i18n="vision.missionText">
+            To design and develop small-scale, manageable games while continuously
+            improving skills, systems, and production efficiency.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 GAMES -->
+    <section class="section section--featured reveal" id="games" data-number="04">
+      <div class="section-label" data-i18n="games.label">04 — Games</div>
+      <h2 data-i18n="games.title">Our Games.</h2>
+      <p class="section-subtitle" data-i18n="games.subtitle">One active project. One dormant concept.</p>
+
+      <!-- Kombo Kart — primary project, full visual weight -->
+      <div class="game-primary">
+        <div class="game-primary-visual" id="game-card-container" aria-hidden="true">
+          <img src="./assets/hero-fallback.webp" alt="Kombo Kart card composition" class="game-visual-static" loading="lazy">
+          <span class="visual-caption" data-i18n="games.komboVisualCaption">Gameplay visuals coming soon</span>
+        </div>
+
+        <div class="game-primary-info">
+          <div class="project-status development" data-i18n="games.komboStatus">IN DEVELOPMENT</div>
+          <h3 data-i18n="games.komboTitle">Kombo Kart</h3>
+          <p class="project-tagline" data-i18n="games.komboTagline">Strategy. Element. Victory.</p>
+          <p class="project-platform" data-i18n="games.komboPlatform">iOS · Mobile</p>
+          <p class="project-description" data-i18n="games.komboDescription">
+            Kombo Kart is a mobile auto-battler card game built around drafting, card
+            evolution, positioning, and elemental synergies.
+          </p>
+
+          <ol class="loop-stepper" aria-label="Core gameplay loop">
+            <li><span class="loop-node"></span><span data-i18n="games.komboLoop1">Draft</span></li>
+            <li><span class="loop-node"></span><span data-i18n="games.komboLoop2">Evolution</span></li>
+            <li><span class="loop-node"></span><span data-i18n="games.komboLoop3">Position</span></li>
+            <li><span class="loop-node"></span><span data-i18n="games.komboLoop4">Auto Battle</span></li>
+          </ol>
+
+          <p class="project-note" data-i18n="games.komboNote">"Few cards. Many decisions."</p>
+          <a href="#development" class="project-link" data-i18n="games.komboLink">Follow Development →</a>
+        </div>
+      </div>
+
+      <!-- Protocol-45 — secondary / archive, intentionally quiet -->
+      <div class="game-archive">
+        <span class="project-status concept" data-i18n="games.protocolStatus">CONCEPT</span>
+        <div class="game-archive-text">
+          <h3 data-i18n="games.protocolTitle">Protocol-45: Hubris</h3>
+          <p data-i18n="games.protocolDescription">
+            An early-stage, multi-platform concept exploring complex systems and narrative
+            depth. No confirmed platform or timeline yet—details will surface as the design
+            takes shape.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 PRESS KIT -->
+    <section class="section reveal" id="press" data-number="05">
+      <div class="section-label" data-i18n="press.label">05 — Press Kit</div>
+      <h2 data-i18n="press.title">For press & content creators.</h2>
+      <p data-i18n="press.p1">
+        Everything you need to cover Kombo Kart—factsheet, descriptions, and contact
+        details. Screenshots and trailer will be added as development progresses.
+      </p>
+
+      <div class="info-grid">
+        <div class="info-card">
+          <h3 data-i18n="press.factsheetTitle">Factsheet</h3>
+          <p data-i18n="press.factsheetText" data-i18n-html="true">
+            Developer: Rynia Studios (solo)<br>
+            Engine: Unity<br>
+            Platform: iOS / Mobile<br>
+            Genre: Mobile auto-battler card game<br>
+            Status: In development<br>
+            Discord: <a href="https://discord.gg/AmHTh8eyA" target="_blank" rel="noopener noreferrer" class="inline-link">discord.gg/AmHTh8eyA</a>
+          </p>
+        </div>
+
+        <div class="info-card">
+          <h3 data-i18n="press.shortTitle">Short Description</h3>
+          <p data-i18n="press.shortText">
+            Kombo Kart is a mobile auto-battler card game where drafting, card evolution,
+            and positioning decide every battle.
+          </p>
+        </div>
+      </div>
+
+      <p data-i18n="press.p2">
+        Kombo Kart follows a simple loop: draft your cards, evolve them, choose their
+        position, then watch the battle play out automatically. The philosophy behind
+        the game is simple—few cards, many decisions. As development continues, the
+        drafting pool and elemental synergies will expand to give every run its own shape.
+      </p>
+
+      <p class="project-note" data-i18n="press.note" data-i18n-html="true">
+        Press & collaboration inquiries: <a href="mailto:ryniastudios@gmail.com" class="inline-link">ryniastudios@gmail.com</a>
+      </p>
+    </section>
+
+    <!-- 06 DEVELOPMENT -->
+    <section class="section reveal" id="development" data-number="06">
+      <div class="section-label" data-i18n="development.label">06 — Development</div>
+      <h2 data-i18n="development.title">Active Systems & Focus Areas.</h2>
+      <p class="section-subtitle" data-i18n="development.subtitle">What's actually being built right now.</p>
+      <p data-i18n="development.p1">
+        This section tracks the core systems currently in development for Kombo Kart.
+        It represents the heart of the production pipeline and the technical foundation
+        being built.
+      </p>
+
+      <div class="dev-roadmap" aria-label="Development methodology">
+        <div class="roadmap-step is-active">
+          <span class="roadmap-icon">⚙️</span>
+          <span class="roadmap-dot"></span>
+          <span data-i18n="development.roadmapBuild">Build</span>
+        </div>
+        <div class="roadmap-connector"></div>
+        <div class="roadmap-step is-active">
+          <span class="roadmap-icon">🧪</span>
+          <span class="roadmap-dot"></span>
+          <span data-i18n="development.roadmapTest">Test</span>
+        </div>
+        <div class="roadmap-connector"></div>
+        <div class="roadmap-step">
+          <span class="roadmap-icon">🔁</span>
+          <span class="roadmap-dot"></span>
+          <span data-i18n="development.roadmapIterate">Iterate</span>
+        </div>
+      </div>
+
+
+      <div class="dev-notes-grid">
+        <div class="dev-card dev-card--testing">
+          <div class="project-status testing" data-i18n="development.testingStatus">IN TESTING</div>
+          <h3 data-i18n="development.combatTitle">Combat Engine</h3>
+          <p data-i18n="development.combatText">
+            Core combat systems are being built in Unity, including ticks, card states,
+            targeting, attacks, damage calculation, and elemental damage.
+          </p>
+          <div class="dev-stage" aria-hidden="true">
+            <span class="dev-stage-seg is-filled"></span>
+            <span class="dev-stage-seg is-filled"></span>
+            <span class="dev-stage-seg"></span>
+          </div>
+        </div>
+
+        <div class="dev-card dev-card--progress">
+          <div class="project-status development" data-i18n="development.progressStatus">IN PROGRESS</div>
+          <h3 data-i18n="development.cardTitle">Card Systems</h3>
+          <p data-i18n="development.cardText">
+            Cards are being structured around elements, roles, positioning, abilities,
+            and evolution to create meaningful decisions with a limited card pool.
+          </p>
+          <div class="dev-stage" aria-hidden="true">
+            <span class="dev-stage-seg is-filled"></span>
+            <span class="dev-stage-seg"></span>
+            <span class="dev-stage-seg"></span>
+          </div>
+        </div>
+
+        <div class="dev-card dev-card--concept">
+          <div class="project-status concept" data-i18n="development.conceptStatus">NOT STARTED</div>
+          <h3 data-i18n="development.battleTitle">Battle Systems</h3>
+          <p data-i18n="development.battleText">
+            Target switching, death states, healing, buffs, debuffs, and elemental
+            synergies are planned as the combat foundation expands.
+          </p>
+          <div class="dev-stage" aria-hidden="true">
+            <span class="dev-stage-seg"></span>
+            <span class="dev-stage-seg"></span>
+            <span class="dev-stage-seg"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 07 DEVELOPMENT PHILOSOPHY -->
+    <section class="section section--plain reveal" id="philosophy" data-number="07">
+      <div class="section-label" data-i18n="philosophy.label">07 — Development Philosophy</div>
+      <h2 data-i18n="philosophy.title">Build. Test. Iterate.</h2>
+
+      <div class="philosophy-grid">
+        <div class="philosophy-item">
+          <h3 data-i18n="philosophy.buildTitle">Build</h3>
+          <p data-i18n="philosophy.buildText">Create the foundation.</p>
+        </div>
+        <div class="philosophy-item">
+          <h3 data-i18n="philosophy.testTitle">Test</h3>
+          <p data-i18n="philosophy.testText">Find what works and what doesn't.</p>
+        </div>
+        <div class="philosophy-item">
+          <h3 data-i18n="philosophy.iterateTitle">Iterate</h3>
+          <p data-i18n="philosophy.iterateText">Improve, refine, and repeat.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 08 DEVLOG -->
+    <section class="section reveal" id="devlog" data-number="08">
+      <div class="section-label" data-i18n="devlog.label">08 — Development Updates</div>
+      <h2 data-i18n="devlog.title">Latest Development.</h2>
+
+      <div class="devlog-timeline">
+        <div class="devlog-entry">
+          <div class="devlog-marker"></div>
+          <div class="devlog-body">
+            <span class="devlog-date" data-i18n="devlog.date">August 2026</span>
+            <h3 data-i18n="devlog.entryTitle">Kombo Kart — Combat Engine</h3>
+            <p data-i18n="devlog.entryText">
+              Core combat systems are now being tested in Unity, including attack timing,
+              targeting, damage calculation, and elemental damage.
+            </p>
+          </div>
+        </div>
+
+        <div class="devlog-continue">
+          <div class="devlog-marker devlog-marker--open"></div>
+          <a href="https://discord.gg/AmHTh8eyA" target="_blank" rel="noopener noreferrer" class="devlog-continue-link" data-i18n="devlog.link">
+            Followed live on Discord as it happens →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 08.5 ANNOUNCEMENTS -->
+    <section class="section reveal announcements-section" id="announcements" data-number="★">
+      <div class="section-label">Topluluk & Duyurular</div>
+      <h2>Son Duyurular</h2>
+      <p class="section-subtitle">Discord sunucumuzdan aktarılan son gelişmeler ve duyurular.</p>
+
+      <div id="announcements-container" class="announcements-list">
+        <div class="announcement-loading">
+          <span class="announcement-spinner"></span>
+          <p>Duyurular yükleniyor...</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 09 STUDIO IDENTITY -->
+    <section class="section section--plain reveal" id="identity" data-number="09">
+      <div class="section-label" data-i18n="identity.label">09 — Studio Identity</div>
+      <h2 data-i18n="identity.title">What we build on.</h2>
+
+      <div class="identity-strip">
+        <span data-i18n="identity.word1">Discipline</span>
+        <span class="identity-dot">·</span>
+        <span data-i18n="identity.word2">Consistency</span>
+        <span class="identity-dot">·</span>
+        <span data-i18n="identity.word3">Iteration</span>
+        <span class="identity-dot">·</span>
+        <span data-i18n="identity.word4">Improvement</span>
+      </div>
+    </section>
+
+    <!-- 10 COMMUNITY -->
+    <section class="section section--plain reveal" id="community" data-number="10">
+      <div class="section-label" data-i18n="community.label">10 — Community</div>
+      <h2 data-i18n="community.title">Follow the Journey.</h2>
+      <p data-i18n="community.p1">
+        Follow development, share feedback, discover new projects, and become part of
+        Rynia Studios.
+      </p>
+
+      <div class="hero-buttons">
+        <a class="button primary" href="https://discord.gg/AmHTh8eyA" target="_blank" rel="noopener noreferrer" data-i18n="community.joinDiscord">
+          Join Discord
+        </a>
+      </div>
+
+      <div class="social-links">
+        <a href="https://discord.gg/AmHTh8eyA" target="_blank" rel="noopener noreferrer" class="social-pill" data-i18n="community.discord">Discord</a>
+        <a href="https://x.com/RyniaStudio" target="_blank" rel="noopener noreferrer" class="social-pill" data-i18n="community.x">X</a>
+        <a href="https://www.instagram.com/ryniastudio/" target="_blank" rel="noopener noreferrer" class="social-pill" data-i18n="community.instagram">Instagram</a>
+        <a href="https://www.youtube.com/@RyniaStudio" target="_blank" rel="noopener noreferrer" class="social-pill" data-i18n="community.youtube">YouTube</a>
+      </div>
+
+      <div class="newsletter">
+        <h3 data-i18n="community.newsletterTitle">Prefer email?</h3>
+        <p data-i18n="community.newsletterText">Get notified when Kombo Kart reaches major milestones—no spam, just the essentials.</p>
+        <form class="newsletter-form" action="https://formspree.io/f/mzepgjyz" method="POST">
+          <input type="email" name="email" placeholder="you@email.com" required class="newsletter-input" />
+          <button type="submit" class="button primary newsletter-submit" data-i18n="community.subscribe">Subscribe</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- 11 FOOTER -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="brand footer-brand">
+        <img src="./assets/rynia-logo.png" alt="Rynia Studios Logo" class="brand-logo" />
+        <span data-i18n="footer.brand">Rynia Studios</span>
+      </div>
+      <p class="footer-vision" data-i18n="footer.vision">Small studio. Serious work. Built one disciplined iteration at a time.</p>
+      <p data-i18n="footer.copyright">© 2026 Rynia Studios. Crafted with discipline.</p>
+      <div class="social-links footer-social">
+        <a href="https://discord.gg/AmHTh8eyA" target="_blank" rel="noopener noreferrer" class="inline-link" data-i18n="footer.discord">Discord</a>
+        <a href="https://x.com/RyniaStudio" target="_blank" rel="noopener noreferrer" class="inline-link" data-i18n="footer.x">X</a>
+        <a href="https://www.instagram.com/ryniastudio/" target="_blank" rel="noopener noreferrer" class="inline-link" data-i18n="footer.instagram">Instagram</a>
+        <a href="https://www.youtube.com/@RyniaStudio" target="_blank" rel="noopener noreferrer" class="inline-link" data-i18n="footer.youtube">YouTube</a>
+      </div>
+      <p class="footer-contact">
+        <a href="mailto:ryniastudios@gmail.com" class="inline-link">ryniastudios@gmail.com</a>
+        · <a href="#press" class="inline-link" data-i18n="footer.press">Press Kit</a>
+      </p>
+    </div>
+  </footer>
+
+  <style>
+    /* Announcements Section Styles */
+    .announcements-list {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      margin-top: 28px;
+    }
+
+    .announcement-card {
+      padding: 24px 28px;
+      border-radius: var(--radius-card, 8px);
+      border: 1px solid var(--border-color, rgba(201, 169, 104, 0.15));
+      background: linear-gradient(
+        135deg,
+        rgba(36, 36, 36, 0.6) 0%,
+        rgba(26, 26, 26, 0.45) 100%
+      );
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .announcement-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(201, 169, 104, 0.35);
+      box-shadow: var(--shadow-card, 0 12px 32px rgba(0, 0, 0, 0.3));
+    }
+
+    .announcement-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 14px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(212, 197, 176, 0.08);
+    }
+
+    .announcement-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .announcement-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(201, 169, 104, 0.12);
+      color: var(--accent-bronze, #c9a968);
+      border: 1px solid rgba(201, 169, 104, 0.25);
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    }
+
+    .announcement-author {
+      color: var(--text-primary, #f4f0ea);
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .announcement-date {
+      color: var(--text-muted, #8e8982);
+      font-size: 0.82rem;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    }
+
+    .announcement-content {
+      color: var(--cream, #d4c5b0);
+      font-size: 0.98rem;
+      line-height: 1.7;
+      white-space: pre-wrap;
+      word-break: break-word;
+      margin: 0;
+    }
+
+    .announcement-loading,
+    .announcement-empty,
+    .announcement-error {
+      text-align: center;
+      padding: 36px 20px;
+      color: var(--text-muted, #8e8982);
+      font-style: italic;
+      font-size: 0.95rem;
+    }
+
+    .announcement-spinner {
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      border: 2px solid rgba(201, 169, 104, 0.2);
+      border-top-color: var(--accent-bronze, #c9a968);
+      border-radius: 50%;
+      animation: announcement-spin 0.8s linear infinite;
+      margin-bottom: 12px;
+    }
+
+    @keyframes announcement-spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 600px) {
+      .announcement-card {
+        padding: 18px 16px;
+      }
+      .announcement-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+      }
+    }
+  </style>
+
+  <script>
+    (function () {
+      const SUPABASE_URL = 'https://uyfoohjimbiclzkhkfqr.supabase.co';
+      const SUPABASE_KEY = 'sb_publishable_UGaJoGHubtD6knyA1j7V1Q_SohdycwC';
+
+      function stripMarkdown(text) {
+        if (!text) return '';
+        return text
+          .replace(/```[\s\S]*?```/g, function(match) { return match.replace(/```/g, '').trim(); })
+          .replace(/`([^`]+)`/g, '$1')
+          .replace(/\*\*([^*]+)\*\*/g, '$1')
+          .replace(/\*([^*]+)\*/g, '$1')
+          .replace(/__([^_]+)__/g, '$1')
+          .replace(/_([^_]+)_/g, '$1')
+          .replace(/~~([^~]+)~~/g, '$1')
+          .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+          .replace(/^#+\s+/gm, '')
+          .replace(/^>\s+/gm, '')
+          .trim();
+      }
+
+      function escapeHTML(str) {
+        if (!str) return '';
+        return str.replace(/[&<>'"]/g, function (tag) {
+          return ({
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            "'": '&#39;',
+            '"': '&quot;'
+          }[tag] || tag);
+        });
+      }
+
+      function formatDate(dateString) {
+        try {
+          const date = new Date(dateString);
+          return date.toLocaleDateString('tr-TR', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+          });
+        } catch (e) {
+          return dateString;
+        }
+      }
+
+      async function loadAnnouncements() {
+        const container = document.getElementById('announcements-container');
+        if (!container) return;
+
+        if (!window.supabase) {
+          container.innerHTML = '<p class="announcement-error">Supabase bağlantısı yüklenemedi.</p>';
+          return;
+        }
+
+        try {
+          const client = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+          const { data, error } = await client
+            .from('announcements')
+            .select('id, content, author, created_at')
+            .order('created_at', { ascending: false })
+            .limit(5);
+
+          if (error) throw error;
+
+          if (!data || data.length === 0) {
+            container.innerHTML = '<p class="announcement-empty">Henüz yayınlanmış bir duyuru bulunmuyor.</p>';
+            return;
+          }
+
+          container.innerHTML = data
+            .map(function (item) {
+              const cleanContent = stripMarkdown(item.content || '');
+              const safeContent = escapeHTML(cleanContent);
+              const safeAuthor = escapeHTML(item.author || 'Rynia Studios');
+              const formattedDate = formatDate(item.created_at);
+
+              return `
+                <article class="announcement-card">
+                  <header class="announcement-header">
+                    <div class="announcement-meta">
+                      <span class="announcement-badge">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: -1px;">
+                          <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.929 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.894.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+                        </svg>
+                        Discord
+                      </span>
+                      <strong class="announcement-author">${safeAuthor}</strong>
+                    </div>
+                    <time class="announcement-date" datetime="${item.created_at}">${formattedDate}</time>
+                  </header>
+                  <p class="announcement-content">${safeContent}</p>
+                </article>
+              `;
+            })
+            .join('');
+        } catch (err) {
+          console.error('Duyurular yüklenirken hata oluştu:', err);
+          container.innerHTML = '<p class="announcement-error">Duyurular yüklenirken bir hata oluştu. Lütfen daha sonra tekrar deneyin.</p>';
+        }
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', loadAnnouncements);
+      } else {
+        loadAnnouncements();
+      }
+    })();
+  </script>
+</body>
+</html>

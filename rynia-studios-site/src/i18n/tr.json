@@ -1,0 +1,132 @@
+{
+  "hero": {
+    "eyebrow": "Oyun Geliştirme",
+    "title": "Elementlerin Dansı.<br>Stratejinin Zirvesi.",
+    "text": "Draft, evrim, konumlandırma ve elemental sinerji ile şekillenen, otomatik savaşların yaşandığı stratejik kart oyunu.",
+    "cta1": "Oyunlarımızı Keşfedin",
+    "cta2": "Topluluğa Katılın"
+  },
+  "origin": {
+    "label": "02 — Köken",
+    "title": "Kişisel Takma Addan Stüdyoya.",
+    "p1": "Rynia başlangıçta bir stüdyo adı olarak düşünülmemişti. Yıllar önce çeşitli proje ve topluluklarda taşıdığım kişisel bir takma addı—dijital bir kimlik. Zamanla bir addan fazlası haline geldi: tutarlılığın, disiplinin ve yaratıcı kararlılığın sembolü.",
+    "p2": "Oyun geliştirmeye ciddi ve uzun vadeli bir pratik olarak odaklandığımda, stüdyo adı seçimi doğaldı. Rynia Studios sadece oyun üreten bir şirket değil; vizyonu olan, niyetle oyunlar inşa eden, açıkça öğrenen ve her iterasyonda evrimleşen bağımsız bir üretim alanı."
+  },
+  "vision": {
+    "label": "03 — Vizyon & Misyon",
+    "title": "Disiplin, İterasyon, Evrim.",
+    "visionTitle": "Vizyon",
+    "visionText": "Zaman içinde gelişen, odaklanmış ve derinleşen bağımsız oyunlar üreterek tanınan bir butik oyun stüdyosu inşa etmek.",
+    "missionTitle": "Misyon",
+    "missionText": "Becerileri, sistemleri ve üretim verimliliğini sürekli geliştirirken yönetilebilir ölçekli oyunlar tasarlamak."
+  },
+  "games": {
+    "label": "04 — Oyunlar",
+    "title": "Oyunlarımız.",
+    "subtitle": "Bir aktif proje. Bir konsept aşamasında fikir.",
+    "komboStatus": "GELİŞTİRİLİYOR",
+    "komboTitle": "Kombo Kart",
+    "komboTagline": "Strateji. Element. Zafer.",
+    "komboPlatform": "iOS · Mobil",
+    "komboDescription": "Kombo Kart; draft mekaniği, kart evrimi, taktiksel konumlandırma ve elemental sinerjiler etrafında kurulu bir mobil auto-battler kart oyunudur.",
+    "komboLoop1": "Draft",
+    "komboLoop2": "Evrim",
+    "komboLoop3": "Konumlandırma",
+    "komboLoop4": "Otomatik Savaş",
+    "komboNote": "\"Az kart. Çok karar.\"",
+    "komboLink": "Geliştirmeyi Takip Et →",
+    "komboVisualCaption": "Oynanış görselleri yakında",
+    "protocolStatus": "KONSEPT",
+    "protocolTitle": "Protocol-45: Hubris",
+    "protocolDescription": "Karmaşık sistemleri ve anlatı derinliğini keşfeden erken aşama çok platformlu bir konsept. Tasarım şekillendikçe detaylar paylaşılacaktır."
+  },
+  "press": {
+    "label": "05 — Basın Kiti",
+    "title": "Basın & İçerik Üreticileri İçin.",
+    "p1": "Kombo Kart'ı incelemek için ihtiyaç duyacağınız tüm bilgiler: bilgi formu, açıklamalar ve iletişim kanalları. Ekran görüntüleri ve fragman geliştirme ilerledikçe eklenecektir.",
+    "factsheetTitle": "Bilgi Formu",
+    "factsheetText": "Geliştirici: Rynia Studios (solo)<br>Motor: Unity<br>Platform: iOS / Mobil<br>Tür: Mobil auto-battler kart oyunu<br>Durum: Geliştirme aşamasında<br>Discord: <a href=\"https://discord.gg/AmHTh8eyA\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"inline-link\">discord.gg/AmHTh8eyA</a>",
+    "shortTitle": "Kısa Açıklama",
+    "shortText": "Kombo Kart; kart seçimi, kart evrimi ve saha konumlandırmasının her savaşı belirlediği stratejik bir mobil auto-battler oyunudur.",
+    "p2": "Kombo Kart sade bir döngü izler: kartlarınızı seçin, evrimleştirin, doğru konumlara yerleştirin ve otomatik savaşı izleyin. Felsefesi net: az kart, bol karar. Geliştirme ilerledikçe kart havuzu ve elemental sinerjiler her oyuna kendi derinliğini kazandıracaktır.",
+    "note": "Basın & iş birliği iletişimi: <a href=\"mailto:ryniastudios@gmail.com\" class=\"inline-link\">ryniastudios@gmail.com</a>"
+  },
+  "development": {
+    "label": "06 — Geliştirme",
+    "title": "Aktif Sistemler & Odak Alanları.",
+    "subtitle": "Şu anda üzerinde çalışılan temel bileşenler.",
+    "p1": "Bu bölüm Kombo Kart için aktif olarak inşa edilen çekirdek sistemleri takip eder. Üretim hattının kalbini ve kurulan teknik temeli temsil eder.",
+    "roadmapBuild": "İnşa Et",
+    "roadmapTest": "Test Et",
+    "roadmapIterate": "Yinele",
+    "testingStatus": "TEST AŞAMASINDA",
+    "combatTitle": "Savaş Motoru",
+    "combatText": "Unity üzerinde tick hızı, kart durumları, hedefleme, saldırılar, hasar hesaplaması ve elemental hasar mantığını içeren çekirdek savaş sistemleri inşa ediliyor.",
+    "progressStatus": "GELİŞTİRİLİYOR",
+    "cardTitle": "Kart Sistemleri",
+    "cardText": "Sınırlı kart havuzunda derin stratejik kararlar yaratmak için elementler, roller, pozisyonlar, yetenekler ve evrim sistemleri yapılandırılıyor.",
+    "conceptStatus": "PLANLANDI",
+    "battleTitle": "Savaş Akışları",
+    "battleText": "Hedef değiştirme, ölüm durumları, iyileşme, güçlendirmeler, zayıflatmalar ve savaş temeli genişledikçe açılacak elemental sinerjiler planlanıyor."
+  },
+  "philosophy": {
+    "label": "07 — Geliştirme Felsefesi",
+    "title": "İnşa Et. Test Et. Yinele.",
+    "buildTitle": "İnşa Et",
+    "buildText": "Temeli oluştur.",
+    "testTitle": "Test Et",
+    "testText": "Neyin çalışıp neyin çalışmadığını keşfet.",
+    "iterateTitle": "Yinele",
+    "iterateText": "Geliştir, rafine et ve tekrarla."
+  },
+  "devlog": {
+    "label": "08 — Geliştirme Günlüğü",
+    "title": "Son Gelişmeler.",
+    "date": "Ağustos 2026",
+    "entryTitle": "Kombo Kart — Savaş Motoru",
+    "entryText": "Saldırı zamanlaması, hedefleme, hasar hesaplaması ve elemental hasar dahil olmak üzere çekirdek savaş sistemleri Unity'de test ediliyor.",
+    "link": "Discord üzerinden anlık olarak takip edin →"
+  },
+  "identity": {
+    "label": "09 — Stüdyo Kimliği",
+    "title": "Üzerine inşa ettiğimiz değerler.",
+    "word1": "Disiplin",
+    "word2": "Tutarlılık",
+    "word3": "İterasyon",
+    "word4": "Gelişim"
+  },
+  "community": {
+    "label": "10 — Topluluk",
+    "title": "Yolculuğu Takip Edin.",
+    "p1": "Geliştirme sürecini takip edin, geri bildirimlerinizi paylaşın, yeni projeleri keşfedin ve Rynia Studios'un bir parçası olun.",
+    "joinDiscord": "Discord'a Katıl",
+    "discord": "Discord",
+    "x": "X",
+    "instagram": "Instagram",
+    "youtube": "YouTube",
+    "newsletterTitle": "E-posta ile mi takip etmek istersiniz?",
+    "newsletterText": "Kombo Kart önemli aşamalara ulaştığında haberdar olun—asla spam yok, sadece önemli gelişmeler.",
+    "subscribe": "Kayıt Ol"
+  },
+  "footer": {
+    "brand": "Rynia Studios",
+    "vision": "Küçük stüdyo. Ciddi işler. Disiplinli iterasyonlarla inşa edilir.",
+    "copyright": "© 2026 Rynia Studios. Disiplin ve tutkuyla üretildi.",
+    "discord": "Discord",
+    "x": "X",
+    "instagram": "Instagram",
+    "youtube": "YouTube",
+    "press": "Basın Kiti"
+  },
+  "nav": {
+    "brand": "Rynia Studios",
+    "home": "Ana Sayfa",
+    "about": "Hakkımızda",
+    "games": "Oyunlar",
+    "development": "Geliştirme",
+    "devlog": "Geliştirme Günlüğü",
+    "announcements": "Duyurular",
+    "community": "Topluluk",
+    "joinDiscord": "Discord'a Katıl"
+}
+}

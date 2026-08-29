@@ -1,0 +1,133 @@
+{
+  "hero": {
+    "eyebrow": "Game Development",
+    "title": "The Dance of Elements.<br>The Peak of Strategy.",
+    "text": "Kombo Kart is a strategic card game of automatic battles shaped by drafting, evolution, positioning, and elemental synergies.",
+    "cta1": "Explore Our Games",
+    "cta2": "Join the Community"
+  },
+  "origin": {
+    "label": "02 — Origin",
+    "title": "From nickname to studio.",
+    "p1": "Rynia was never meant to be a studio name. Years ago, it was simply a personal nickname—a digital identity I carried through various projects and communities. Over time, it became more than that: a symbol of consistency, discipline, and creative persistence.",
+    "p2": "When I committed to game development as a serious, long-term practice, the choice was natural. Rynia Studios isn't a company building games. It's a person with a vision, building games with intention, learning in public, and evolving through every iteration."
+  },
+  "vision": {
+    "label": "03 — Vision & Mission",
+    "title": "Discipline, Iteration, Evolution.",
+    "visionTitle": "Vision",
+    "visionText": "To build a recognizable indie game studio by creating simple, focused, and iterative games that evolve over time.",
+    "missionTitle": "Mission",
+    "missionText": "To design and develop small-scale, manageable games while continuously improving skills, systems, and production efficiency."
+  },
+  "games": {
+    "label": "04 — Games",
+    "title": "Our Games.",
+    "subtitle": "One active project. One dormant concept.",
+    "komboStatus": "IN DEVELOPMENT",
+    "komboTitle": "Kombo Kart",
+    "komboTagline": "Strategy. Element. Victory.",
+    "komboPlatform": "iOS · Mobile",
+    "komboDescription": "Kombo Kart is a mobile auto-battler card game built around drafting, card evolution, positioning, and elemental synergies.",
+
+    "komboLoop1": "Draft",
+    "komboLoop2": "Evolution",
+    "komboLoop3": "Position",
+    "komboLoop4": "Auto Battle",
+    "komboNote": "\"Few cards. Many decisions.\"",
+    "komboLink": "Follow Development →",
+    "komboVisualCaption": "Gameplay visuals coming soon",
+    "protocolStatus": "CONCEPT",
+    "protocolTitle": "Protocol-45: Hubris",
+    "protocolDescription": "An early-stage, multi-platform concept exploring complex systems and narrative depth. No confirmed platform or timeline yet—details will surface as the design takes shape."
+  },
+  "press": {
+    "label": "05 — Press Kit",
+    "title": "For press & content creators.",
+    "p1": "Everything you need to cover Kombo Kart—factsheet, descriptions, and contact details. Screenshots and trailer will be added as development progresses.",
+    "factsheetTitle": "Factsheet",
+    "factsheetText": "Developer: Rynia Studios (solo)<br>Engine: Unity<br>Platform: iOS / Mobile<br>Genre: Mobile auto-battler card game<br>Status: In development<br>Discord: <a href=\"https://discord.gg/AmHTh8eyA\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"inline-link\">discord.gg/AmHTh8eyA</a>",
+    "shortTitle": "Short Description",
+    "shortText": "Kombo Kart is a mobile auto-battler card game where drafting, card evolution, and positioning decide every battle.",
+    "p2": "Kombo Kart follows a simple loop: draft your cards, evolve them, choose their position, then watch the battle play out automatically. The philosophy behind the game is simple—few cards, many decisions. As development continues, the drafting pool and elemental synergies will expand to give every run its own shape.",
+    "note": "Press & collaboration inquiries: <a href=\"mailto:ryniastudios@gmail.com\" class=\"inline-link\">ryniastudios@gmail.com</a>"
+  },
+  "development": {
+    "label": "06 — Development",
+    "title": "Active Systems & Focus Areas.",
+    "subtitle": "What's actually being built right now.",
+    "p1": "This section tracks the core systems currently in development for Kombo Kart. It represents the heart of the production pipeline and the technical foundation being built.",
+    "roadmapBuild": "Build",
+    "roadmapTest": "Test",
+    "roadmapIterate": "Iterate",
+    "testingStatus": "IN TESTING",
+    "combatTitle": "Combat Engine",
+    "combatText": "Core combat systems are being built in Unity, including ticks, card states, targeting, attacks, damage calculation, and elemental damage.",
+    "progressStatus": "IN PROGRESS",
+    "cardTitle": "Card Systems",
+    "cardText": "Cards are being structured around elements, roles, positioning, abilities, and evolution to create meaningful decisions with a limited card pool.",
+    "conceptStatus": "NOT STARTED",
+    "battleTitle": "Battle Systems",
+    "battleText": "Target switching, death states, healing, buffs, debuffs, and elemental synergies are planned as the combat foundation expands."
+  },
+  "philosophy": {
+    "label": "07 — Development Philosophy",
+    "title": "Build. Test. Iterate.",
+    "buildTitle": "Build",
+    "buildText": "Create the foundation.",
+    "testTitle": "Test",
+    "testText": "Find what works and what doesn't.",
+    "iterateTitle": "Iterate",
+    "iterateText": "Improve, refine, and repeat."
+  },
+  "devlog": {
+    "label": "08 — Development Updates",
+    "title": "Latest Development.",
+    "date": "August 2026",
+    "entryTitle": "Kombo Kart — Combat Engine",
+    "entryText": "Core combat systems are now being tested in Unity, including attack timing, targeting, damage calculation, and elemental damage.",
+    "link": "Followed live on Discord as it happens →"
+  },
+  "identity": {
+    "label": "09 — Studio Identity",
+    "title": "What we build on.",
+    "word1": "Discipline",
+    "word2": "Consistency",
+    "word3": "Iteration",
+    "word4": "Improvement"
+  },
+  "community": {
+    "label": "10 — Community",
+    "title": "Follow the Journey.",
+    "p1": "Follow development, share feedback, discover new projects, and become part of Rynia Studios.",
+    "joinDiscord": "Join Discord",
+    "discord": "Discord",
+    "x": "X",
+    "instagram": "Instagram",
+    "youtube": "YouTube",
+    "newsletterTitle": "Prefer email?",
+    "newsletterText": "Get notified when Kombo Kart reaches major milestones—no spam, just the essentials.",
+    "subscribe": "Subscribe"
+  },
+  "footer": {
+    "brand": "Rynia Studios",
+    "vision": "Small studio. Serious work. Built one disciplined iteration at a time.",
+    "copyright": "© 2026 Rynia Studios. Crafted with discipline.",
+    "discord": "Discord",
+    "x": "X",
+    "instagram": "Instagram",
+    "youtube": "YouTube",
+    "press": "Press Kit"
+  },
+  "nav": {
+    "brand": "Rynia Studios",
+    "home": "Home",
+    "about": "About",
+    "games": "Games",
+    "development": "Development",
+    "devlog": "Devlog",
+    "announcements": "Announcements",
+    "community": "Community",
+    "joinDiscord": "Join Discord"
+  }
+}

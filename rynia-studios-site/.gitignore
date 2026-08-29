@@ -1,0 +1,24 @@
+# Bağımlılıklar
+node_modules/
+
+# Build çıktıları
+dist/
+build/
+
+# Test ürünleri
+test-artifacts/
+
+# Ortam dosyaları
+.env
+.env.local
+
+# Loglar
+*.log
+
+# Editör
+.vscode/
+.idea/
+
+# İşletim sistemi
+.DS_Store
+Thumbs.db

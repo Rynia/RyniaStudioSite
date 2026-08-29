@@ -1,0 +1,45 @@
+:root {
+  /* Brand Palette - Deep, Cinematic & Luxury */
+  --bg-primary: #1e1e1e;
+  --bg-secondary: #262626;
+  --bg-tertiary: #303030;
+  --bg-card: rgba(36, 36, 36, 0.7);
+
+  /* Warm Whites & Creams */
+  --cream: #d4c5b0;
+  --warm-gray: #a89f91;
+  --stone-gray: #7a7672;
+
+  /* Typography Colors */
+  --text-primary: #f4f0ea;
+  --text-secondary: #c8c3bb;
+  --text-muted: #8e8982;
+
+  /* Accent Bronze (Restricted & High Value) */
+  --accent-bronze: #c9a968;
+  --accent-bronze-glow: rgba(201, 169, 104, 0.25);
+  --accent-light: #f8f5f0;
+
+  /* Status Badges */
+  --status-live: #8b9d6f;
+  --status-dev: #8b8b5f;
+  --status-testing: #7f9db0;
+  --status-concept: #6b6b7f;
+
+  /* Borders & Shadows */
+  --border-color: rgba(201, 169, 104, 0.15);
+  --border-subtle: rgba(212, 197, 176, 0.08);
+  --line-color: rgba(212, 197, 176, 0.1);
+  --shadow-luxury: 0 24px 64px rgba(0, 0, 0, 0.45);
+  --shadow-card: 0 12px 32px rgba(0, 0, 0, 0.3);
+  --shadow-hover: 0 20px 48px rgba(0, 0, 0, 0.4);
+
+  /* Geometry & Radii - Sharp & Architectural */
+  --radius-btn: 8px;
+  --radius-card: 8px;
+  --radius-section: 4px;
+
+  /* 3D Canvas */
+  --canvas-z-index: 0;
+}
+
