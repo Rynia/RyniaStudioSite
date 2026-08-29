@@ -594,16 +594,35 @@
       function stripMarkdown(text) {
         if (!text) return '';
         return text
+          // Discord özel emojileri: <:isim:123456> veya <a:isim:123456> -> tamamen SİL
+          .replace(/<a?:[a-zA-Z0-9_~]+:[0-9]+>/g, '')
+          // Discord kullanıcı, rol ve kanal etiketleri (<@123>, <@&123>, <#123>)
+          .replace(/<@!?[0-9]+>|<@&[0-9]+>|<#[0-9]+>/g, '')
+          // Discord zaman damgaları (<t:123456:R>)
+          .replace(/<t:[0-9]+(:[a-zA-Z])?>/g, '')
+          // @everyone ve @here bildirimleri
+          .replace(/@(everyone|here)/g, '')
+          // Discord spoiler formatı ||gizli metin||
+          .replace(/\|\|([\s\S]*?)\|\|/g, '$1')
+          // Kod blokları
           .replace(/```[\s\S]*?```/g, function(match) { return match.replace(/```/g, '').trim(); })
+          // Satır içi kod
           .replace(/`([^`]+)`/g, '$1')
+          // Kalın, italik ve altı çizili işaretleri
+          .replace(/\*\*\*([^*]+)\*\*\*/g, '$1')
           .replace(/\*\*([^*]+)\*\*/g, '$1')
           .replace(/\*([^*]+)\*/g, '$1')
+          .replace(/___([^_]+)___/g, '$1')
           .replace(/__([^_]+)__/g, '$1')
           .replace(/_([^_]+)_/g, '$1')
           .replace(/~~([^~]+)~~/g, '$1')
-          .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+          // Markdown linkleri [yazı](url) -> yazı (veya url ile birlikte)
+          .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '$1')
+          // Başlık (# Başlık) ve Alıntı (> Alıntı) işaretleri
           .replace(/^#+\s+/gm, '')
           .replace(/^>\s+/gm, '')
+          // Gereksiz ardışık boş satırları temizle
+          .replace(/\n{3,}/g, '\n\n')
           .trim();
       }
 
@@ -647,23 +666,36 @@
         try {
           const client = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
+          // Boş kayıtlar elendiğinde tam 5 duyuru kalabilmesi için 15 kayıt çekiyoruz
           const { data, error } = await client
             .from('announcements')
             .select('id, content, author, created_at')
             .order('created_at', { ascending: false })
-            .limit(5);
+            .limit(15);
 
           if (error) throw error;
 
-          if (!data || data.length === 0) {
+          // Boş içerikleri filtrele ve en fazla 5 geçerli duyuru al
+          const validAnnouncements = (data || [])
+            .map(function (item) {
+              return {
+                ...item,
+                cleanContent: stripMarkdown(item.content || '')
+              };
+            })
+            .filter(function (item) {
+              return item.cleanContent.length > 0;
+            })
+            .slice(0, 5);
+
+          if (validAnnouncements.length === 0) {
             container.innerHTML = '<p class="announcement-empty">Henüz yayınlanmış bir duyuru bulunmuyor.</p>';
             return;
           }
 
-          container.innerHTML = data
+          container.innerHTML = validAnnouncements
             .map(function (item) {
-              const cleanContent = stripMarkdown(item.content || '');
-              const safeContent = escapeHTML(cleanContent);
+              const safeContent = escapeHTML(item.cleanContent);
               const safeAuthor = escapeHTML(item.author || 'Rynia Studios');
               const formattedDate = formatDate(item.created_at);
 
