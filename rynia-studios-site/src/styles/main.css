@@ -64,11 +64,39 @@ a {
 /* Netlify Badge Dark Mode & Transparency Fix */
 [data-netlify-badge],
 .netlify-badge,
+#netlify-badge,
+a[href*="netlify.com"],
 a[href*="netlify.com"] img,
-div[style*="position: fixed"][style*="bottom: 0"],
-div[class*="netlify"] {
+a[href*="netlify.com"] svg,
+div:has(> a[href*="netlify.com"]),
+div:has(a[href*="netlify.com"]),
+div:has(> iframe[src*="netlify"]),
+div[class*="netlify"],
+div[id*="netlify"],
+iframe[src*="netlify"],
+div[style*="fixed"][style*="bottom"][style*="right"],
+div[style*="fixed"][style*="right"][style*="bottom"] {
+  background: transparent !important;
   background-color: transparent !important;
-  border-radius: 20px !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+
+[data-theme="dark"] [data-netlify-badge],
+[data-theme="dark"] .netlify-badge,
+[data-theme="dark"] #netlify-badge,
+[data-theme="dark"] a[href*="netlify.com"],
+[data-theme="dark"] a[href*="netlify.com"] *,
+[data-theme="dark"] div:has(> a[href*="netlify.com"]),
+[data-theme="dark"] div:has(a[href*="netlify.com"]),
+[data-theme="dark"] div:has(> iframe[src*="netlify"]),
+[data-theme="dark"] div[class*="netlify"],
+[data-theme="dark"] div[id*="netlify"],
+[data-theme="dark"] iframe[src*="netlify"] {
+  background: transparent !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
 }
 
 /* Dark Mode Explicit Overrides for Cards & Visuals */

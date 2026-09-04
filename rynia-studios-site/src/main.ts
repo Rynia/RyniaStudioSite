@@ -19,6 +19,7 @@ function init(): void {
   initNav();
   initReveal();
   initNewsletter();
+  initNetlifyBadgeFix();
 
   // Initialize language (load saved preference & bind buttons)
   initLanguage();
@@ -65,6 +66,66 @@ function init(): void {
     observer.observe(heroContainer);
   } else {
     setTimeout(mountHeroScene, 1200);
+  }
+}
+
+function initNetlifyBadgeFix(): void {
+  const cleanBadge = () => {
+    const selectors = [
+      'a[href*="netlify.com"]',
+      'a[href*="netlify.app"]',
+      '[data-netlify-badge]',
+      '.netlify-badge',
+      '#netlify-badge',
+      'div[class*="netlify"]',
+      'div[id*="netlify"]',
+    ];
+
+    selectors.forEach((sel) => {
+      document.querySelectorAll<HTMLElement>(sel).forEach((el) => {
+        el.style.setProperty('background', 'transparent', 'important');
+        el.style.setProperty('background-color', 'transparent', 'important');
+        el.style.setProperty('box-shadow', 'none', 'important');
+        el.style.setProperty('border', 'none', 'important');
+
+        let parent = el.parentElement;
+        while (parent && parent !== document.body && parent !== document.documentElement) {
+          parent.style.setProperty('background', 'transparent', 'important');
+          parent.style.setProperty('background-color', 'transparent', 'important');
+          parent.style.setProperty('box-shadow', 'none', 'important');
+          parent.style.setProperty('border', 'none', 'important');
+          parent = parent.parentElement;
+        }
+      });
+    });
+
+    document.querySelectorAll<HTMLElement>('div, a').forEach((el) => {
+      const comp = window.getComputedStyle(el);
+      if (comp.position === 'fixed') {
+        const b = parseInt(comp.bottom, 10);
+        const r = parseInt(comp.right, 10);
+        if (!isNaN(b) && b < 80 && !isNaN(r) && r < 80) {
+          if (el.innerHTML.toLowerCase().includes('netlify')) {
+            el.style.setProperty('background', 'transparent', 'important');
+            el.style.setProperty('background-color', 'transparent', 'important');
+            el.style.setProperty('box-shadow', 'none', 'important');
+            el.style.setProperty('border', 'none', 'important');
+          }
+        }
+      }
+    });
+  };
+
+  cleanBadge();
+  setTimeout(cleanBadge, 300);
+  setTimeout(cleanBadge, 1000);
+  setTimeout(cleanBadge, 2500);
+
+  window.addEventListener('themechange', cleanBadge);
+
+  if ('MutationObserver' in window) {
+    const observer = new MutationObserver(() => cleanBadge());
+    observer.observe(document.body, { childList: true, subtree: true });
   }
 }
 

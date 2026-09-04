@@ -3,13 +3,13 @@
   position: sticky;
   top: 0;
   z-index: 50;
-  max-width: 1160px;
+  max-width: 1180px;
   margin: 0 auto 64px;
-  padding: 16px 32px;
+  padding: 12px 24px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 28px;
+  gap: 16px;
   background: var(--bg-glass);
   border: 1px solid var(--border-color);
   border-top: none;
@@ -28,12 +28,13 @@
 .brand {
   display: flex;
   align-items: center;
-  gap: 12px;
-  font-size: 0.95rem;
+  gap: 10px;
+  font-size: 0.92rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--text-primary);
+  flex-shrink: 0;
 }
 
 .brand-logo {
@@ -46,16 +47,17 @@
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 28px;
-  font-size: 0.88rem;
+  gap: 16px;
+  font-size: 0.82rem;
   font-weight: 500;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.01em;
 }
 
 .nav-links a {
   color: var(--text-secondary);
   position: relative;
-  padding: 6px 0;
+  padding: 4px 0;
+  white-space: nowrap;
   transition: color 0.2s ease, transform 0.2s ease;
   display: inline-block;
 }
@@ -81,10 +83,19 @@
   width: 100%;
 }
 
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
 .nav-cta {
   min-width: auto;
-  padding: 9px 18px;
-  font-size: 0.8rem;
+  padding: 8px 16px;
+  font-size: 0.78rem;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .nav-toggle {
@@ -121,7 +132,7 @@
   transform: translateY(-7px) rotate(-45deg);
 }
 
-@media (max-width: 960px) {
+@media (max-width: 1080px) {
   .nav {
     margin-bottom: 32px;
     padding: 12px 18px;
@@ -130,10 +141,15 @@
 
   .nav-toggle {
     display: flex;
+    order: 3;
+  }
+
+  .nav-right {
+    order: 2;
   }
 
   .nav-cta {
-    padding: 8px 14px;
+    padding: 7px 12px;
     font-size: 0.75rem;
   }
 
@@ -143,7 +159,7 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 4px;
-    order: 3;
+    order: 4;
     padding-top: 14px;
     margin-top: 14px;
     border-top: 1px solid var(--line-color);
@@ -156,6 +172,12 @@
   .nav-links a {
     padding: 8px 0;
     width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .nav-right .nav-cta {
+    display: none;
   }
 }
 
