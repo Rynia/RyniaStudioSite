@@ -65,6 +65,15 @@
   }
   </script>
 
+  <script>
+    (function() {
+      try {
+        var saved = localStorage.getItem('rynia_theme_preference');
+        var theme = saved || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) {}
+    })();
+  </script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script type="module" src="./src/main.ts"></script>
 </head>
@@ -92,9 +101,31 @@
       <a href="#community" data-i18n="nav.community">Community</a>
     </div>
 
-    <button class="lang-toggle" id="langToggle" aria-label="Switch language" title="Switch language">
-      EN
-    </button>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark / light mode" title="Tema Değiştir">
+        <!-- Sun icon (for dark mode) -->
+        <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+        <!-- Moon icon (for light mode) -->
+        <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </button>
+
+      <button class="lang-toggle" id="langToggle" aria-label="Switch language" title="Switch language">
+        EN
+      </button>
+    </div>
+
     <a class="button primary nav-cta" href="https://discord.gg/AmHTh8eyA" target="_blank" rel="noopener noreferrer" data-i18n="nav.joinDiscord">
       Join Discord
     </a>
@@ -501,22 +532,20 @@
 
     .announcement-card {
       padding: 24px 28px;
-      border-radius: var(--radius-card, 8px);
-      border: 1px solid var(--border-color, rgba(201, 169, 104, 0.15));
-      background: linear-gradient(
-        135deg,
-        rgba(36, 36, 36, 0.6) 0%,
-        rgba(26, 26, 26, 0.45) 100%
-      );
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, box-shadow 0.25s ease;
+      border-radius: var(--radius-card, 16px);
+      border: 1px solid var(--border-color);
+      background: var(--bg-card);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      box-shadow: var(--shadow-card);
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
     }
 
     .announcement-card:hover {
       transform: translateY(-3px);
-      border-color: rgba(201, 169, 104, 0.35);
-      box-shadow: var(--shadow-card, 0 12px 32px rgba(0, 0, 0, 0.3));
+      border-color: var(--border-medium);
+      box-shadow: var(--shadow-hover);
+      background: var(--bg-card-hover, var(--bg-card));
     }
 
     .announcement-header {
@@ -527,7 +556,7 @@
       gap: 12px;
       margin-bottom: 14px;
       padding-bottom: 12px;
-      border-bottom: 1px solid rgba(212, 197, 176, 0.08);
+      border-bottom: 1px solid var(--line-color);
     }
 
     .announcement-meta {
@@ -540,32 +569,32 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background: rgba(201, 169, 104, 0.12);
-      color: var(--accent-bronze, #c9a968);
-      border: 1px solid rgba(201, 169, 104, 0.25);
+      background: rgba(176, 141, 87, 0.12);
+      color: var(--accent-bronze);
+      border: 1px solid rgba(176, 141, 87, 0.24);
       font-size: 0.72rem;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.1em;
       padding: 3px 8px;
       border-radius: 4px;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
     }
 
     .announcement-author {
-      color: var(--text-primary, #f4f0ea);
+      color: var(--text-primary);
       font-weight: 600;
       font-size: 0.95rem;
     }
 
     .announcement-date {
-      color: var(--text-muted, #8e8982);
+      color: var(--text-muted);
       font-size: 0.82rem;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
     }
 
     .announcement-content {
-      color: var(--cream, #d4c5b0);
+      color: var(--text-secondary);
       font-size: 0.98rem;
       line-height: 1.7;
       white-space: pre-wrap;

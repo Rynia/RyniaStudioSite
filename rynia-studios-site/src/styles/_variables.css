@@ -1,20 +1,21 @@
 :root {
   color-scheme: light;
 
-  /* Brand Palette - White Premium & Brushed Titanium */
-  --bg-primary: #ffffff;
-  --bg-secondary: #f9f9fb;
-  --bg-tertiary: #f2f4f7;
-  --bg-card: rgba(255, 255, 255, 0.78);
-  --bg-glass: rgba(255, 255, 255, 0.65);
-  --bg-frosted: rgba(255, 255, 255, 0.88);
+  /* --- LIGHT MODE: Soft Porcelain & Brushed Aluminum (No Flashbang) --- */
+  --bg-primary: #f7f7f9;
+  --bg-secondary: #efeff3;
+  --bg-tertiary: #e5e6eb;
+  --bg-card: rgba(255, 255, 255, 0.85);
+  --bg-card-hover: rgba(255, 255, 255, 0.96);
+  --bg-glass: rgba(255, 255, 255, 0.72);
+  --bg-frosted: rgba(247, 247, 249, 0.92);
 
-  /* Typography Colors - Deep Obsidian & Studio Grays */
-  --text-primary: #0d0d11;
-  --text-secondary: #4a4d55;
-  --text-muted: #7c828d;
+  /* Typography Colors */
+  --text-primary: #121316;
+  --text-secondary: #4b4f58;
+  --text-muted: #747a86;
   --text-faint: #9ea4b0;
-  --cream: #1e1e24;
+  --cream: #1e2025;
   --warm-gray: #575c66;
   --stone-gray: #828792;
 
@@ -31,15 +32,16 @@
   --status-concept: #616161;
 
   /* Precision Hairline Borders */
-  --border-color: rgba(13, 13, 17, 0.08);
-  --border-subtle: rgba(13, 13, 17, 0.05);
-  --border-medium: rgba(13, 13, 17, 0.12);
-  --line-color: rgba(13, 13, 17, 0.06);
+  --border-color: rgba(18, 19, 22, 0.08);
+  --border-subtle: rgba(18, 19, 22, 0.05);
+  --border-medium: rgba(18, 19, 22, 0.14);
+  --line-color: rgba(18, 19, 22, 0.06);
+  --grid-dot-color: rgba(18, 19, 22, 0.05);
 
   /* Ambient Occlusion Shadows (Soft, Diffuse, Studio Quality) */
-  --shadow-luxury: 0 32px 80px -15px rgba(13, 13, 17, 0.06), 0 10px 24px -8px rgba(13, 13, 17, 0.03);
-  --shadow-card: 0 16px 40px -10px rgba(13, 13, 17, 0.04), 0 2px 8px rgba(13, 13, 17, 0.02);
-  --shadow-hover: 0 24px 60px -12px rgba(13, 13, 17, 0.08), 0 4px 14px rgba(13, 13, 17, 0.03);
+  --shadow-luxury: 0 32px 80px -15px rgba(18, 19, 22, 0.07), 0 10px 24px -8px rgba(18, 19, 22, 0.03);
+  --shadow-card: 0 16px 40px -10px rgba(18, 19, 22, 0.05), 0 2px 8px rgba(18, 19, 22, 0.02);
+  --shadow-hover: 0 24px 60px -12px rgba(18, 19, 22, 0.09), 0 4px 14px rgba(18, 19, 22, 0.04);
   --shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.9);
 
   /* Geometry & Radii - Refined & Architectural */
@@ -50,4 +52,51 @@
   /* Glass Blur & Optics */
   --glass-blur: blur(20px);
   --canvas-z-index: 1;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  /* --- DARK MODE: Premium Brushed Titanium & Deep Obsidian (#0c0d10 / #14151a) --- */
+  --bg-primary: #0c0d10;
+  --bg-secondary: #121418;
+  --bg-tertiary: #191b21;
+  --bg-card: rgba(20, 22, 28, 0.75);
+  --bg-card-hover: rgba(28, 30, 38, 0.85);
+  --bg-glass: rgba(16, 18, 23, 0.7);
+  --bg-frosted: rgba(12, 13, 16, 0.9);
+
+  /* Typography Colors */
+  --text-primary: #f2f3f5;
+  --text-secondary: #b0b4bd;
+  --text-muted: #797f8c;
+  --text-faint: #555a66;
+  --cream: #d8dbe2;
+  --warm-gray: #a3a7b2;
+  --stone-gray: #797f8c;
+
+  /* Accent Platinum, Titanium & Subtle Warm Bronze */
+  --accent-bronze: #cfab6c;
+  --accent-bronze-glow: rgba(207, 171, 108, 0.18);
+  --accent-titanium: #3a3f4d;
+  --accent-light: #ffffff;
+
+  /* Status Badges */
+  --status-live: #4caf50;
+  --status-dev: #d4a359;
+  --status-testing: #42a5f5;
+  --status-concept: #9e9e9e;
+
+  /* Precision Hairline Borders */
+  --border-color: rgba(255, 255, 255, 0.09);
+  --border-subtle: rgba(255, 255, 255, 0.05);
+  --border-medium: rgba(255, 255, 255, 0.16);
+  --line-color: rgba(255, 255, 255, 0.07);
+  --grid-dot-color: rgba(255, 255, 255, 0.06);
+
+  /* Shadows - Deep Velvet Ambience */
+  --shadow-luxury: 0 32px 80px -15px rgba(0, 0, 0, 0.6), 0 10px 24px -8px rgba(0, 0, 0, 0.4);
+  --shadow-card: 0 16px 40px -10px rgba(0, 0, 0, 0.5), 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-hover: 0 24px 60px -12px rgba(0, 0, 0, 0.7), 0 4px 14px rgba(0, 0, 0, 0.4);
+  --shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.07);
 }

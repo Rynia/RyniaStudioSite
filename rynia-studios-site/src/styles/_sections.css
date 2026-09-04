@@ -12,11 +12,7 @@ main {
   margin-bottom: 80px;
   border-radius: var(--radius-section);
   border: 1px solid var(--border-color);
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.95) 0%,
-    rgba(249, 249, 251, 0.85) 100%
-  );
+  background: var(--bg-card);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   box-shadow: var(--shadow-card);
@@ -31,7 +27,7 @@ main {
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(13, 13, 17, 0.12), transparent);
+  background: linear-gradient(90deg, transparent, var(--border-medium), transparent);
 }
 
 .section::after {
@@ -130,12 +126,8 @@ main {
 }
 
 .section--featured {
-  border-color: rgba(13, 13, 17, 0.12);
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.98) 0%,
-    rgba(247, 248, 250, 0.92) 100%
-  );
+  border-color: var(--border-medium);
+  background: var(--bg-card);
   padding: 96px 64px;
   box-shadow: var(--shadow-luxury);
 }
@@ -170,18 +162,22 @@ main {
   padding: 36px;
   border-radius: var(--radius-card);
   border: 1px solid var(--border-color);
-  background: #ffffff;
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   box-shadow: var(--shadow-card);
   transition:
     transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
     border-color 0.3s ease,
-    box-shadow 0.3s ease;
+    box-shadow 0.3s ease,
+    background-color 0.3s ease;
 }
 
 .info-card:hover {
   transform: translateY(-4px);
-  border-color: rgba(13, 13, 17, 0.16);
+  border-color: var(--border-medium);
   box-shadow: var(--shadow-hover);
+  background: var(--bg-card-hover, var(--bg-card));
 }
 
 .info-card h3 {
@@ -201,18 +197,16 @@ main {
   padding: 32px;
   border-radius: var(--radius-card);
   border: 1px solid var(--border-color);
-  border-left: 3px solid var(--text-primary);
-  background: linear-gradient(
-    135deg,
-    #ffffff 0%,
-    #f9f9fb 100%
-  );
+  border-left: 3px solid var(--accent-bronze);
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   box-shadow: var(--shadow-card);
-  transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+  transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
 }
 
 .game-primary:hover {
-  border-color: rgba(13, 13, 17, 0.16);
+  border-color: var(--border-medium);
   transform: translateY(-3px);
   box-shadow: var(--shadow-hover);
 }
@@ -284,7 +278,9 @@ main {
   padding: 20px 24px;
   border-radius: 12px;
   border: 1px solid var(--border-color);
-  background: #ffffff;
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   box-shadow: var(--shadow-card);
 }
 
@@ -313,14 +309,17 @@ main {
   padding: 28px;
   border-radius: var(--radius-card);
   border: 1px solid var(--border-color);
-  background: #ffffff;
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   box-shadow: var(--shadow-card);
-  transition: transform 0.2s ease, border-color 0.2s ease;
+  transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
 }
 
 .philosophy-item:hover {
   transform: translateY(-3px);
-  border-color: rgba(13, 13, 17, 0.14);
+  border-color: var(--border-medium);
+  background: var(--bg-card-hover, var(--bg-card));
 }
 
 .philosophy-item h3 {
@@ -392,14 +391,16 @@ main {
   height: 11px;
   border-radius: 50%;
   background: var(--text-primary);
-  border: 2px solid #ffffff;
-  box-shadow: 0 0 0 1px rgba(13, 13, 17, 0.2);
+  border: 2px solid var(--bg-primary);
+  box-shadow: 0 0 0 1px var(--border-color);
 }
 
 .devlog-body {
   padding: 24px;
   border-radius: var(--radius-card);
-  background: #ffffff;
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--border-color);
   box-shadow: var(--shadow-card);
 }

@@ -2,6 +2,7 @@
 import './styles/main.css';
 
 // Import UI modules
+import { initTheme } from './ui/theme';
 import { initNav } from './ui/nav';
 import { initReveal } from './ui/reveal';
 import { initNewsletter } from './ui/newsletter';
@@ -11,6 +12,9 @@ import { initLanguage, bindLanguageButtons } from './i18n/i18n';
 
 // Initialize UI when DOM is ready
 function init(): void {
+  // Initialize Theme immediately to prevent flash
+  initTheme();
+
   // Initialize UI components immediately
   initNav();
   initReveal();

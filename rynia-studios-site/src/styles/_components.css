@@ -49,27 +49,29 @@
 
 .button.primary {
   background: var(--text-primary);
-  color: #ffffff;
+  color: var(--bg-primary);
   border-color: var(--text-primary);
-  box-shadow: 0 4px 18px rgba(13, 13, 17, 0.15);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.15);
 }
 
 .button.primary:hover {
-  background: #23252e;
-  border-color: #23252e;
+  background: var(--accent-bronze);
+  border-color: var(--accent-bronze);
   color: #ffffff;
-  box-shadow: 0 8px 24px rgba(13, 13, 17, 0.24);
+  box-shadow: 0 8px 24px var(--accent-bronze-glow);
 }
 
 .button.secondary {
-  background: #ffffff;
+  background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--border-color);
   color: var(--text-primary);
   box-shadow: var(--shadow-card);
 }
 
 .button.secondary:hover {
-  background: #f9f9fb;
+  background: var(--bg-card-hover, var(--bg-card));
   border-color: var(--border-medium);
   box-shadow: var(--shadow-hover);
 }
