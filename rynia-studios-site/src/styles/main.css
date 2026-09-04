@@ -71,9 +71,26 @@ div[class*="netlify"] {
   border-radius: 20px !important;
 }
 
-[data-theme="dark"] [data-netlify-badge],
-[data-theme="dark"] .netlify-badge,
-[data-theme="dark"] div[style*="position: fixed"][style*="bottom: 0"] {
-  background-color: transparent !important;
-  color-scheme: dark !important;
+/* Dark Mode Explicit Overrides for Cards & Visuals */
+[data-theme="dark"] .dev-card {
+  background-color: var(--bg-card) !important;
+  color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .dev-card p {
+  color: var(--text-secondary) !important;
+}
+
+[data-theme="dark"] .game-primary-visual {
+  background-color: var(--bg-tertiary) !important;
+  border-color: var(--border-color) !important;
+}
+
+[data-theme="dark"] .product-badge-icon {
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 70%) !important;
+  border-color: var(--border-color) !important;
+}
+
+[data-theme="dark"] .game-visual-static {
+  filter: brightness(0.85) contrast(1.05);
 }
