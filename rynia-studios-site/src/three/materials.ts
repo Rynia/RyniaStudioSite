@@ -1,87 +1,67 @@
 import * as THREE from 'three';
 
-export function createCardMaterial(): THREE.MeshStandardMaterial {
-  return new THREE.MeshStandardMaterial({
-    color: 0x222120,
-    roughness: 0.7,
-    metalness: 0.1
+// Ceramic White Core Material (Apple / Teenage Engineering Industrial Look)
+export function createCeramicCoreMaterial(): THREE.MeshPhysicalMaterial {
+  return new THREE.MeshPhysicalMaterial({
+    color: new THREE.Color(0xf6f7fa),
+    roughness: 0.22,
+    metalness: 0.06,
+    clearcoat: 0.65,
+    clearcoatRoughness: 0.12,
+    reflectivity: 0.85
   });
 }
 
+// Refractive Frosted Glass Material (High Transmission & IOR)
+export function createRefractiveGlassMaterial(): THREE.MeshPhysicalMaterial {
+  return new THREE.MeshPhysicalMaterial({
+    color: new THREE.Color(0xffffff),
+    transmission: 0.92,
+    opacity: 0.95,
+    transparent: true,
+    roughness: 0.08,
+    ior: 1.52,
+    thickness: 1.2,
+    specularIntensity: 1.0,
+    specularColor: new THREE.Color(0xffffff)
+  });
+}
+
+// Brushed Titanium & Platinum Material
+export function createTitaniumAccentMaterial(): THREE.MeshStandardMaterial {
+  return new THREE.MeshStandardMaterial({
+    color: new THREE.Color(0xbcc2cb),
+    metalness: 0.88,
+    roughness: 0.22
+  });
+}
+
+// Hairline Wireframe & Precision Lines
 export function createEdgeMaterial(): THREE.LineBasicMaterial {
   return new THREE.LineBasicMaterial({
-    color: 0xd4af37,
-    opacity: 0.85,
+    color: 0x0d0d11,
+    opacity: 0.18,
     transparent: true
   });
 }
 
 export function createInsetMaterial(): THREE.LineBasicMaterial {
   return new THREE.LineBasicMaterial({
-    color: 0xc9a968,
-    opacity: 0.7,
+    color: 0xb08d57,
+    opacity: 0.5,
     transparent: true
   });
 }
 
+// Backward compatibility exports so no existing references break
+export function createCardMaterial(): THREE.MeshPhysicalMaterial {
+  return createCeramicCoreMaterial();
+}
+
 export function createRimMaterial(): THREE.MeshStandardMaterial {
-  return new THREE.MeshStandardMaterial({
-    color: 0xc9a968,
-    emissive: 0xc9a968,
-    emissiveIntensity: 0.6,
-    metalness: 0.2,
-    roughness: 0.6
-  });
+  return createTitaniumAccentMaterial();
 }
 
-
-export function createFresnelShaderMaterial(): THREE.ShaderMaterial {
-  const vertexShader = `
-    varying vec3 vViewPosition;
-    varying vec3 vNormal;
-
-    void main() {
-      vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
-      vViewPosition = -mvPosition.xyz;
-      vNormal = normalize(normalMatrix * normal);
-      gl_Position = projectionMatrix * mvPosition;
-    }
-  `;
-
-  const fragmentShader = `
-    uniform vec3 glowColor;
-    uniform float intensity;
-    uniform float time;
-    
-    varying vec3 vViewPosition;
-    varying vec3 vNormal;
-
-    void main() {
-      vec3 normal = normalize(vNormal);
-      vec3 viewDir = normalize(vViewPosition);
-      
-      // Fresnel calculation
-      float fresnel = dot(viewDir, normal);
-      fresnel = clamp(1.0 - fresnel, 0.0, 1.0);
-      fresnel = pow(fresnel, 3.5);
-      
-      float shimmer = (sin(time * 1.5) * 0.12) + 0.88;
-      
-      gl_FragColor = vec4(glowColor * intensity, fresnel * intensity * shimmer);
-    }
-  `;
-
-  return new THREE.ShaderMaterial({
-    uniforms: {
-      glowColor: { value: new THREE.Color(0xd4af37) },
-      intensity: { value: 1.3 },
-      time: { value: 0.0 }
-    },
-    vertexShader,
-    fragmentShader,
-    transparent: true,
-    side: THREE.FrontSide,
-    depthWrite: false
-  });
+export function createFresnelShaderMaterial(): THREE.MeshPhysicalMaterial {
+  return createRefractiveGlassMaterial();
 }
-

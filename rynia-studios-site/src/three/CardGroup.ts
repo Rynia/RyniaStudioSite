@@ -1,136 +1,86 @@
 import * as THREE from 'three';
-import { createCardMaterial, createEdgeMaterial, createInsetMaterial, createRimMaterial, createFresnelShaderMaterial } from './materials';
+import {
+  createCeramicCoreMaterial,
+  createRefractiveGlassMaterial,
+  createTitaniumAccentMaterial,
+  createEdgeMaterial,
+  createInsetMaterial
+} from './materials';
 
-function createRoundedRectShape(width: number, height: number, radius: number): THREE.Shape {
-  const shape = new THREE.Shape();
-  const x = -width / 2;
-  const y = -height / 2;
-
-  shape.moveTo(x, y + radius);
-  shape.lineTo(x, y + height - radius);
-  shape.quadraticCurveTo(x, y + height, x + radius, y + height);
-  shape.lineTo(x + width - radius, y + height);
-  shape.quadraticCurveTo(x + width, y + height, x + width, y + height - radius);
-  shape.lineTo(x + width, y + radius);
-  shape.quadraticCurveTo(x + width, y, x + width - radius, y);
-  shape.lineTo(x + radius, y);
-  shape.quadraticCurveTo(x, y, x, y + radius);
-
-  return shape;
-}
-
-function createCard(isFront: boolean): THREE.Group {
-  const group = new THREE.Group();
-  
-  const width = 1.0;
-  const height = 1.4;
-  const depth = 0.04;
-  const radius = 0.06;
-  
-  const shape = createRoundedRectShape(width, height, radius);
-  
-  const extrudeSettings = {
-    depth: depth,
-    bevelEnabled: false
-  };
-  
-  const geometry = new THREE.ExtrudeGeometry(shape, extrudeSettings);
-  geometry.center();
-
-  const material = createCardMaterial();
-  const mesh = new THREE.Mesh(geometry, material);
-  group.add(mesh);
-  
-  const edgesGeometry = new THREE.EdgesGeometry(geometry);
-  const edgesMaterial = createEdgeMaterial();
-  const edges = new THREE.LineSegments(edgesGeometry, edgesMaterial);
-  group.add(edges);
-  
-  const insetWidth = 0.85;
-  const insetHeight = 1.2;
-  const insetShape = createRoundedRectShape(insetWidth, insetHeight, radius * 0.8);
-  const insetPoints = insetShape.getPoints();
-  const insetGeometry = new THREE.BufferGeometry().setFromPoints(insetPoints);
-  const insetLine = new THREE.Line(insetGeometry, createInsetMaterial());
-  insetLine.position.z = depth / 2 + 0.002;
-  group.add(insetLine);
-  
-  if (isFront) {
-    const circleGeometry = new THREE.CircleGeometry(0.08, 32);
-    const ringGeometry = new THREE.RingGeometry(0.1, 0.13, 32);
-    
-    const rimMaterial = createRimMaterial();
-    
-    const circleMesh = new THREE.Mesh(circleGeometry, rimMaterial);
-    circleMesh.position.z = depth / 2 + 0.005;
-    group.add(circleMesh);
-    
-    const ringMesh = new THREE.Mesh(ringGeometry, rimMaterial);
-    ringMesh.position.z = depth / 2 + 0.005;
-    group.add(ringMesh);
-  }
-  
-  const shellGeometry = new THREE.ExtrudeGeometry(shape, extrudeSettings);
-  shellGeometry.center();
-  const shellMaterial = createFresnelShaderMaterial();
-  const shellMesh = new THREE.Mesh(shellGeometry, shellMaterial);
-  shellMesh.scale.set(1.02, 1.02, 1.02);
-  group.add(shellMesh);
-  
-  return group;
-}
-
+/**
+ * Creates the "System Core" (Monolith Prism)
+ * An industrial, physical engineering object representing the studio's system design philosophy.
+ * Blends ceramic white, refractive frosted glass, and brushed titanium.
+ */
 export function createCardGroup(): THREE.Group {
-  const mainGroup = new THREE.Group();
-  
-  const backCard = createCard(false);
-  backCard.position.set(-0.6, 0.1, -0.15);
-  backCard.rotation.y = -0.14;
-  backCard.rotation.z = -0.105;
-  mainGroup.add(backCard);
-  
-  const midCard = createCard(false);
-  midCard.position.set(0, 0.3, 0);
-  mainGroup.add(midCard);
-  
-  const frontCard = createCard(true);
-  frontCard.position.set(0.55, -0.05, 0.15);
-  frontCard.rotation.y = 0.14;
-  frontCard.rotation.z = 0.087;
-  mainGroup.add(frontCard);
-  
-  const box = new THREE.Box3().setFromObject(mainGroup);
-  const center = box.getCenter(new THREE.Vector3());
-  mainGroup.position.x = -center.x;
-  mainGroup.position.y = -center.y;
-  mainGroup.position.z = -center.z;
-  
-  const wrapper = new THREE.Group();
-  wrapper.add(mainGroup);
-  
-  const shadowGeo = new THREE.PlaneGeometry(3, 3);
-  const shadowCanvas = document.createElement('canvas');
-  shadowCanvas.width = 128;
-  shadowCanvas.height = 128;
-  const ctx = shadowCanvas.getContext('2d');
-  if (ctx) {
-    const gradient = ctx.createRadialGradient(64, 64, 0, 64, 64, 64);
-    gradient.addColorStop(0, 'rgba(0,0,0,0.5)');
-    gradient.addColorStop(1, 'rgba(0,0,0,0)');
-    ctx.fillStyle = gradient;
-    ctx.fillRect(0, 0, 128, 128);
-  }
-  const shadowTex = new THREE.CanvasTexture(shadowCanvas);
-  const shadowMat = new THREE.MeshBasicMaterial({
-    map: shadowTex,
-    transparent: true,
-    depthWrite: false,
-    opacity: 0.8
-  });
-  const shadowPlane = new THREE.Mesh(shadowGeo, shadowMat);
-  shadowPlane.rotation.x = -Math.PI / 2;
-  shadowPlane.position.y = -0.9;
-  wrapper.add(shadowPlane);
-  
-  return wrapper;
+  const root = new THREE.Group();
+
+  // Materials
+  const ceramicMat = createCeramicCoreMaterial();
+  const glassMat = createRefractiveGlassMaterial();
+  const titaniumMat = createTitaniumAccentMaterial();
+  const edgeMat = createEdgeMaterial();
+  const insetMat = createInsetMaterial();
+
+  // 1. Central Ceramic Monolith
+  const coreWidth = 1.4;
+  const coreHeight = 1.9;
+  const coreDepth = 0.38;
+  const coreGeometry = new THREE.BoxGeometry(coreWidth, coreHeight, coreDepth, 2, 2, 2);
+  const coreMesh = new THREE.Mesh(coreGeometry, ceramicMat);
+  coreMesh.castShadow = true;
+  coreMesh.receiveShadow = true;
+  root.add(coreMesh);
+
+  // Precision Hairline Edges for the Monolith
+  const coreEdges = new THREE.LineSegments(
+    new THREE.EdgesGeometry(coreGeometry),
+    edgeMat
+  );
+  root.add(coreEdges);
+
+  // Monolith Inset Accent Line
+  const insetGeo = new THREE.BufferGeometry().setFromPoints([
+    new THREE.Vector3(-0.55, 0.75, coreDepth / 2 + 0.002),
+    new THREE.Vector3(0.55, 0.75, coreDepth / 2 + 0.002),
+    new THREE.Vector3(0.55, -0.75, coreDepth / 2 + 0.002),
+    new THREE.Vector3(-0.55, -0.75, coreDepth / 2 + 0.002),
+    new THREE.Vector3(-0.55, 0.75, coreDepth / 2 + 0.002),
+  ]);
+  const insetLine = new THREE.Line(insetGeo, insetMat);
+  root.add(insetLine);
+
+  // 2. Outer Refractive Optical Glass Ring
+  const glassTorusGeo = new THREE.TorusGeometry(1.45, 0.07, 32, 100);
+  const glassRing = new THREE.Mesh(glassTorusGeo, glassMat);
+  glassRing.rotation.x = Math.PI / 3;
+  glassRing.rotation.y = Math.PI / 6;
+  root.add(glassRing);
+
+  // 3. Inner Titanium Precision Orbit Ring
+  const titaniumRingGeo = new THREE.TorusGeometry(1.2, 0.025, 24, 80);
+  const titaniumRing = new THREE.Mesh(titaniumRingGeo, titaniumMat);
+  titaniumRing.rotation.x = -Math.PI / 4;
+  titaniumRing.rotation.z = Math.PI / 8;
+  root.add(titaniumRing);
+
+  // 4. Orbital Floating Engineering Nodes
+  const nodeGeo = new THREE.SphereGeometry(0.065, 24, 24);
+  const node1 = new THREE.Mesh(nodeGeo, titaniumMat);
+  node1.position.set(1.4, 0.5, 0.4);
+  root.add(node1);
+
+  const node2 = new THREE.Mesh(nodeGeo, titaniumMat);
+  node2.position.set(-1.3, -0.6, -0.3);
+  root.add(node2);
+
+  const node3 = new THREE.Mesh(nodeGeo, ceramicMat);
+  node3.position.set(0.2, 1.35, -0.2);
+  root.add(node3);
+
+  // Subtle tilt for dynamic 3D presentation
+  root.rotation.x = 0.12;
+  root.rotation.y = -0.28;
+
+  return root;
 }

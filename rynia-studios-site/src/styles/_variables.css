@@ -1,45 +1,53 @@
 :root {
-  /* Brand Palette - Deep, Cinematic & Luxury */
-  --bg-primary: #1e1e1e;
-  --bg-secondary: #262626;
-  --bg-tertiary: #303030;
-  --bg-card: rgba(36, 36, 36, 0.7);
+  color-scheme: light;
 
-  /* Warm Whites & Creams */
-  --cream: #d4c5b0;
-  --warm-gray: #a89f91;
-  --stone-gray: #7a7672;
+  /* Brand Palette - White Premium & Brushed Titanium */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f9f9fb;
+  --bg-tertiary: #f2f4f7;
+  --bg-card: rgba(255, 255, 255, 0.78);
+  --bg-glass: rgba(255, 255, 255, 0.65);
+  --bg-frosted: rgba(255, 255, 255, 0.88);
 
-  /* Typography Colors */
-  --text-primary: #f4f0ea;
-  --text-secondary: #c8c3bb;
-  --text-muted: #8e8982;
+  /* Typography Colors - Deep Obsidian & Studio Grays */
+  --text-primary: #0d0d11;
+  --text-secondary: #4a4d55;
+  --text-muted: #7c828d;
+  --text-faint: #9ea4b0;
+  --cream: #1e1e24;
+  --warm-gray: #575c66;
+  --stone-gray: #828792;
 
-  /* Accent Bronze (Restricted & High Value) */
-  --accent-bronze: #c9a968;
-  --accent-bronze-glow: rgba(201, 169, 104, 0.25);
-  --accent-light: #f8f5f0;
+  /* Accent Platinum, Titanium & Subtle Warm Bronze */
+  --accent-bronze: #b08d57;
+  --accent-bronze-glow: rgba(176, 141, 87, 0.15);
+  --accent-titanium: #c7cad1;
+  --accent-light: #18191f;
 
   /* Status Badges */
-  --status-live: #8b9d6f;
-  --status-dev: #8b8b5f;
-  --status-testing: #7f9db0;
-  --status-concept: #6b6b7f;
+  --status-live: #2e7d32;
+  --status-dev: #94723c;
+  --status-testing: #1565c0;
+  --status-concept: #616161;
 
-  /* Borders & Shadows */
-  --border-color: rgba(201, 169, 104, 0.15);
-  --border-subtle: rgba(212, 197, 176, 0.08);
-  --line-color: rgba(212, 197, 176, 0.1);
-  --shadow-luxury: 0 24px 64px rgba(0, 0, 0, 0.45);
-  --shadow-card: 0 12px 32px rgba(0, 0, 0, 0.3);
-  --shadow-hover: 0 20px 48px rgba(0, 0, 0, 0.4);
+  /* Precision Hairline Borders */
+  --border-color: rgba(13, 13, 17, 0.08);
+  --border-subtle: rgba(13, 13, 17, 0.05);
+  --border-medium: rgba(13, 13, 17, 0.12);
+  --line-color: rgba(13, 13, 17, 0.06);
 
-  /* Geometry & Radii - Sharp & Architectural */
-  --radius-btn: 8px;
-  --radius-card: 8px;
-  --radius-section: 4px;
+  /* Ambient Occlusion Shadows (Soft, Diffuse, Studio Quality) */
+  --shadow-luxury: 0 32px 80px -15px rgba(13, 13, 17, 0.06), 0 10px 24px -8px rgba(13, 13, 17, 0.03);
+  --shadow-card: 0 16px 40px -10px rgba(13, 13, 17, 0.04), 0 2px 8px rgba(13, 13, 17, 0.02);
+  --shadow-hover: 0 24px 60px -12px rgba(13, 13, 17, 0.08), 0 4px 14px rgba(13, 13, 17, 0.03);
+  --shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.9);
 
-  /* 3D Canvas */
-  --canvas-z-index: 0;
+  /* Geometry & Radii - Refined & Architectural */
+  --radius-btn: 10px;
+  --radius-card: 16px;
+  --radius-section: 20px;
+
+  /* Glass Blur & Optics */
+  --glass-blur: blur(20px);
+  --canvas-z-index: 1;
 }
-

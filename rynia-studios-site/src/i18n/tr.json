@@ -1,29 +1,46 @@
 {
   "hero": {
-    "eyebrow": "Oyun Geliştirme",
-    "title": "Elementlerin Dansı.<br>Stratejinin Zirvesi.",
-    "text": "Draft, evrim, konumlandırma ve elemental sinerji ile şekillenen, otomatik savaşların yaşandığı stratejik kart oyunu.",
-    "cta1": "Oyunlarımızı Keşfedin",
+    "eyebrow": "Bağımsız Geliştirici Stüdyosu",
+    "title": "Fikirleri Çalışan Sistemlere Dönüştürüyoruz.",
+    "text": "Rynia Studios; yazılımlar, dijital ürünler ve interaktif sistemler geliştiren bağımsız bir geliştirici stüdyosudur. Oyunlar da dahil olmak üzere, her projeye aynı mühendislik disiplini ve sabırla yaklaşıyoruz.",
+    "cta1": "Projelerimizi Keşfedin",
     "cta2": "Topluluğa Katılın"
   },
   "origin": {
     "label": "02 — Köken",
-    "title": "Kişisel Takma Addan Stüdyoya.",
-    "p1": "Rynia başlangıçta bir stüdyo adı olarak düşünülmemişti. Yıllar önce çeşitli proje ve topluluklarda taşıdığım kişisel bir takma addı—dijital bir kimlik. Zamanla bir addan fazlası haline geldi: tutarlılığın, disiplinin ve yaratıcı kararlılığın sembolü.",
-    "p2": "Oyun geliştirmeye ciddi ve uzun vadeli bir pratik olarak odaklandığımda, stüdyo adı seçimi doğaldı. Rynia Studios sadece oyun üreten bir şirket değil; vizyonu olan, niyetle oyunlar inşa eden, açıkça öğrenen ve her iterasyonda evrimleşen bağımsız bir üretim alanı."
+    "title": "Bir Nickname'den Geliştirici Stüdyosuna.",
+    "p1": "Rynia derin veya mistik anlamları olan bir kelime olarak başlamadı. 2019 civarlarında, internette üzerime tam oturacak, uzun süre sıkılmadan taşıyabileceğim bir isim arayışıyla doğdu. Zamanla dahil olduğum tüm projelerde, sunucularda ve topluluklarda adım Rynia oldu.",
+    "p2": "Polonya'da bir köy adı olduğunu sonradan öğrendim; fakat benim için bu isim bir coğrafya değil, internetteki varlığımla özdeşleşen kimliğimdi. Stüdyoyu kurarken de bu ismi seçtim: Çünkü bu isim bana başladığım bir şeyi yarıda bırakmamayı, zamanla üzerine katarak sabırla inşa etmeyi ve her adımda gelişmeyi hatırlatıyor. Ufak bir arayışla başlayan bu serüven, bugün kendi yazılımlarımı, dijital ürünlerimi ve oyunlarımı geliştirdiğim bağımsız bir stüdyonun adına dönüştü."
   },
   "vision": {
     "label": "03 — Vizyon & Misyon",
-    "title": "Disiplin, İterasyon, Evrim.",
+    "title": "Disiplin, Sistem, Sürdürülebilirlik.",
     "visionTitle": "Vizyon",
-    "visionText": "Zaman içinde gelişen, odaklanmış ve derinleşen bağımsız oyunlar üreterek tanınan bir butik oyun stüdyosu inşa etmek.",
+    "visionText": "Zamanla değer kazanan, net mimariye sahip ve yüksek mühendislik standartlarında tasarlanmış dijital ürünler ve yazılım sistemleri üreterek iz bırakan bağımsız bir stüdyo olmak.",
     "missionTitle": "Misyon",
-    "missionText": "Becerileri, sistemleri ve üretim verimliliğini sürekli geliştirirken yönetilebilir ölçekli oyunlar tasarlamak."
+    "missionText": "Yönetilebilir ve ölçeklenebilir dijital sistemler tasarlarken; mühendislik standartlarımızı, yaratıcı iş akışlarımızı ve üretim verimliliğimizi tavizsiz şekilde sürekli geliştirmek."
+  },
+  "products": {
+    "label": "04 — Ürünler & Sistemler",
+    "title": "Dijital Ürünlerimiz.",
+    "subtitle": "Gerçek dünya problemlerini çözen odaklanmış yazılımlar.",
+    "kilerStatus": "TASARIM & PROTOTİP",
+    "kilerTitle": "Kiler // Kitchen OS",
+    "kilerTagline": "Akıllı Tüketim & İsraf Önleme Motoru",
+    "kilerPlatform": "Web · PWA · Mobil",
+    "kilerDescription": "Buzdolabındaki malzemeleri tara veya fişini yükle; sistem pörsümek üzere olan gıdaları tespit etsin, israfı önlesin ve 15 dakikada hazırlayabileceğin en pratik kurtarma tarifini çıkarsın.",
+    "kilerLoop1": "Tara",
+    "kilerLoop2": "İsraf Radarı",
+    "kilerLoop3": "Kurtarma Tarifi",
+    "kilerLoop4": "Tasarruf Raporu",
+    "kilerNote": "\"Az malzeme. Sıfır israf. Maksimum tasarruf.\"",
+    "kilerLink": "Geliştirmeyi Takip Et →",
+    "kilerVisualCaption": "Prototip arayüzü yakında"
   },
   "games": {
-    "label": "04 — Oyunlar",
-    "title": "Oyunlarımız.",
-    "subtitle": "Bir aktif proje. Bir konsept aşamasında fikir.",
+    "label": "05 — Oyun Geliştirme",
+    "title": "Oyun da Geliştiriyoruz.",
+    "subtitle": "Yazılımlarımızın yanı sıra, interaktif oyun sistemleri de tasarlıyoruz.",
     "komboStatus": "GELİŞTİRİLİYOR",
     "komboTitle": "Kombo Kart",
     "komboTagline": "Strateji. Element. Zafer.",
@@ -41,36 +58,36 @@
     "protocolDescription": "Karmaşık sistemleri ve anlatı derinliğini keşfeden erken aşama çok platformlu bir konsept. Tasarım şekillendikçe detaylar paylaşılacaktır."
   },
   "press": {
-    "label": "05 — Basın Kiti",
+    "label": "06 — Basın Kiti",
     "title": "Basın & İçerik Üreticileri İçin.",
-    "p1": "Kombo Kart'ı incelemek için ihtiyaç duyacağınız tüm bilgiler: bilgi formu, açıklamalar ve iletişim kanalları. Ekran görüntüleri ve fragman geliştirme ilerledikçe eklenecektir.",
+    "p1": "Rynia Studios projelerini incelemek için ihtiyaç duyacağınız tüm bilgiler: bilgi formu, açıklamalar ve iletişim kanalları.",
     "factsheetTitle": "Bilgi Formu",
-    "factsheetText": "Geliştirici: Rynia Studios (solo)<br>Motor: Unity<br>Platform: iOS / Mobil<br>Tür: Mobil auto-battler kart oyunu<br>Durum: Geliştirme aşamasında<br>Discord: <a href=\"https://discord.gg/AmHTh8eyA\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"inline-link\">discord.gg/AmHTh8eyA</a>",
+    "factsheetText": "Geliştirici: Rynia Studios (solo)<br>Odak: Yazılım, Dijital Ürünler & Oyun<br>Konum: Türkiye<br>Durum: Bağımsız Üretim<br>Discord: <a href=\"https://discord.gg/AmHTh8eyA\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"inline-link\">discord.gg/AmHTh8eyA</a>",
     "shortTitle": "Kısa Açıklama",
-    "shortText": "Kombo Kart; kart seçimi, kart evrimi ve saha konumlandırmasının her savaşı belirlediği stratejik bir mobil auto-battler oyunudur.",
-    "p2": "Kombo Kart sade bir döngü izler: kartlarınızı seçin, evrimleştirin, doğru konumlara yerleştirin ve otomatik savaşı izleyin. Felsefesi net: az kart, bol karar. Geliştirme ilerledikçe kart havuzu ve elemental sinerjiler her oyuna kendi derinliğini kazandıracaktır.",
+    "shortText": "Rynia Studios; çalışan sistemler, dijital araçlar ve stratejik oyunlar inşa eden bağımsız bir geliştirici stüdyosudur.",
+    "p2": "Her projeye aynı temel felsefeyle yaklaşırız: sade döngüler, disiplinli mimari ve sürekli iterasyon. Hem günlük hayatı kolaylaştıran dijital ürünlerde hem de derinlikli oyun projelerinde aynı titizliği koruruz.",
     "note": "Basın & iş birliği iletişimi: <a href=\"mailto:ryniastudios@gmail.com\" class=\"inline-link\">ryniastudios@gmail.com</a>"
   },
   "development": {
-    "label": "06 — Geliştirme",
+    "label": "07 — Geliştirme Hattı",
     "title": "Aktif Sistemler & Odak Alanları.",
     "subtitle": "Şu anda üzerinde çalışılan temel bileşenler.",
-    "p1": "Bu bölüm Kombo Kart için aktif olarak inşa edilen çekirdek sistemleri takip eder. Üretim hattının kalbini ve kurulan teknik temeli temsil eder.",
+    "p1": "Bu bölüm Rynia Studios bünyesinde aktif olarak inşa edilen çekirdek sistemleri takip eder. Üretim hattının kalbini ve kurulan teknik temeli temsil eder.",
     "roadmapBuild": "İnşa Et",
     "roadmapTest": "Test Et",
     "roadmapIterate": "Yinele",
     "testingStatus": "TEST AŞAMASINDA",
-    "combatTitle": "Savaş Motoru",
-    "combatText": "Unity üzerinde tick hızı, kart durumları, hedefleme, saldırılar, hasar hesaplaması ve elemental hasar mantığını içeren çekirdek savaş sistemleri inşa ediliyor.",
+    "combatTitle": "Savaş Motoru (Kombo Kart)",
+    "combatText": "Unity üzerinde tick hızı, kart durumları, hedefleme, saldırılar, hasar hesaplaması ve elemental hasar mantığını içeren çekirdek sistemler test ediliyor.",
     "progressStatus": "GELİŞTİRİLİYOR",
-    "cardTitle": "Kart Sistemleri",
-    "cardText": "Sınırlı kart havuzunda derin stratejik kararlar yaratmak için elementler, roller, pozisyonlar, yetenekler ve evrim sistemleri yapılandırılıyor.",
+    "cardTitle": "Ürün & Kart Mimarisi",
+    "cardText": "Kiler OS için akıllı envanter algoritmaları ve Kombo Kart için elemental sinerji modelleri yapılandırılıyor.",
     "conceptStatus": "PLANLANDI",
-    "battleTitle": "Savaş Akışları",
-    "battleText": "Hedef değiştirme, ölüm durumları, iyileşme, güçlendirmeler, zayıflatmalar ve savaş temeli genişledikçe açılacak elemental sinerjiler planlanıyor."
+    "battleTitle": "Sistem Akışları",
+    "battleText": "Dijital ürünler için önbellekleme altyapıları ve oyun projeleri için ileri seviye savaş akışları planlanıyor."
   },
   "philosophy": {
-    "label": "07 — Geliştirme Felsefesi",
+    "label": "08 — Geliştirme Felsefesi",
     "title": "İnşa Et. Test Et. Yinele.",
     "buildTitle": "İnşa Et",
     "buildText": "Temeli oluştur.",
@@ -80,15 +97,15 @@
     "iterateText": "Geliştir, rafine et ve tekrarla."
   },
   "devlog": {
-    "label": "08 — Geliştirme Günlüğü",
+    "label": "09 — Geliştirici Günlüğü",
     "title": "Son Gelişmeler.",
     "date": "Ağustos 2026",
-    "entryTitle": "Kombo Kart — Savaş Motoru",
-    "entryText": "Saldırı zamanlaması, hedefleme, hasar hesaplaması ve elemental hasar dahil olmak üzere çekirdek savaş sistemleri Unity'de test ediliyor.",
+    "entryTitle": "Sistem Mimarisi & Savaş Motoru",
+    "entryText": "Çekirdek sistemler, veri akışları ve Unity savaş testleri başarıyla ilerliyor.",
     "link": "Discord üzerinden anlık olarak takip edin →"
   },
   "identity": {
-    "label": "09 — Stüdyo Kimliği",
+    "label": "10 — Stüdyo Kimliği",
     "title": "Üzerine inşa ettiğimiz değerler.",
     "word1": "Disiplin",
     "word2": "Tutarlılık",
@@ -96,7 +113,7 @@
     "word4": "Gelişim"
   },
   "community": {
-    "label": "10 — Topluluk",
+    "label": "11 — Topluluk",
     "title": "Yolculuğu Takip Edin.",
     "p1": "Geliştirme sürecini takip edin, geri bildirimlerinizi paylaşın, yeni projeleri keşfedin ve Rynia Studios'un bir parçası olun.",
     "joinDiscord": "Discord'a Katıl",
@@ -105,7 +122,7 @@
     "instagram": "Instagram",
     "youtube": "YouTube",
     "newsletterTitle": "E-posta ile mi takip etmek istersiniz?",
-    "newsletterText": "Kombo Kart önemli aşamalara ulaştığında haberdar olun—asla spam yok, sadece önemli gelişmeler.",
+    "newsletterText": "Rynia Studios projeleri önemli aşamalara ulaştığında haberdar olun—asla spam yok, sadece önemli gelişmeler.",
     "subscribe": "Kayıt Ol"
   },
   "footer": {
@@ -121,12 +138,13 @@
   "nav": {
     "brand": "Rynia Studios",
     "home": "Ana Sayfa",
-    "about": "Hakkımızda",
+    "about": "Hakkında",
+    "products": "Ürünler",
     "games": "Oyunlar",
     "development": "Geliştirme",
-    "devlog": "Geliştirme Günlüğü",
+    "devlog": "Günlük",
     "announcements": "Duyurular",
     "community": "Topluluk",
     "joinDiscord": "Discord'a Katıl"
-}
+  }
 }
