@@ -3,28 +3,31 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RYNIA STUDIOS — Independent Developer Studio</title>
+  <title>RYNIA STUDIOS — Archaeological Future & Digital Craft Atelier</title>
   <meta
     name="description"
-    content="Rynia Studios is an independent developer studio crafting software, digital products, and interactive systems. Building with discipline and iteration."
+    content="Rynia Studios is an independent atelier forging strategic games, intelligent tools, and digital systems. Engineered with unreasonable care."
   />
+
+  <!-- Fonts: Cormorant Garamond, Inter, IBM Plex Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
   <link rel="icon" type="image/png" href="./assets/rynia-logo.png" />
 
-  <meta property="og:title" content="Rynia Studios — Independent Developer Studio" />
-  <meta property="og:description" content="Rynia Studios is an independent developer studio crafting software, digital products, and interactive systems. Built with discipline." />
+  <!-- Open Graph -->
+  <meta property="og:title" content="Rynia Studios — Independent Atelier" />
+  <meta property="og:description" content="Independent games, intelligent tools, digital craft. We build small things with unreasonable care." />
   <meta property="og:image" content="https://ryniastudios.netlify.app/assets/rynia-logo.png" />
   <meta property="og:url" content="https://ryniastudios.netlify.app/" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Rynia Studios — Independent Developer Studio" />
-  <meta name="twitter:description" content="Rynia Studios is an independent developer studio crafting software, digital products, and interactive systems." />
+  <meta name="twitter:title" content="Rynia Studios — Independent Atelier" />
+  <meta name="twitter:description" content="Independent games, intelligent tools, digital craft. We build small things with unreasonable care." />
   <meta name="twitter:image" content="https://ryniastudios.netlify.app/assets/rynia-logo.png" />
 
+  <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-0HTFZXKBYQ"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -33,6 +36,7 @@
     gtag('config', 'G-0HTFZXKBYQ');
   </script>
 
+  <!-- Structured Data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -53,9 +57,9 @@
       {
         "@type": "VideoGame",
         "name": "Kombo Kart",
-        "description": "Kombo Kart is a mobile auto-battler card game built around drafting, card evolution, positioning, and elemental synergies.",
-        "genre": ["Auto-battler", "Card Game"],
-        "gamePlatform": "iOS",
+        "description": "A focused mobile auto-battler card game built around high-consequence drafting, elemental resonance, and spatial card positioning.",
+        "genre": ["Auto-battler", "Strategy", "Card Game"],
+        "gamePlatform": ["iOS", "Android"],
         "applicationCategory": "Game",
         "author": {
           "@id": "https://ryniastudios.netlify.app/#organization"
@@ -65,635 +69,498 @@
   }
   </script>
 
-  <script>
-    (function() {
-      try {
-        var saved = localStorage.getItem('rynia_theme_preference');
-        var theme = saved || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-        document.documentElement.setAttribute('data-theme', theme);
-      } catch (e) {}
-    })();
-  </script>
+  <!-- Supabase CDN -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script type="module" src="./src/main.ts"></script>
 </head>
 
-<body id="top">
-  <!-- STICKY NAV -->
-  <nav class="nav" id="site-nav">
-    <div class="brand">
-      <img src="./assets/rynia-logo.png" alt="Rynia Studios Logo" class="brand-logo" />
-      <span data-i18n="nav.brand">Rynia Studios</span>
+<body>
+  <!-- 3D THE RYNIA ARTEFACT CANVAS (Fixed Background Installation) -->
+  <div id="hero-canvas-container" class="hero-canvas-container" aria-hidden="true"></div>
+  <div id="hero-fallback" class="hero-fallback" style="display: none;"></div>
+
+  <!-- FIXED MINIMAL TELEMETRY & NAVIGATION -->
+  <header class="atelier-header" id="siteHeader">
+    <div class="header-brand">
+      <a href="#act-artefact" class="brand-title" data-i18n="nav.brand">Rynia Studios</a>
+      <span class="brand-provenance" data-i18n="nav.est">EST. 2019</span>
     </div>
 
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
+    <nav class="header-nav" id="headerNav">
+      <a href="#act-artefact" class="nav-act-link" data-i18n="nav.act1">I · Artefact</a>
+      <a href="#act-systems" class="nav-act-link" data-i18n="nav.act2">II · Systems</a>
+      <a href="#act-thesis" class="nav-act-link" data-i18n="nav.act3">III · Thesis</a>
+      <a href="#act-forge" class="nav-act-link" data-i18n="nav.act4">IV · Pipelines</a>
+      <a href="#act-dossier" class="nav-act-link" data-i18n="nav.act5">V · Dossier</a>
+    </nav>
 
-    <div class="nav-links" id="navLinks">
-      <a href="#selected-work" data-i18n="nav.work">Work</a>
-      <a href="#studio-thesis" data-i18n="nav.studio">Studio</a>
-      <a href="#the-forge" data-i18n="nav.forge">Forge</a>
-      <a href="#field-notes" data-i18n="nav.notes">Notes</a>
-      <a href="#press" data-i18n="nav.press">Press</a>
-    </div>
-
-    <div class="nav-right">
-      <div class="nav-actions">
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark / light mode" title="Tema Değiştir">
-          <!-- Sun icon (for dark mode) -->
-          <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
-            <circle cx="12" cy="12" r="5"></circle>
-            <line x1="12" y1="1" x2="12" y2="3"></line>
-            <line x1="12" y1="21" x2="12" y2="23"></line>
-            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-            <line x1="1" y1="12" x2="3" y2="12"></line>
-            <line x1="21" y1="12" x2="23" y2="12"></line>
-            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-          </svg>
-          <!-- Moon icon (for light mode) -->
-          <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-          </svg>
-        </button>
-
-        <button class="lang-toggle" id="langToggle" aria-label="Switch language" title="Switch language">
-          EN
-        </button>
-      </div>
-
-      <a class="button primary nav-cta" href="https://discord.gg/HJ4hRrZcz" target="_blank" rel="noopener noreferrer" data-i18n="nav.joinDiscord">
-        Join Discord
-      </a>
-    </div>
-  </nav>
-
-  <!-- 01 HERO -->
-  <header class="hero" id="hero">
-    <div class="hero-content">
-      <div id="hero-canvas-container" class="hero-canvas-container" aria-hidden="true"></div>
-      <img src="./assets/hero-fallback.webp" alt="" class="hero-fallback" id="hero-fallback" style="display:none" aria-hidden="true">
-      
-      <div class="hero-text-block">
-        <div class="hero-brand-line">
-          <img src="./assets/rynia-logo.png" alt="Rynia Studios Logo" class="hero-logo" />
-          <span class="hero-badge mono" data-i18n="hero.badge">RYNIA // 2026</span>
-        </div>
-        <p class="eyebrow" data-i18n="hero.eyebrow">INDEPENDENT GAMES · INTELLIGENT TOOLS · DIGITAL CRAFT</p>
-        <h1 data-i18n="hero.title" data-i18n-html="true">Engineered Systems.<br>Uncharted Worlds.</h1>
-        <p class="hero-text" data-i18n="hero.text">
-          Rynia Studios is an independent development atelier crafting strategic games, intelligent tools, and enduring digital products. We build small things with unreasonable care.
-        </p>
-
-        <div class="hero-buttons">
-          <a class="button primary" href="#selected-work" data-i18n="hero.cta1">Explore Selected Work</a>
-          <a class="button secondary" href="https://discord.gg/HJ4hRrZcz" target="_blank" rel="noopener noreferrer" data-i18n="hero.cta2">
-            Enter Studio Discord
-          </a>
-        </div>
-      </div>
+    <div class="header-controls">
+      <button class="lang-toggle" id="langToggle" aria-label="Toggle language">EN</button>
+      <button class="index-trigger" id="indexTrigger" aria-label="Open Studio Index">
+        <span class="index-dot"></span>
+        <span class="index-label" data-i18n="nav.index">INDEX</span>
+      </button>
     </div>
   </header>
 
-  <main>
-    <!-- 02 SELECTED WORK -->
-    <section class="section section--featured reveal" id="selected-work" data-number="01">
-      <div class="section-label" data-i18n="work.label">01 — Selected Work</div>
-      <h2 data-i18n="work.title">Systems in Active Production.</h2>
-      <p class="section-subtitle" data-i18n="work.subtitle">Strategic games, intelligent utilities, and experimental prototypes.</p>
-
-      <!-- 01 KOMBO KART -->
-      <div class="work-dossier">
-        <div class="work-visual">
-          <img src="./assets/hero-fallback.webp" alt="Kombo Kart Composition" class="work-visual-img" loading="lazy">
-          <span class="work-visual-meta mono" data-i18n="work.komboMeta">SYSTEM-01 // AUTO-BATTLER</span>
-        </div>
-        <div class="work-info">
-          <div class="project-status development" data-i18n="work.komboStatus">GAME · IN DEVELOPMENT</div>
-          <h3 data-i18n="work.komboTitle">Kombo Kart</h3>
-          <p class="project-tagline" data-i18n="work.komboTagline">Tactical Drafting, Card Evolution & Elemental Synergies</p>
-          <p class="project-platform mono" data-i18n="work.komboPlatform">Unity · iOS & Mobile</p>
-          <p class="project-description" data-i18n="work.komboDescription">
-            A focused mobile auto-battler card game built around high-consequence drafting, elemental resonance, and spatial card positioning. Few cards, many decisions.
-          </p>
-
-          <ol class="loop-stepper" aria-label="Core gameplay loop">
-            <li><span class="loop-node"></span><span data-i18n="work.komboLoop1">Draft</span></li>
-            <li><span class="loop-node"></span><span data-i18n="work.komboLoop2">Evolution</span></li>
-            <li><span class="loop-node"></span><span data-i18n="work.komboLoop3">Position</span></li>
-            <li><span class="loop-node"></span><span data-i18n="work.komboLoop4">Auto Battle</span></li>
-          </ol>
-          <a href="#the-forge" class="project-link" data-i18n="work.komboLink">Examine Forge Architecture →</a>
-        </div>
-      </div>
-
-      <!-- 02 KALANLA (KITCHEN OS) -->
-      <div class="work-dossier work-dossier--alt">
-        <div class="work-visual">
-          <div class="kalanla-preview-card">
-            <div class="kalanla-badge-icon">
-              <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent-bronze);">
-                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
-                <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
-                <line x1="12" y1="22.08" x2="12" y2="12"></line>
-              </svg>
-            </div>
-            <span class="work-visual-meta mono" data-i18n="work.kalanlaMeta">SYSTEM-02 // INTELLIGENT UTILITY</span>
-          </div>
-        </div>
-        <div class="work-info">
-          <div class="project-status live" data-i18n="work.kalanlaStatus">UTILITY · STANDALONE APK LIVE</div>
-          <h3 data-i18n="work.kalanlaTitle">KALANLA // Kitchen OS</h3>
-          <p class="project-tagline" data-i18n="work.kalanlaTagline">Zero-Waste Culinary Intelligence & Pantry Inventory Engine</p>
-          <p class="project-platform mono" data-i18n="work.kalanlaPlatform">React Native · Expo · Android & Web/PWA</p>
-          <p class="project-description" data-i18n="work.kalanlaDescription">
-            Input what is left in your pantry or scan your fridge; the deterministic algorithm pairs ingredients, prevents food waste, and serves an optimized rescue recipe.
-          </p>
-
-          <ol class="loop-stepper" aria-label="Core utility workflow">
-            <li><span class="loop-node"></span><span data-i18n="work.kalanlaLoop1">Input</span></li>
-            <li><span class="loop-node"></span><span data-i18n="work.kalanlaLoop2">Waste Radar</span></li>
-            <li><span class="loop-node"></span><span data-i18n="work.kalanlaLoop3">Rescue Recipe</span></li>
-            <li><span class="loop-node"></span><span data-i18n="work.kalanlaLoop4">Thermal Index</span></li>
-          </ol>
-          <a href="https://drive.google.com/file/d/1vtUbWwvVbxu3vQOgkVipK_3ECrIvQLrN/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="project-link" data-i18n="work.kalanlaLink">Download Android APK (v1.0) →</a>
-        </div>
-      </div>
-
-      <!-- 03 PROTOCOL-45 & LABS -->
-      <div class="work-archive">
-        <div class="archive-header">
-          <span class="project-status concept mono" data-i18n="work.protocolStatus">INCUBATION</span>
-          <span class="archive-code mono">LAB-03 // DORMANT SYSTEM</span>
-        </div>
-        <h3 data-i18n="work.protocolTitle">Protocol-45: Hubris</h3>
-        <p data-i18n="work.protocolDescription">
-          An exploratory narrative simulation studying systemic collapse, procedural mechanics, and moral friction. Maintained in the incubator stage until core systems mature.
-        </p>
-      </div>
-    </section>
-
-    <!-- 03 STUDIO THESIS -->
-    <section class="section section--plain reveal" id="studio-thesis" data-number="02">
-      <div class="section-label" data-i18n="thesis.label">02 — Studio Thesis</div>
-      <h2 data-i18n="thesis.title">Different Outputs. One Discipline.</h2>
-      <p class="section-subtitle" data-i18n="thesis.subtitle">We forge digital artifacts with intentional architecture and patience.</p>
-
-      <div class="thesis-grid">
-        <div class="thesis-card">
-          <span class="thesis-num mono">01</span>
-          <h3 data-i18n="thesis.t1Title">Systems before spectacle</h3>
-          <p data-i18n="thesis.t1Text">
-            Eye candy degrades quickly without solid underlying mathematics. We build robust loops, determinism, and data structures before polishing the surface.
-          </p>
-        </div>
-
-        <div class="thesis-card">
-          <span class="thesis-num mono">02</span>
-          <h3 data-i18n="thesis.t2Title">Iteration before assumption</h3>
-          <p data-i18n="thesis.t2Text">
-            No design survives first contact with reality unchanged. We deploy early test builds, gather ground-truth telemetry, and refine relentlessly.
-          </p>
-        </div>
-
-        <div class="thesis-card">
-          <span class="thesis-num mono">03</span>
-          <h3 data-i18n="thesis.t3Title">Longevity before noise</h3>
-          <p data-i18n="thesis.t3Text">
-            We reject ephemeral trends and hype cycles. Whether a strategy card game or a kitchen utility, our work is engineered to endure and respect user agency.
-          </p>
-        </div>
-      </div>
-
-      <!-- Concise Origin Note -->
-      <div class="origin-dossier">
-        <span class="origin-tag mono" data-i18n="thesis.originTag">ORIGIN NOTE</span>
-        <p data-i18n="thesis.originText">
-          Rynia began in 2019 as a personal handle and evolved into a disciplined independent atelier. Bearing this mark is a reminder never to abandon an unfinished craft—to build patiently, layer by layer.
-        </p>
-      </div>
-    </section>
-
-    <!-- 04 THE FORGE -->
-    <section class="section reveal" id="the-forge" data-number="03">
-      <div class="section-label" data-i18n="forge.label">03 — The Forge</div>
-      <h2 data-i18n="forge.title">Active Engineering Pipelines.</h2>
-      <p class="section-subtitle" data-i18n="forge.subtitle">Live technical disciplines and architectural focus areas across the atelier.</p>
-
-      <div class="forge-grid">
-        <div class="forge-card">
-          <div class="forge-meta mono">
-            <span class="forge-status testing" data-i18n="forge.combatStatus">IN VERIFICATION</span>
-            <span class="forge-id">ENG-01</span>
-          </div>
-          <h3 data-i18n="forge.combatTitle">Deterministic Combat Core</h3>
-          <p data-i18n="forge.combatDesc">
-            Tick-rate resolution, card state transitions, damage calculation matrices, and elemental resonance simulations in Unity.
-          </p>
-          <div class="forge-stack mono">UNITY · C# · STATE MACHINES</div>
-        </div>
-
-        <div class="forge-card">
-          <div class="forge-meta mono">
-            <span class="forge-status development" data-i18n="forge.utilityStatus">IN ACTIVE FIELD TEST</span>
-            <span class="forge-id">ENG-02</span>
-          </div>
-          <h3 data-i18n="forge.utilityTitle">Zero-Waste Culinary Intelligence</h3>
-          <p data-i18n="forge.utilityDesc">
-            Dynamic ingredient categorization, recipe generation pipelines, offline-first SQLite state persistence, and thermal telemetry.
-          </p>
-          <div class="forge-stack mono">EXPO · TYPESCRIPT · SQLITE · EAS</div>
-        </div>
-
-        <div class="forge-card">
-          <div class="forge-meta mono">
-            <span class="forge-status live" data-i18n="forge.webglStatus">LIVE RUNTIME</span>
-            <span class="forge-id">ENG-03</span>
-          </div>
-          <h3 data-i18n="forge.webglTitle">Kinetic WebGL Engine</h3>
-          <p data-i18n="forge.webglDesc">
-            Shader-driven monolithic PBR rendering, spring physics parallax, and 100/100 Lighthouse performance architecture.
-          </p>
-          <div class="forge-stack mono">THREE.JS · GLSL · VITE · GSAP</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 05 FIELD NOTES -->
-    <section class="section reveal" id="field-notes" data-number="04">
-      <div class="section-label" data-i18n="notes.label">04 — Field Notes & Dispatch</div>
-      <h2 data-i18n="notes.title">Atelier Journal.</h2>
-      <p class="section-subtitle" data-i18n="notes.subtitle">Dispatches on game architecture, product philosophy, and live announcements.</p>
-
-      <div class="notes-grid">
-        <article class="note-card">
-          <time class="note-date mono">SEP 2026</time>
-          <h3 data-i18n="notes.n1Title">Transition to the Dual-Core Atelier Model</h3>
-          <p data-i18n="notes.n1Text">
-            Why Rynia Studios expanded beyond purely game systems to forge intelligent everyday tools like KALANLA.
-          </p>
-          <span class="note-tag mono">STUDIO DISPATCH</span>
-        </article>
-
-        <article class="note-card">
-          <time class="note-date mono">AUG 2026</time>
-          <h3 data-i18n="notes.n2Title">Designing Auto-Battlers Around Constraint</h3>
-          <p data-i18n="notes.n2Text">
-            Exploring why restrictive drafting spaces and rigid positioning grids amplify strategic depth in Kombo Kart.
-          </p>
-          <span class="note-tag mono">SYSTEM DESIGN</span>
-        </article>
-
-        <article class="note-card">
-          <time class="note-date mono">JUL 2026</time>
-          <h3 data-i18n="notes.n3Title">Zero-Waste UI: The Thermal Receipt Paradigm</h3>
-          <p data-i18n="notes.n3Text">
-            Reflecting kitchen economics through the visual language of physical thermal receipts and the Dürüm Index.
-          </p>
-          <span class="note-tag mono">INTERACTION STUDY</span>
-        </article>
-      </div>
-
-      <!-- Live Discord Announcements -->
-      <div class="announcements-wrapper" id="announcements">
-        <div class="announcements-header">
-          <span class="announcements-title mono" data-i18n="notes.liveFeed">LIVE STUDIO DISPATCH // SUPABASE FEED</span>
-          <a href="https://discord.gg/HJ4hRrZcz" target="_blank" rel="noopener noreferrer" class="announcements-discord-link mono">Join Server →</a>
-        </div>
-        <div id="announcements-container" class="announcements-list">
-          <div class="announcement-loading">
-            <span class="announcement-spinner"></span>
-            <p>Fetching atelier dispatches...</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 06 PRESS KIT & CONTACT -->
-    <section class="section reveal" id="press" data-number="05">
-      <div class="section-label" data-i18n="press.label">05 — Press & Inquiries</div>
-      <h2 data-i18n="press.title">Studio Dossier.</h2>
-      <p class="section-subtitle" data-i18n="press.subtitle">Verified factsheet for press, publishers, and collaborators.</p>
-
-      <div class="press-grid">
-        <div class="info-card">
-          <h3 data-i18n="press.factsheetTitle">Studio Factsheet</h3>
-          <ul class="factsheet-list mono">
-            <li><span class="fact-label">Entity:</span> Rynia Studios (Independent Atelier)</li>
-            <li><span class="fact-label">Disciplines:</span> Interactive Games · Intelligent Utilities</li>
-            <li><span class="fact-label">Location:</span> Turkey (Global Distribution)</li>
-            <li><span class="fact-label">Active Works:</span> Kombo Kart · KALANLA Kitchen OS</li>
-            <li><span class="fact-label">Core Tech:</span> Unity · C# · TypeScript · Three.js · Expo</li>
-          </ul>
-        </div>
-
-        <div class="info-card">
-          <h3 data-i18n="press.directTitle">Direct Inquiries</h3>
-          <p data-i18n="press.directText">
-            For press coverage, publishing inquiries, or architectural collaboration:
-          </p>
-          <a href="mailto:ryniastudios@gmail.com" class="direct-email-pill mono">ryniastudios@gmail.com</a>
-          <p class="press-note" data-i18n="press.directNote">PGP and secure communication channels available upon request.</p>
-        </div>
-      </div>
-
-      <div class="newsletter">
-        <h3 data-i18n="press.newsletterTitle">Stay Informed</h3>
-        <p data-i18n="press.newsletterText">Receive major production milestones and releases. Strictly essential dispatches.</p>
-        <form class="newsletter-form" action="https://formspree.io/f/mzepgjyz" method="POST">
-          <input type="email" name="email" placeholder="atelier@domain.com" required class="newsletter-input mono" />
-          <button type="submit" class="button primary newsletter-submit" data-i18n="press.subscribe">Subscribe</button>
-        </form>
-      </div>
-    </section>
-  </main>
-
-  <!-- 11 FOOTER -->
-  <footer class="footer">
-    <div class="footer-content">
-      <div class="brand footer-brand">
-        <img src="./assets/rynia-logo.png" alt="Rynia Studios Logo" class="brand-logo" />
-        <span data-i18n="footer.brand">Rynia Studios</span>
-      </div>
-      <p class="footer-vision" data-i18n="footer.vision">Small studio. Serious work. Built one disciplined iteration at a time.</p>
-      <p data-i18n="footer.copyright">© 2026 Rynia Studios. Crafted with discipline.</p>
-      <div class="social-links footer-social">
-        <a href="https://discord.gg/HJ4hRrZcz" target="_blank" rel="noopener noreferrer" class="inline-link" data-i18n="footer.discord">Discord</a>
-        <a href="https://x.com/RyniaStudio" target="_blank" rel="noopener noreferrer" class="inline-link" data-i18n="footer.x">X</a>
-        <a href="https://www.instagram.com/ryniastudio/" target="_blank" rel="noopener noreferrer" class="inline-link" data-i18n="footer.instagram">Instagram</a>
-        <a href="https://www.youtube.com/@RyniaStudio" target="_blank" rel="noopener noreferrer" class="inline-link" data-i18n="footer.youtube">YouTube</a>
-      </div>
-      <p class="footer-contact">
-        <a href="mailto:ryniastudios@gmail.com" class="inline-link">ryniastudios@gmail.com</a>
-        · <a href="#press" class="inline-link" data-i18n="footer.press">Press Kit</a>
-      </p>
+  <!-- TYPOGRAPHIC INDEX DRAWER -->
+  <aside class="index-drawer" id="indexDrawer" aria-hidden="true">
+    <div class="drawer-header">
+      <span class="drawer-caption">ATELIER INDEX // MMXXVI</span>
+      <button class="drawer-close" id="drawerClose" aria-label="Close index" data-i18n="nav.close">CLOSE ✕</button>
     </div>
-  </footer>
+    <div class="drawer-content">
+      <nav class="drawer-nav">
+        <a href="#act-artefact" class="drawer-link">
+          <span class="drawer-num">01</span>
+          <span class="drawer-title" data-i18n="nav.act1">I · Artefact</span>
+        </a>
+        <a href="#act-systems" class="drawer-link">
+          <span class="drawer-num">02</span>
+          <span class="drawer-title" data-i18n="nav.act2">II · Systems</span>
+        </a>
+        <a href="#act-thesis" class="drawer-link">
+          <span class="drawer-num">03</span>
+          <span class="drawer-title" data-i18n="nav.act3">III · Thesis</span>
+        </a>
+        <a href="#act-forge" class="drawer-link">
+          <span class="drawer-num">04</span>
+          <span class="drawer-title" data-i18n="nav.act4">IV · Pipelines</span>
+        </a>
+        <a href="#act-dossier" class="drawer-link">
+          <span class="drawer-num">05</span>
+          <span class="drawer-title" data-i18n="nav.act5">V · Dossier</span>
+        </a>
+      </nav>
 
-  <style>
-    /* Announcements Section Styles */
-    .announcements-list {
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-      margin-top: 28px;
-    }
+      <div class="drawer-meta">
+        <div class="meta-block">
+          <span class="meta-label">DIRECT SIGNAL</span>
+          <a href="mailto:ryniastudios@gmail.com" class="meta-val">ryniastudios@gmail.com</a>
+        </div>
+        <div class="meta-block">
+          <span class="meta-label">COMMUNITY</span>
+          <a href="https://discord.gg/HJ4hRrZcz" target="_blank" rel="noopener noreferrer" class="meta-val">Discord Atelier ↗</a>
+        </div>
+        <div class="meta-block">
+          <span class="meta-label">CHANNELS</span>
+          <div class="meta-links">
+            <a href="https://x.com/RyniaStudio" target="_blank" rel="noopener noreferrer">X / Twitter</a>
+            <a href="https://www.instagram.com/ryniastudio/" target="_blank" rel="noopener noreferrer">Instagram</a>
+            <a href="https://www.youtube.com/@RyniaStudio" target="_blank" rel="noopener noreferrer">YouTube</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
 
-    .announcement-card {
-      padding: 24px 28px;
-      border-radius: var(--radius-card, 16px);
-      border: 1px solid var(--border-color);
-      background: var(--bg-card);
-      backdrop-filter: var(--glass-blur);
-      -webkit-backdrop-filter: var(--glass-blur);
-      box-shadow: var(--shadow-card);
-      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
-    }
+  <!-- RIGHT EDGE VERTICAL ACT PROGRESS INDICATOR (I / V) -->
+  <div class="act-indicator" id="actIndicator" aria-hidden="true">
+    <div class="act-indicator-track">
+      <div class="act-indicator-thumb" id="actThumb"></div>
+    </div>
+    <div class="act-indicator-labels">
+      <span class="act-step" data-act="1">I</span>
+      <span class="act-step" data-act="2">II</span>
+      <span class="act-step" data-act="3">III</span>
+      <span class="act-step" data-act="4">IV</span>
+      <span class="act-step" data-act="5">V</span>
+    </div>
+  </div>
 
-    .announcement-card:hover {
-      transform: translateY(-3px);
-      border-color: var(--border-medium);
-      box-shadow: var(--shadow-hover);
-      background: var(--bg-card-hover, var(--bg-card));
-    }
+  <!-- BOTTOM EDGE TELEMETRY LABELS -->
+  <div class="edge-telemetry telemetry-left" aria-hidden="true">
+    LAT 41.0082° N · LON 28.9784° E // STUDIO ISTANBUL
+  </div>
+  <div class="edge-telemetry telemetry-right" aria-hidden="true">
+    <span class="telemetry-dot"></span> RUNTIME 60 FPS · THE RYNIA ARTEFACT
+  </div>
 
-    .announcement-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-bottom: 14px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid var(--line-color);
-    }
+  <!-- MASTER EXHIBITION MAIN -->
+  <main class="exhibition-flow">
 
-    .announcement-meta {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
+    <!-- ========================================================
+         ACT I — THE ARTEFACT
+         ======================================================== -->
+    <section class="act act-hero" id="act-artefact">
+      <div class="act-inner hero-inner">
+        <div class="hero-left-editorial">
+          <div class="micro-provenance" data-i18n="hero.provenance">PROVENANCE 01 // INDEPENDENT ATELIER</div>
+          <h1 class="hero-title">
+            <span class="title-line" data-i18n="hero.titleLine1">ENGINEERED SYSTEMS.</span>
+            <span class="title-line title-line-accent" data-i18n="hero.titleLine2" data-i18n-html="true"><em>UNCHARTED</em> WORLDS.</span>
+          </h1>
+          <p class="hero-statement" data-i18n="hero.statement">
+            Independent games, intelligent tools, digital craft. We build small things with unreasonable care.
+          </p>
 
-    .announcement-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: rgba(176, 141, 87, 0.12);
-      color: var(--accent-bronze);
-      border: 1px solid rgba(176, 141, 87, 0.24);
-      font-size: 0.72rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      padding: 3px 8px;
-      border-radius: 4px;
-      font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
-    }
+          <div class="hero-actions">
+            <a href="#act-systems" class="typo-link">
+              <span data-i18n="hero.exploreWork">EXPLORE SELECTED WORK</span>
+              <span class="arrow">↓</span>
+            </a>
+            <a href="https://discord.gg/HJ4hRrZcz" target="_blank" rel="noopener noreferrer" class="typo-link">
+              <span data-i18n="hero.discord">DISCORD ATELIER</span>
+              <span class="arrow">↗</span>
+            </a>
+          </div>
+        </div>
 
-    .announcement-author {
-      color: var(--text-primary);
-      font-weight: 600;
-      font-size: 0.95rem;
-    }
+        <div class="hero-bottom-telemetry">
+          <span class="telemetry-marker" data-i18n="hero.telemetryScroll">SCROLL TO INSPECT ARTEFACT // 01</span>
+        </div>
+      </div>
+    </section>
 
-    .announcement-date {
-      color: var(--text-muted);
-      font-size: 0.82rem;
-      font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
-    }
 
-    .announcement-content {
-      color: var(--text-secondary);
-      font-size: 0.98rem;
-      line-height: 1.7;
-      white-space: pre-wrap;
-      word-break: break-word;
-      margin: 0;
-    }
+    <!-- ========================================================
+         ACT II — SELECTED SYSTEMS (Specimen Dossier)
+         ======================================================== -->
+    <section class="act act-systems" id="act-systems">
+      <div class="act-inner">
+        <header class="act-header">
+          <div class="act-index-label" data-i18n="systems.label">02 / V // SPECIMEN DOSSIER</div>
+          <h2 class="act-title" data-i18n="systems.title">SYSTEMS IN ACTIVE PRODUCTION.</h2>
+          <p class="act-subtitle" data-i18n="systems.subtitle">Strategic games, intelligent utilities, and experimental prototypes.</p>
+        </header>
 
-    .announcement-loading,
-    .announcement-empty,
-    .announcement-error {
-      text-align: center;
-      padding: 36px 20px;
-      color: var(--text-muted, #8e8982);
-      font-style: italic;
-      font-size: 0.95rem;
-    }
+        <!-- SPECIMEN 01: KOMBO KART -->
+        <article class="specimen-entry">
+          <div class="specimen-meta">
+            <span class="specimen-id" data-i18n="systems.specimen01">SPECIMEN 01 · AUTO-BATTLER TACTICAL ENGINE</span>
+            <span class="specimen-status status-active" data-i18n="systems.komboStatus">ACTIVE PRODUCTION // UNITY · IOS & MOBILE</span>
+          </div>
 
-    .announcement-spinner {
-      display: inline-block;
-      width: 24px;
-      height: 24px;
-      border: 2px solid rgba(201, 169, 104, 0.2);
-      border-top-color: var(--accent-bronze, #c9a968);
-      border-radius: 50%;
-      animation: announcement-spin 0.8s linear infinite;
-      margin-bottom: 12px;
-    }
+          <div class="specimen-body">
+            <div class="specimen-left">
+              <h3 class="specimen-name" data-i18n="systems.komboTitle">KOMBO KART</h3>
+              <p class="specimen-description" data-i18n="systems.komboDesc">
+                A focused mobile auto-battler card game built around high-consequence drafting, elemental resonance, and spatial card positioning. Few cards, many decisions.
+              </p>
+              <div class="specimen-action">
+                <a href="#act-forge" class="typo-link">
+                  <span data-i18n="systems.komboLink">EXAMINE COMBAT PIPELINE</span>
+                  <span class="arrow">→</span>
+                </a>
+              </div>
+            </div>
 
-    @keyframes announcement-spin {
-      to { transform: rotate(360deg); }
-    }
+            <div class="specimen-right">
+              <div class="system-loop-matrix">
+                <div class="loop-step">
+                  <span class="step-code" data-i18n="systems.loop1">01 DRAFT</span>
+                  <span class="step-desc" data-i18n="systems.loop1Desc">Strict agency selection under card scarcity</span>
+                </div>
+                <div class="loop-step">
+                  <span class="step-code" data-i18n="systems.loop2">02 EVOLUTION</span>
+                  <span class="step-desc" data-i18n="systems.loop2Desc">Archetype fusion into higher tier ranks</span>
+                </div>
+                <div class="loop-step">
+                  <span class="step-code" data-i18n="systems.loop3">03 POSITION</span>
+                  <span class="step-desc" data-i18n="systems.loop3Desc">Spatial row placement determining aggro & defense</span>
+                </div>
+                <div class="loop-step">
+                  <span class="step-code" data-i18n="systems.loop4">04 AUTO-BATTLE</span>
+                  <span class="step-desc" data-i18n="systems.loop4Desc">Deterministic tick-rate clash resolution</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
 
-    @media (max-width: 600px) {
-      .announcement-card {
-        padding: 18px 16px;
-      }
-      .announcement-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 6px;
-      }
-    }
-  </style>
+        <div class="hairline-divider"></div>
 
-  <script>
-    (function () {
-      const SUPABASE_URL = 'https://uyfoohjimbiclzkhkfqr.supabase.co';
-      const SUPABASE_KEY = 'sb_publishable_UGaJoGHubtD6knyA1j7V1Q_SohdycwC';
+        <!-- SPECIMEN 02: KALANLA // Kitchen OS -->
+        <article class="specimen-entry">
+          <div class="specimen-meta">
+            <span class="specimen-id" data-i18n="systems.specimen02">SPECIMEN 02 · ZERO-WASTE CULINARY INTELLIGENCE</span>
+            <span class="specimen-status status-live" data-i18n="systems.kalanlaStatus">STANDALONE APK LIVE // ANDROID & WEB</span>
+          </div>
 
-      function stripMarkdown(text) {
-        if (!text) return '';
-        return text
-          // Discord özel emojileri: <:isim:123456> veya <a:isim:123456> -> tamamen SİL
-          .replace(/<a?:[a-zA-Z0-9_~]+:[0-9]+>/g, '')
-          // Discord kullanıcı, rol ve kanal etiketleri (<@123>, <@&123>, <#123>)
-          .replace(/<@!?[0-9]+>|<@&[0-9]+>|<#[0-9]+>/g, '')
-          // Discord zaman damgaları (<t:123456:R>)
-          .replace(/<t:[0-9]+(:[a-zA-Z])?>/g, '')
-          // @everyone ve @here bildirimleri
-          .replace(/@(everyone|here)/g, '')
-          // Discord spoiler formatı ||gizli metin||
-          .replace(/\|\|([\s\S]*?)\|\|/g, '$1')
-          // Kod blokları
-          .replace(/```[\s\S]*?```/g, function(match) { return match.replace(/```/g, '').trim(); })
-          // Satır içi kod
-          .replace(/`([^`]+)`/g, '$1')
-          // Kalın, italik ve altı çizili işaretleri
-          .replace(/\*\*\*([^*]+)\*\*\*/g, '$1')
-          .replace(/\*\*([^*]+)\*\*/g, '$1')
-          .replace(/\*([^*]+)\*/g, '$1')
-          .replace(/___([^_]+)___/g, '$1')
-          .replace(/__([^_]+)__/g, '$1')
-          .replace(/_([^_]+)_/g, '$1')
-          .replace(/~~([^~]+)~~/g, '$1')
-          // Markdown linkleri [yazı](url) -> yazı (veya url ile birlikte)
-          .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '$1')
-          // Başlık (# Başlık) ve Alıntı (> Alıntı) işaretleri
-          .replace(/^#+\s+/gm, '')
-          .replace(/^>\s+/gm, '')
-          // Gereksiz ardışık boş satırları temizle
-          .replace(/\n{3,}/g, '\n\n')
-          .trim();
-      }
+          <div class="specimen-body">
+            <div class="specimen-left">
+              <h3 class="specimen-name">
+                <span data-i18n="systems.kalanlaTitle">KALANLA</span>
+                <span class="specimen-name-sub" data-i18n="systems.kalanlaSubtitle">Kitchen Operating System</span>
+              </h3>
+              <p class="specimen-description" data-i18n="systems.kalanlaDesc">
+                Input what is left in your pantry or scan your fridge; the deterministic algorithm pairs ingredients, prevents food waste, and serves an optimized rescue recipe.
+              </p>
+              <div class="specimen-action-row">
+                <a href="https://drive.google.com/file/d/10x_p2E4k9F-9l6w5r0N-u0zQ9M_zP6gG/view" target="_blank" rel="noopener noreferrer" class="typo-link typo-highlight">
+                  <span data-i18n="systems.kalanlaApk">DOWNLOAD ANDROID APK (V1.0)</span>
+                  <span class="arrow">↗</span>
+                </a>
+                <a href="https://kalanla.netlify.app" target="_blank" rel="noopener noreferrer" class="typo-link">
+                  <span data-i18n="systems.kalanlaWeb">LAUNCH WEB INSTANCE</span>
+                  <span class="arrow">↗</span>
+                </a>
+              </div>
+            </div>
 
-      function escapeHTML(str) {
-        if (!str) return '';
-        return str.replace(/[&<>'"]/g, function (tag) {
-          return ({
-            '&': '&amp;',
-            '<': '&lt;',
-            '>': '&gt;',
-            "'": '&#39;',
-            '"': '&quot;'
-          }[tag] || tag);
-        });
-      }
+            <div class="specimen-right">
+              <div class="system-loop-matrix">
+                <div class="loop-step">
+                  <span class="step-code" data-i18n="systems.mod1">01 PANTRY INPUT</span>
+                  <span class="step-desc" data-i18n="systems.mod1Desc">Dynamic shelf-life categorization</span>
+                </div>
+                <div class="loop-step">
+                  <span class="step-code" data-i18n="systems.mod2">02 WASTE RADAR</span>
+                  <span class="step-desc" data-i18n="systems.mod2Desc">Expiry tracking and waste prevention metrics</span>
+                </div>
+                <div class="loop-step">
+                  <span class="step-code" data-i18n="systems.mod3">03 RESCUE ENGINE</span>
+                  <span class="step-desc" data-i18n="systems.mod3Desc">Algorithmic ingredient pairing & substitutions</span>
+                </div>
+                <div class="loop-step">
+                  <span class="step-code" data-i18n="systems.mod4">04 DÜRÜM INDEX</span>
+                  <span class="step-desc" data-i18n="systems.mod4Desc">Economic waste-to-value ratio calculation</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
 
-      function formatDate(dateString) {
-        try {
-          const date = new Date(dateString);
-          return date.toLocaleDateString('tr-TR', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit'
-          });
-        } catch (e) {
-          return dateString;
-        }
-      }
+        <div class="hairline-divider"></div>
 
-      async function loadAnnouncements() {
-        const container = document.getElementById('announcements-container');
-        if (!container) return;
+        <!-- SPECIMEN 03: PROTOCOL-45: HUBRIS -->
+        <article class="specimen-entry specimen-dormant">
+          <div class="specimen-meta">
+            <span class="specimen-id" data-i18n="systems.specimen03">SPECIMEN 03 · DORMANT INCUBATION RECORD</span>
+            <span class="specimen-status status-dormant" data-i18n="systems.protocolStatus">INCUBATION // DORMANT PROTOTYPE</span>
+          </div>
 
-        if (!window.supabase) {
-          container.innerHTML = '<p class="announcement-error">Supabase bağlantısı yüklenemedi.</p>';
-          return;
-        }
+          <div class="specimen-body">
+            <div class="specimen-left">
+              <h3 class="specimen-name" data-i18n="systems.protocolTitle" data-i18n-html="true">PROTOCOL-45: <em>HUBRIS</em></h3>
+              <p class="specimen-description" data-i18n="systems.protocolDesc">
+                An exploratory narrative simulation studying systemic collapse, procedural mechanics, and moral friction. Maintained in the incubator stage until core systems mature.
+              </p>
+            </div>
+            <div class="specimen-right">
+              <div class="dormant-annotation">
+                <span class="dormant-label">// RECORD SEALED</span>
+                <span class="dormant-text">State machine locked until Combat Core and Kitchen OS reach stage v2.1.</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
 
-        try {
-          const client = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-          // Boş kayıtlar elendiğinde tam 5 duyuru kalabilmesi için 15 kayıt çekiyoruz
-          const { data, error } = await client
-            .from('announcements')
-            .select('id, content, author, created_at')
-            .order('created_at', { ascending: false })
-            .limit(15);
+    <!-- ========================================================
+         ACT III — THE STUDIO THESIS (Archaeological Principles)
+         ======================================================== -->
+    <section class="act act-thesis" id="act-thesis">
+      <div class="act-inner">
+        <header class="act-header">
+          <div class="act-index-label" data-i18n="thesis.label">03 / V // PHILOSOPHICAL DISCIPLINE</div>
+          <h2 class="act-title" data-i18n="thesis.title" data-i18n-html="true">DIFFERENT OUTPUTS. <em>ONE</em> DISCIPLINE.</h2>
+          <p class="act-subtitle" data-i18n="thesis.subtitle">We forge digital artifacts with intentional architecture, mathematical rigor, and unreasonable care.</p>
+        </header>
 
-          if (error) throw error;
+        <div class="thesis-coordinates">
+          <!-- Principle 01 -->
+          <div class="thesis-inscription coord-01">
+            <div class="inscription-code" data-i18n="thesis.p1Num">[PRINCIPLE 01]</div>
+            <h3 class="inscription-heading" data-i18n="thesis.p1Title">Systems before spectacle</h3>
+            <p class="inscription-body" data-i18n="thesis.p1Text">
+              Eye candy degrades quickly without solid underlying mathematics. We build robust loops, determinism, and data structures before polishing the surface.
+            </p>
+          </div>
 
-          // Boş içerikleri filtrele ve en fazla 5 geçerli duyuru al
-          const validAnnouncements = (data || [])
-            .map(function (item) {
-              return {
-                ...item,
-                cleanContent: stripMarkdown(item.content || '')
-              };
-            })
-            .filter(function (item) {
-              return item.cleanContent.length > 0;
-            })
-            .slice(0, 5);
+          <!-- Principle 02 -->
+          <div class="thesis-inscription coord-02">
+            <div class="inscription-code" data-i18n="thesis.p2Num">[PRINCIPLE 02]</div>
+            <h3 class="inscription-heading" data-i18n="thesis.p2Title">Iteration before assumption</h3>
+            <p class="inscription-body" data-i18n="thesis.p2Text">
+              No design survives first contact with reality unchanged. We deploy early test builds, gather ground-truth telemetry, and refine relentlessly.
+            </p>
+          </div>
 
-          if (validAnnouncements.length === 0) {
-            container.innerHTML = '<p class="announcement-empty">Henüz yayınlanmış bir duyuru bulunmuyor.</p>';
-            return;
-          }
+          <!-- Principle 03 -->
+          <div class="thesis-inscription coord-03">
+            <div class="inscription-code" data-i18n="thesis.p3Num">[PRINCIPLE 03]</div>
+            <h3 class="inscription-heading" data-i18n="thesis.p3Title">Longevity before noise</h3>
+            <p class="inscription-body" data-i18n="thesis.p3Text">
+              We reject ephemeral trends and hype cycles. Whether a strategy card game or a kitchen utility, our work is engineered to endure and respect user agency.
+            </p>
+          </div>
+        </div>
 
-          container.innerHTML = validAnnouncements
-            .map(function (item) {
-              const safeContent = escapeHTML(item.cleanContent);
-              const safeAuthor = escapeHTML(item.author || 'Rynia Studios');
-              const formattedDate = formatDate(item.created_at);
+        <!-- Origin Note Footnote -->
+        <div class="origin-footnote">
+          <span class="footnote-label" data-i18n="thesis.originLabel">ORIGIN NOTE // ATELIER PROVENANCE</span>
+          <p class="footnote-text" data-i18n="thesis.originText">
+            Rynia began in 2019 as a personal handle and evolved into a disciplined independent atelier. Bearing this mark is a reminder never to abandon an unfinished craft—to build patiently, layer by layer.
+          </p>
+        </div>
+      </div>
+    </section>
 
-              return `
-                <article class="announcement-card">
-                  <header class="announcement-header">
-                    <div class="announcement-meta">
-                      <span class="announcement-badge">
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: -1px;">
-                          <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.929 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.894.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
-                        </svg>
-                        Discord
-                      </span>
-                      <strong class="announcement-author">${safeAuthor}</strong>
-                    </div>
-                    <time class="announcement-date" datetime="${item.created_at}">${formattedDate}</time>
-                  </header>
-                  <p class="announcement-content">${safeContent}</p>
-                </article>
-              `;
-            })
-            .join('');
-        } catch (err) {
-          console.error('Duyurular yüklenirken hata oluştu:', err);
-          container.innerHTML = '<p class="announcement-error">Duyurular yüklenirken bir hata oluştu. Lütfen daha sonra tekrar deneyin.</p>';
-        }
-      }
 
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', loadAnnouncements);
-      } else {
-        loadAnnouncements();
-      }
-    })();
-  </script>
+    <!-- ========================================================
+         ACT IV — THE FORGE / FIELD NOTES
+         ======================================================== -->
+    <section class="act act-forge" id="act-forge">
+      <div class="act-inner">
+        <header class="act-header">
+          <div class="act-index-label" data-i18n="forge.label">04 / V // SYSTEMS ARCHITECTURE</div>
+          <h2 class="act-title" data-i18n="forge.title">ACTIVE ENGINEERING PIPELINES.</h2>
+          <p class="act-subtitle" data-i18n="forge.subtitle">Live technical disciplines and architectural focus areas across the atelier.</p>
+        </header>
+
+        <!-- Engineering Pipelines Annotations -->
+        <div class="pipelines-telemetry">
+          <div class="pipeline-row">
+            <div class="pipeline-id">01</div>
+            <div class="pipeline-main">
+              <div class="pipeline-title-group">
+                <h3 class="pipeline-name" data-i18n="forge.p1Title">01 · Deterministic Combat Core</h3>
+                <span class="pipeline-status" data-i18n="forge.p1Status">IN VERIFICATION</span>
+              </div>
+              <p class="pipeline-desc" data-i18n="forge.p1Desc">
+                Tick-rate resolution, card state transitions, damage calculation matrices, and elemental resonance simulations in Unity.
+              </p>
+            </div>
+          </div>
+
+          <div class="pipeline-row">
+            <div class="pipeline-id">02</div>
+            <div class="pipeline-main">
+              <div class="pipeline-title-group">
+                <h3 class="pipeline-name" data-i18n="forge.p2Title">02 · Zero-Waste Culinary Intelligence</h3>
+                <span class="pipeline-status" data-i18n="forge.p2Status">IN ACTIVE FIELD TEST</span>
+              </div>
+              <p class="pipeline-desc" data-i18n="forge.p2Desc">
+                Dynamic ingredient categorization, recipe generation pipelines, offline-first SQLite state persistence, and thermal telemetry.
+              </p>
+            </div>
+          </div>
+
+          <div class="pipeline-row">
+            <div class="pipeline-id">03</div>
+            <div class="pipeline-main">
+              <div class="pipeline-title-group">
+                <h3 class="pipeline-name" data-i18n="forge.p3Title">03 · Kinetic WebGL Engine</h3>
+                <span class="pipeline-status" data-i18n="forge.p3Status">LIVE RUNTIME</span>
+              </div>
+              <p class="pipeline-desc" data-i18n="forge.p3Desc">
+                Shader-driven monolithic PBR rendering, spring physics parallax, and 100/100 Lighthouse performance architecture.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="hairline-divider"></div>
+
+        <!-- Field Notes / Atelier Journal Dispatches -->
+        <div class="field-notes-wrapper">
+          <div class="notes-header">
+            <span class="notes-caption" data-i18n="forge.notesLabel">ATELIER JOURNAL // DATED DISPATCHES</span>
+            <h3 class="notes-heading" data-i18n="forge.notesTitle">FIELD NOTES.</h3>
+          </div>
+
+          <div class="dispatches-flow">
+            <article class="dispatch-entry">
+              <span class="dispatch-date" data-i18n="forge.n1Date">DISPATCH 26.01</span>
+              <h4 class="dispatch-title" data-i18n="forge.n1Title">Transition to the Dual-Core Atelier Model</h4>
+              <p class="dispatch-desc" data-i18n="forge.n1Desc">
+                Why Rynia Studios expanded beyond purely game systems to forge intelligent everyday tools like KALANLA.
+              </p>
+            </article>
+
+            <article class="dispatch-entry">
+              <span class="dispatch-date" data-i18n="forge.n2Date">DISPATCH 26.02</span>
+              <h4 class="dispatch-title" data-i18n="forge.n2Title">Designing Auto-Battlers Around Constraint</h4>
+              <p class="dispatch-desc" data-i18n="forge.n2Desc">
+                Exploring why restrictive drafting spaces and rigid positioning grids amplify strategic depth in Kombo Kart.
+              </p>
+            </article>
+
+            <article class="dispatch-entry">
+              <span class="dispatch-date" data-i18n="forge.n3Date">DISPATCH 26.03</span>
+              <h4 class="dispatch-title" data-i18n="forge.n3Title">Zero-Waste UI: The Thermal Receipt Paradigm</h4>
+              <p class="dispatch-desc" data-i18n="forge.n3Desc">
+                Reflecting kitchen economics through the visual language of physical thermal receipts and the Dürüm Index.
+              </p>
+            </article>
+          </div>
+
+          <!-- Supabase Live Stream Container (Fallback-enabled) -->
+          <div class="live-dispatch-stream" id="supabaseFeedContainer">
+            <span class="stream-label" data-i18n="forge.liveFeed">LIVE STUDIO DISPATCH // SUPABASE FEED</span>
+            <div id="supabase-feed" class="stream-content">
+              <span class="stream-idle">[TELEMETRY READY // ALL CHANNELS NOMINAL]</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ========================================================
+         ACT V — DOSSIER / THE INVITATION
+         ======================================================== -->
+    <section class="act act-dossier" id="act-dossier">
+      <div class="act-inner dossier-inner">
+        <header class="act-header">
+          <div class="act-index-label" data-i18n="dossier.label">05 / V // ARCHIVE & INVITATION</div>
+          <h2 class="act-title" data-i18n="dossier.title" data-i18n-html="true">BRING US THE <em>UNCOMMON</em>.</h2>
+          <p class="act-subtitle" data-i18n="dossier.subtitle">Verified factsheet and direct channels for press, publishers, and collaborators.</p>
+        </header>
+
+        <!-- Technical Factsheet Telemetry -->
+        <div class="factsheet-matrix">
+          <div class="fact-row">
+            <span class="fact-key" data-i18n="dossier.factEntity">ENTITY</span>
+            <span class="fact-val" data-i18n="dossier.factEntityVal">Rynia Studios (Independent Atelier)</span>
+          </div>
+          <div class="fact-row">
+            <span class="fact-key" data-i18n="dossier.factFocus">FOCUS</span>
+            <span class="fact-val" data-i18n="dossier.factFocusVal">Strategic Games, Intelligent Tools & Digital Systems</span>
+          </div>
+          <div class="fact-row">
+            <span class="fact-key" data-i18n="dossier.factOrigin">PROVENANCE</span>
+            <span class="fact-val" data-i18n="dossier.factOriginVal">Est. 2019 · Istanbul / Global Distribution</span>
+          </div>
+          <div class="fact-row">
+            <span class="fact-key" data-i18n="dossier.factStack">CORE STACK</span>
+            <span class="fact-val" data-i18n="dossier.factStackVal">TypeScript, Three.js, Unity, React Native, SQLite, Supabase</span>
+          </div>
+        </div>
+
+        <!-- Master Typographic Callout (Letter-spacing expand + oxide red sweep on hover) -->
+        <div class="invitation-action-zone">
+          <a href="mailto:ryniastudios@gmail.com" class="invitation-callout">
+            <span class="invitation-text" data-i18n="dossier.cta">BEGIN A CONVERSATION</span>
+            <span class="invitation-arrow">↗</span>
+            <div class="oxide-sweep-line"></div>
+          </a>
+          <span class="direct-caption" data-i18n="dossier.directNote">For commissions, publishing, and architectural inquiries:</span>
+        </div>
+
+        <!-- Integrated Edge Footer -->
+        <footer class="exhibition-footer">
+          <div class="footer-left">
+            <a href="mailto:ryniastudios@gmail.com" class="footer-direct" data-i18n="dossier.email">ryniastudios@gmail.com</a>
+            <div class="footer-socials">
+              <a href="https://discord.gg/HJ4hRrZcz" target="_blank" rel="noopener noreferrer">Discord</a>
+              <a href="https://x.com/RyniaStudio" target="_blank" rel="noopener noreferrer">X</a>
+              <a href="https://www.instagram.com/ryniastudio/" target="_blank" rel="noopener noreferrer">Instagram</a>
+              <a href="https://www.youtube.com/@RyniaStudio" target="_blank" rel="noopener noreferrer">YouTube</a>
+              <a href="./assets/rynia-press-kit.zip" download>Press Kit</a>
+            </div>
+          </div>
+
+          <div class="footer-right">
+            <span class="footer-mark" data-i18n="dossier.mark">RYNIA / MMXXVI</span>
+          </div>
+        </footer>
+      </div>
+    </section>
+
+  </main>
 </body>
 </html>

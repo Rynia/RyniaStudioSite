@@ -3,8 +3,6 @@
 @import './_hero.css';
 @import './_sections.css';
 @import './_components.css';
-@import './_timeline.css';
-@import './_footer.css';
 
 /* BASE & RESET STYLES */
 @media (prefers-reduced-motion: reduce) {
@@ -21,34 +19,20 @@
 
 html {
   scroll-behavior: smooth;
-  background-color: var(--bg-primary);
+  background-color: var(--bg-void);
 }
 
 body {
   margin: 0;
-  font-family: "Plus Jakarta Sans", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: var(--font-sans);
   font-variant-numeric: tabular-nums lining-nums;
-  color: var(--text-primary);
-  background-color: var(--bg-primary);
+  color: var(--text-ivory);
+  background-color: var(--bg-void);
   min-height: 100vh;
   position: relative;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-/* Swiss Engineering Coordinate Dot Matrix Grid */
-body::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: radial-gradient(var(--grid-dot-color) 1px, transparent 1px);
-  background-size: 28px 28px;
-  pointer-events: none;
-  z-index: 0;
 }
 
 a {
@@ -57,11 +41,11 @@ a {
 }
 
 ::selection {
-  background: var(--text-primary);
-  color: var(--bg-primary);
+  background: var(--oxide-red);
+  color: var(--text-ivory);
 }
 
-/* Netlify Badge Dark Mode & Transparency Fix */
+/* Netlify Badge Dark Mode & Full Transparency Fix */
 [data-netlify-badge],
 .netlify-badge,
 #netlify-badge,
@@ -80,45 +64,4 @@ div[style*="fixed"][style*="right"][style*="bottom"] {
   background-color: transparent !important;
   border-color: transparent !important;
   box-shadow: none !important;
-}
-
-[data-theme="dark"] [data-netlify-badge],
-[data-theme="dark"] .netlify-badge,
-[data-theme="dark"] #netlify-badge,
-[data-theme="dark"] a[href*="netlify.com"],
-[data-theme="dark"] a[href*="netlify.com"] *,
-[data-theme="dark"] div:has(> a[href*="netlify.com"]),
-[data-theme="dark"] div:has(a[href*="netlify.com"]),
-[data-theme="dark"] div:has(> iframe[src*="netlify"]),
-[data-theme="dark"] div[class*="netlify"],
-[data-theme="dark"] div[id*="netlify"],
-[data-theme="dark"] iframe[src*="netlify"] {
-  background: transparent !important;
-  background-color: transparent !important;
-  box-shadow: none !important;
-  border: none !important;
-}
-
-/* Dark Mode Explicit Overrides for Cards & Visuals */
-[data-theme="dark"] .dev-card {
-  background-color: var(--bg-card) !important;
-  color: var(--text-primary) !important;
-}
-
-[data-theme="dark"] .dev-card p {
-  color: var(--text-secondary) !important;
-}
-
-[data-theme="dark"] .game-primary-visual {
-  background-color: var(--bg-tertiary) !important;
-  border-color: var(--border-color) !important;
-}
-
-[data-theme="dark"] .product-badge-icon {
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 70%) !important;
-  border-color: var(--border-color) !important;
-}
-
-[data-theme="dark"] .game-visual-static {
-  filter: brightness(0.85) contrast(1.05);
 }

@@ -38,19 +38,21 @@ export class HeroScene {
       powerPreference: 'high-performance'
     });
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    this.renderer.toneMappingExposure = 1.08;
+    this.renderer.toneMappingExposure = 1.05;
     this.renderer.setPixelRatio(pixelRatio);
     this.renderer.setSize(this.container.clientWidth, this.container.clientHeight);
     this.renderer.domElement.className = 'hero-canvas';
     this.container.appendChild(this.renderer.domElement);
 
+    // 35mm lens feel (~38° FOV), camera looking slightly upward
     this.camera = new THREE.PerspectiveCamera(
-      42,
+      38,
       this.container.clientWidth / this.container.clientHeight,
       0.1,
       100
     );
-    this.camera.position.set(0, 0, 4.8);
+    this.camera.position.set(0, -0.22, 4.6);
+    this.camera.lookAt(0, 0.12, 0);
 
     const lights = createLights();
     this.scene.add(lights);
@@ -86,18 +88,21 @@ export class HeroScene {
   private updateLayout(): void {
     if (!this.cardGroup || !this.camera) return;
     const width = this.container.clientWidth || window.innerWidth;
-    if (width > 850) {
-      this.cardGroup.position.set(0.92, 0.0, 0);
-      this.cardGroup.scale.set(0.95, 0.95, 0.95);
-      this.camera.position.set(0, 0, 4.4);
-    } else if (width > 550) {
-      this.cardGroup.position.set(0.4, 0.08, 0);
-      this.cardGroup.scale.set(0.8, 0.8, 0.8);
-      this.camera.position.set(0, 0, 4.8);
+
+    // Desktop: ~8% right, ~5% down from optical center, occupying ~88% height
+    if (width > 900) {
+      this.cardGroup.position.set(0.38, -0.18, 0);
+      this.cardGroup.scale.set(1.08, 1.08, 1.08);
+      this.camera.position.set(0, -0.22, 4.6);
+    } else if (width > 600) {
+      this.cardGroup.position.set(0.18, -0.10, 0);
+      this.cardGroup.scale.set(0.85, 0.85, 0.85);
+      this.camera.position.set(0, -0.15, 5.0);
     } else {
-      this.cardGroup.position.set(0, 0.2, 0);
-      this.cardGroup.scale.set(0.68, 0.68, 0.68);
-      this.camera.position.set(0, 0, 5.0);
+      // Mobile: Centered, lower down to avoid colliding with title typography
+      this.cardGroup.position.set(0.0, -0.35, 0);
+      this.cardGroup.scale.set(0.72, 0.72, 0.72);
+      this.camera.position.set(0, -0.10, 5.2);
     }
   }
 
@@ -138,4 +143,3 @@ export class HeroScene {
     }
   }
 }
-

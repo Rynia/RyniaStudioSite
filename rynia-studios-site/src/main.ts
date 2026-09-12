@@ -21,11 +21,11 @@ function init(): void {
   initNewsletter();
   initNetlifyBadgeFix();
 
-  // Initialize language (load saved preference & bind buttons)
+  // Initialize language (load preference & bind buttons)
   initLanguage();
   bindLanguageButtons();
 
-  // Initialize 3D hero scene with lazy dynamic import
+  // Initialize 3D exhibition scene
   const heroContainer = document.getElementById('hero-canvas-container');
   if (!heroContainer) return;
 
@@ -39,34 +39,16 @@ function init(): void {
       const scene = new HeroScene(heroContainer);
       await scene.init();
     } catch (e) {
-      console.warn('HeroScene 3D init fallback:', e);
+      console.warn('The Rynia Artefact 3D fallback active:', e);
       const fallback = document.getElementById('hero-fallback');
       if (fallback) fallback.style.display = 'block';
     }
   };
 
-  if ('IntersectionObserver' in window) {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            setTimeout(() => {
-              if ('requestIdleCallback' in window) {
-                requestIdleCallback(() => mountHeroScene(), { timeout: 2500 });
-              } else {
-                mountHeroScene();
-              }
-            }, 1000);
-            observer.disconnect();
-          }
-        }
-      },
-      { threshold: 0.05 }
-    );
-    observer.observe(heroContainer);
-  } else {
-    setTimeout(mountHeroScene, 1200);
-  }
+  // Mount cleanly after initial DOM paint
+  requestAnimationFrame(() => {
+    mountHeroScene();
+  });
 }
 
 function initNetlifyBadgeFix(): void {
@@ -120,8 +102,6 @@ function initNetlifyBadgeFix(): void {
   setTimeout(cleanBadge, 300);
   setTimeout(cleanBadge, 1000);
   setTimeout(cleanBadge, 2500);
-
-  window.addEventListener('themechange', cleanBadge);
 
   if ('MutationObserver' in window) {
     const observer = new MutationObserver(() => cleanBadge());

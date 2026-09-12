@@ -1,78 +1,71 @@
 import * as THREE from 'three';
 
-// 1. Obsidian & Titanium Monolith Core
-export function createObsidianCoreMaterial(): THREE.MeshPhysicalMaterial {
+/**
+ * 1. Monolith Obsidian & Oxidized Metal Material
+ * Black oxidized metal, obsidian, mineral reflections
+ */
+export function createObsidianMaterial(): THREE.MeshPhysicalMaterial {
   return new THREE.MeshPhysicalMaterial({
-    color: new THREE.Color(0x101216),
-    metalness: 0.82,
-    roughness: 0.32,
-    clearcoat: 0.45,
-    clearcoatRoughness: 0.18,
-    reflectivity: 0.9
+    color: new THREE.Color(0x0a0b0d),
+    metalness: 0.86,
+    roughness: 0.28,
+    clearcoat: 0.5,
+    clearcoatRoughness: 0.2,
+    reflectivity: 0.92,
+    flatShading: true // Faceted ceremonial carved monolith look
   });
 }
 
-// 2. Brushed Champagne Gold Accents & Frames
-export function createChampagneGoldMaterial(): THREE.MeshStandardMaterial {
+/**
+ * 2. Internal Fissure Core Material (Oxide Red #B6422E)
+ * Awakens in Act III with controllable emissive intensity up to ~1.4
+ */
+export function createFissureMaterial(): THREE.MeshStandardMaterial {
   return new THREE.MeshStandardMaterial({
-    color: new THREE.Color(0xb7a27a),
-    metalness: 0.88,
-    roughness: 0.24
+    color: new THREE.Color(0xb6422e),
+    emissive: new THREE.Color(0xb6422e),
+    emissiveIntensity: 0.0, // Dormant in Act I and II
+    roughness: 0.4,
+    metalness: 0.2
   });
 }
 
-// 3. Inner Energy & Runic Emissive Glyphs
+/**
+ * 3. Faint Ivory Mineral Veins (#D6C5A2)
+ */
+export function createMineralVeinMaterial(): THREE.LineBasicMaterial {
+  return new THREE.LineBasicMaterial({
+    color: 0xd6c5a2,
+    transparent: true,
+    opacity: 0.35,
+    linewidth: 1
+  });
+}
+
+/**
+ * 4. Architectural Hairline Edge Material (#E8E2D6)
+ */
+export function createHairlineEdgeMaterial(): THREE.LineBasicMaterial {
+  return new THREE.LineBasicMaterial({
+    color: 0xe8e2d6,
+    transparent: true,
+    opacity: 0.14
+  });
+}
+
+// Backward compatibility exports
+export function createObsidianCoreMaterial(): THREE.MeshPhysicalMaterial {
+  return createObsidianMaterial();
+}
+export function createChampagneGoldMaterial(): THREE.MeshStandardMaterial {
+  return createFissureMaterial();
+}
 export function createEmissiveGlyphMaterial(): THREE.MeshBasicMaterial {
-  return new THREE.MeshBasicMaterial({
-    color: new THREE.Color(0xd4af37),
-    transparent: true,
-    opacity: 0.85
-  });
+  return new THREE.MeshBasicMaterial({ color: 0xb6422e, transparent: true, opacity: 0.8 });
 }
-
-// 4. Kinetic Orbital Rings & Precision Hairlines
 export function createOrbitalRingMaterial(): THREE.LineBasicMaterial {
-  return new THREE.LineBasicMaterial({
-    color: 0xb7a27a,
-    transparent: true,
-    opacity: 0.38
-  });
+  return new THREE.LineBasicMaterial({ color: 0xd6c5a2, transparent: true, opacity: 0.3 });
 }
-
-// 5. Precision Hairline Wireframe
 export function createEdgeMaterial(): THREE.LineBasicMaterial {
-  return new THREE.LineBasicMaterial({
-    color: 0xf1eee8,
-    opacity: 0.12,
-    transparent: true
-  });
-}
-
-// Backward-compatibility exports
-export function createCeramicCoreMaterial(): THREE.MeshPhysicalMaterial {
-  return createObsidianCoreMaterial();
-}
-
-export function createRefractiveGlassMaterial(): THREE.MeshPhysicalMaterial {
-  return createObsidianCoreMaterial();
-}
-
-export function createTitaniumAccentMaterial(): THREE.MeshStandardMaterial {
-  return createChampagneGoldMaterial();
-}
-
-export function createInsetMaterial(): THREE.LineBasicMaterial {
-  return createOrbitalRingMaterial();
-}
-
-export function createCardMaterial(): THREE.MeshPhysicalMaterial {
-  return createObsidianCoreMaterial();
-}
-
-export function createRimMaterial(): THREE.MeshStandardMaterial {
-  return createChampagneGoldMaterial();
-}
-
-export function createFresnelShaderMaterial(): THREE.MeshPhysicalMaterial {
-  return createObsidianCoreMaterial();
+  return createHairlineEdgeMaterial();
 }

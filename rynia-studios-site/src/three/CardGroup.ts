@@ -1,106 +1,163 @@
 import * as THREE from 'three';
 import {
-  createObsidianCoreMaterial,
-  createChampagneGoldMaterial,
-  createEmissiveGlyphMaterial,
-  createOrbitalRingMaterial,
-  createEdgeMaterial
+  createObsidianMaterial,
+  createFissureMaterial,
+  createMineralVeinMaterial,
+  createHairlineEdgeMaterial
 } from './materials';
 
 /**
- * Creates "The Rynia Core" — A Kinetic Monolithic Artifact
- * Represents the independent studio's craft: games, intelligent tools & digital systems.
- * Engineered with faceted obsidian, brushed champagne gold, and runic emissive glyphs.
+ * Creates "The Rynia Artefact"
+ * A single monumental, carved, ceremonial asymmetrical monolith (Three.js).
+ * Materials: Obsidian / black oxidized metal with faceted chiseled surfaces,
+ * faint ivory mineral veins, and an internal fissure that awakens in Act III.
  */
 export function createCardGroup(): THREE.Group {
+  return createArtefact();
+}
+
+export function createArtefact(): THREE.Group {
   const root = new THREE.Group();
-  root.name = 'RyniaCore';
+  root.name = 'RyniaArtefact';
 
-  // Materials
-  const obsidianMat = createObsidianCoreMaterial();
-  const goldMat = createChampagneGoldMaterial();
-  const emissiveMat = createEmissiveGlyphMaterial();
-  const orbitMat = createOrbitalRingMaterial();
-  const edgeMat = createEdgeMaterial();
+  const obsidianMat = createObsidianMaterial();
+  const fissureMat = createFissureMaterial();
+  const mineralMat = createMineralVeinMaterial();
+  const hairlineMat = createHairlineEdgeMaterial();
 
-  // 1. Central Faceted Obsidian Monolith
-  const coreWidth = 1.35;
-  const coreHeight = 1.95;
-  const coreDepth = 0.42;
-  const coreGeometry = new THREE.BoxGeometry(coreWidth, coreHeight, coreDepth, 2, 2, 2);
-  const coreMesh = new THREE.Mesh(coreGeometry, obsidianMat);
-  coreMesh.name = 'MonolithCore';
-  coreMesh.castShadow = true;
-  coreMesh.receiveShadow = true;
-  root.add(coreMesh);
+  // 1. Asymmetrical Ceremonial Monolith Geometry
+  // We construct a faceted polygonal monolith with deliberate asymmetrical chisel angles.
+  const monolithGeo = createMonolithGeometry();
+  const monolithMesh = new THREE.Mesh(monolithGeo, obsidianMat);
+  monolithMesh.name = 'MonolithCore';
+  monolithMesh.castShadow = true;
+  monolithMesh.receiveShadow = true;
+  root.add(monolithMesh);
 
-  // Precision Hairline Edges for the Monolith
-  const coreEdges = new THREE.LineSegments(
-    new THREE.EdgesGeometry(coreGeometry),
-    edgeMat
-  );
-  root.add(coreEdges);
+  // Hairline edge contours outlining the ceremonial facets
+  const edgesGeo = new THREE.EdgesGeometry(monolithGeo, 20);
+  const edgesMesh = new THREE.LineSegments(edgesGeo, hairlineMat);
+  edgesMesh.name = 'MonolithEdges';
+  root.add(edgesMesh);
 
-  // 2. Runic Center Sigil (Emissive Gold Glyphs)
-  const sigilGeo = new THREE.RingGeometry(0.28, 0.34, 32);
-  const sigilMesh = new THREE.Mesh(sigilGeo, emissiveMat);
-  sigilMesh.position.z = coreDepth / 2 + 0.003;
-  sigilMesh.name = 'EmissiveSigil';
-  root.add(sigilMesh);
+  // 2. Internal Fissure (The Core Awakens in Act III with Oxide Red #B6422E)
+  // A narrow vertical fissure carved into the monolith's front-right facet
+  const fissureGroup = new THREE.Group();
+  fissureGroup.name = 'FissureGroup';
 
-  // Back face sigil
-  const sigilBack = sigilMesh.clone();
-  sigilBack.position.z = -coreDepth / 2 - 0.003;
-  sigilBack.rotation.y = Math.PI;
-  root.add(sigilBack);
+  const fissureWidth = 0.038;
+  const fissureHeight = 1.95;
+  const fissureDepth = 0.12;
+  const fissureGeo = new THREE.BoxGeometry(fissureWidth, fissureHeight, fissureDepth);
+  const fissureMesh = new THREE.Mesh(fissureGeo, fissureMat);
+  fissureMesh.name = 'InternalFissure';
+  fissureMesh.position.set(0.18, -0.05, 0.42);
+  fissureMesh.rotation.z = -0.04;
+  fissureGroup.add(fissureMesh);
 
-  // Monolith Architectural Inset Accent Lines (Champagne Gold Hairlines)
-  const insetGeo = new THREE.BufferGeometry().setFromPoints([
-    new THREE.Vector3(-0.52, 0.78, coreDepth / 2 + 0.002),
-    new THREE.Vector3(0.52, 0.78, coreDepth / 2 + 0.002),
-    new THREE.Vector3(0.52, -0.78, coreDepth / 2 + 0.002),
-    new THREE.Vector3(-0.52, -0.78, coreDepth / 2 + 0.002),
-    new THREE.Vector3(-0.52, 0.78, coreDepth / 2 + 0.002),
+  // Faint inner fracture branches
+  const branchGeo = new THREE.BufferGeometry().setFromPoints([
+    new THREE.Vector3(0.18, 0.45, 0.42),
+    new THREE.Vector3(0.29, 0.72, 0.40),
+    new THREE.Vector3(0.35, 0.88, 0.38)
   ]);
-  const insetLine = new THREE.Line(insetGeo, orbitMat);
-  root.add(insetLine);
+  const branchLine = new THREE.Line(branchGeo, mineralMat);
+  branchLine.name = 'FissureBranch';
+  fissureGroup.add(branchLine);
 
-  // 3. Primary Champagne Gold Orbital Kinetic Ring
-  const primaryRingGeo = new THREE.TorusGeometry(1.48, 0.045, 24, 96);
-  const primaryRing = new THREE.Mesh(primaryRingGeo, goldMat);
-  primaryRing.name = 'PrimaryRing';
-  primaryRing.rotation.x = Math.PI / 3.2;
-  primaryRing.rotation.y = Math.PI / 6;
-  root.add(primaryRing);
+  root.add(fissureGroup);
 
-  // 4. Secondary Counter-Rotating Kinetic Ring
-  const secondaryRingGeo = new THREE.TorusGeometry(1.24, 0.022, 16, 80);
-  const secondaryRing = new THREE.Mesh(secondaryRingGeo, goldMat);
-  secondaryRing.name = 'SecondaryRing';
-  secondaryRing.rotation.x = -Math.PI / 3.8;
-  secondaryRing.rotation.z = Math.PI / 7;
-  root.add(secondaryRing);
+  // 3. Faint Ivory Mineral Veins running across the monolithic facets
+  const veinPoints = [
+    new THREE.Vector3(-0.62, -1.2, 0.38),
+    new THREE.Vector3(-0.48, -0.4, 0.44),
+    new THREE.Vector3(-0.35, 0.35, 0.41),
+    new THREE.Vector3(-0.15, 0.95, 0.36),
+    new THREE.Vector3(0.05, 1.45, 0.32)
+  ];
+  const veinGeo = new THREE.BufferGeometry().setFromPoints(veinPoints);
+  const veinLine = new THREE.Line(veinGeo, mineralMat);
+  veinLine.name = 'MineralVeinPrimary';
+  root.add(veinLine);
 
-  // 5. Kinetic Artifact Satellite Nodes (The Forge & Systems Nodes)
-  const nodeGeo = new THREE.OctahedronGeometry(0.08, 0);
-  const node1 = new THREE.Mesh(nodeGeo, goldMat);
-  node1.name = 'GameNode';
-  node1.position.set(1.42, 0.45, 0.35);
-  root.add(node1);
-
-  const node2 = new THREE.Mesh(nodeGeo, goldMat);
-  node2.name = 'UtilityNode';
-  node2.position.set(-1.32, -0.55, -0.3);
-  root.add(node2);
-
-  const node3 = new THREE.Mesh(nodeGeo, emissiveMat);
-  node3.name = 'SystemsNode';
-  node3.position.set(0.18, 1.38, -0.2);
-  root.add(node3);
-
-  // Subtle initial tilt for dynamic 3D posture
-  root.rotation.x = 0.14;
-  root.rotation.y = -0.32;
+  // Secondary transverse micro-vein
+  const secVeinPoints = [
+    new THREE.Vector3(-0.48, -0.4, 0.44),
+    new THREE.Vector3(-0.12, -0.22, 0.46),
+    new THREE.Vector3(0.18, -0.15, 0.42)
+  ];
+  const secVeinGeo = new THREE.BufferGeometry().setFromPoints(secVeinPoints);
+  const secVeinLine = new THREE.Line(secVeinGeo, mineralMat);
+  secVeinLine.name = 'MineralVeinSecondary';
+  root.add(secVeinLine);
 
   return root;
+}
+
+/**
+ * Builds an asymmetrical ceremonial monolithic geometry
+ * with clean chiseled facets, non-uniform profile, and ceremonial taper.
+ */
+function createMonolithGeometry(): THREE.BufferGeometry {
+  // 14 carefully crafted vertices defining an imposing, carved ceremonial monolith
+  // Height: ~3.3, Base width: ~1.4, Top width: ~1.0, Depth: ~0.84
+  const vertices = new Float32Array([
+    // Base ring (y = -1.65)
+    -0.72, -1.65,  0.42,  // 0: base front-left
+     0.68, -1.65,  0.40,  // 1: base front-right
+     0.64, -1.65, -0.42,  // 2: base back-right
+    -0.65, -1.65, -0.40,  // 3: base back-left
+
+    // Mid waist ring (y = 0.15) — slightly asymmetrical shift
+    -0.68,  0.15,  0.48,  // 4: mid front-left
+     0.62,  0.15,  0.44,  // 5: mid front-right
+     0.58,  0.15, -0.44,  // 6: mid back-right
+    -0.62,  0.15, -0.42,  // 7: mid back-left
+
+    // Shoulder ring (y = 1.35)
+    -0.54,  1.35,  0.38,  // 8: shoulder front-left
+     0.48,  1.35,  0.34,  // 9: shoulder front-right
+     0.44,  1.35, -0.36,  // 10: shoulder back-right
+    -0.50,  1.35, -0.34,  // 11: shoulder back-left
+
+    // Ceremonial Crown / Asymmetrical Beveled Apex (y = 1.75 to 1.62)
+    -0.42,  1.72,  0.18,  // 12: crown left apex (higher)
+     0.36,  1.58,  0.14,  // 13: crown right apex (sloped lower)
+     0.28,  1.55, -0.20,  // 14: crown back-right
+    -0.38,  1.68, -0.18   // 15: crown back-left
+  ]);
+
+  // Triangular facets composing the monolithic obsidian block
+  const indices = [
+    // Bottom cap
+    0, 2, 1,   0, 3, 2,
+
+    // Lower body facets (0..3 to 4..7)
+    0, 1, 5,   0, 5, 4, // front lower
+    1, 2, 6,   1, 6, 5, // right lower
+    2, 3, 7,   2, 7, 6, // back lower
+    3, 0, 4,   3, 4, 7, // left lower
+
+    // Mid to shoulder facets (4..7 to 8..11)
+    4, 5, 9,   4, 9, 8, // front mid
+    5, 6, 10,  5, 10, 9, // right mid
+    6, 7, 11,  6, 11, 10, // back mid
+    7, 4, 8,   7, 8, 11, // left mid
+
+    // Shoulder to ceremonial apex (8..11 to 12..15)
+    8, 9, 13,   8, 13, 12, // front crown
+    9, 10, 14,  9, 14, 13, // right crown
+    10, 11, 15, 10, 15, 14, // back crown
+    11, 8, 12,  11, 12, 15, // left crown
+
+    // Top crown cap
+    12, 13, 14,  12, 14, 15
+  ];
+
+  const geometry = new THREE.BufferGeometry();
+  geometry.setAttribute('position', new THREE.BufferAttribute(vertices, 3));
+  geometry.setIndex(indices);
+  geometry.computeVertexNormals();
+
+  return geometry;
 }
