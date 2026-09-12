@@ -7,6 +7,9 @@ import { initNav } from './ui/nav';
 import { initReveal } from './ui/reveal';
 import { initNewsletter } from './ui/newsletter';
 
+// Import smooth scrolling (Lenis + GSAP unified)
+import { initSmoothScroll } from './smoothScroll';
+
 // Import i18n
 import { initLanguage, bindLanguageButtons } from './i18n/i18n';
 
@@ -14,6 +17,9 @@ import { initLanguage, bindLanguageButtons } from './i18n/i18n';
 function init(): void {
   // Initialize Theme immediately to prevent flash
   initTheme();
+
+  // Initialize buttery smooth scrolling (Lenis)
+  initSmoothScroll();
 
   // Initialize UI components immediately
   initNav();

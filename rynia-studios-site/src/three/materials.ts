@@ -53,6 +53,34 @@ export function createHairlineEdgeMaterial(): THREE.LineBasicMaterial {
   });
 }
 
+/**
+ * 5. Aged Bronze Structural Spine Material (#4A3C2C)
+ * Deep aged bronze with subtle warm metallic reflection
+ */
+export function createAgedBronzeMaterial(): THREE.MeshStandardMaterial {
+  return new THREE.MeshStandardMaterial({
+    color: new THREE.Color(0x4e3e2c),
+    metalness: 0.85,
+    roughness: 0.36,
+    flatShading: true
+  });
+}
+
+/**
+ * 6. Tactical Lamella Core Plate Material
+ * Precision-machined dark obsidian/titanium plates
+ */
+export function createTacticalLamellaMaterial(): THREE.MeshPhysicalMaterial {
+  return new THREE.MeshPhysicalMaterial({
+    color: new THREE.Color(0x101114),
+    metalness: 0.92,
+    roughness: 0.22,
+    clearcoat: 0.4,
+    clearcoatRoughness: 0.25,
+    flatShading: true
+  });
+}
+
 // Backward compatibility exports
 export function createObsidianCoreMaterial(): THREE.MeshPhysicalMaterial {
   return createObsidianMaterial();

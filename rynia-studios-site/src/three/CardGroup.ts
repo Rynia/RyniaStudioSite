@@ -3,161 +3,212 @@ import {
   createObsidianMaterial,
   createFissureMaterial,
   createMineralVeinMaterial,
-  createHairlineEdgeMaterial
+  createHairlineEdgeMaterial,
+  createAgedBronzeMaterial,
+  createTacticalLamellaMaterial
 } from './materials';
 
 /**
- * Creates "The Rynia Artefact"
- * A single monumental, carved, ceremonial asymmetrical monolith (Three.js).
- * Materials: Obsidian / black oxidized metal with faceted chiseled surfaces,
- * faint ivory mineral veins, and an internal fissure that awakens in Act III.
+ * Creates "The Rynia Reliquary" (Atölye Üretim Kalıbı)
+ * A monolithic physical ceremonial vessel:
+ * - 3 Interlocking Asymmetrical Obsidian Facets (The Outer Shell)
+ * - Aged Dark Bronze Structural Spine (forms an implicit architectural "R" silhouette in negative space)
+ * - 4 Precision-Machined Internal Tactical Lamellas (Draft, Evolution, Position, Clash / Raw to System)
+ * - Internal Oxide Red (#B6422E) Fissure channel
  */
 export function createCardGroup(): THREE.Group {
-  return createArtefact();
+  return createReliquary();
 }
 
 export function createArtefact(): THREE.Group {
+  return createReliquary();
+}
+
+export function createReliquary(): THREE.Group {
   const root = new THREE.Group();
-  root.name = 'RyniaArtefact';
+  root.name = 'RyniaReliquary';
 
   const obsidianMat = createObsidianMaterial();
+  const bronzeMat = createAgedBronzeMaterial();
+  const lamellaMat = createTacticalLamellaMaterial();
   const fissureMat = createFissureMaterial();
   const mineralMat = createMineralVeinMaterial();
   const hairlineMat = createHairlineEdgeMaterial();
 
-  // 1. Asymmetrical Ceremonial Monolith Geometry
-  // We construct a faceted polygonal monolith with deliberate asymmetrical chisel angles.
-  const monolithGeo = createMonolithGeometry();
-  const monolithMesh = new THREE.Mesh(monolithGeo, obsidianMat);
-  monolithMesh.name = 'MonolithCore';
-  monolithMesh.castShadow = true;
-  monolithMesh.receiveShadow = true;
-  root.add(monolithMesh);
+  // ========================================================
+  // 1. AGED BRONZE STRUCTURAL SPINE (Implicit "R" Monogram)
+  // ========================================================
+  const spineGroup = new THREE.Group();
+  spineGroup.name = 'BronzeSpine';
 
-  // Hairline edge contours outlining the ceremonial facets
-  const edgesGeo = new THREE.EdgesGeometry(monolithGeo, 20);
-  const edgesMesh = new THREE.LineSegments(edgesGeo, hairlineMat);
-  edgesMesh.name = 'MonolithEdges';
-  root.add(edgesMesh);
+  // Vertical Spine Stem (Height: 3.2, Width: 0.22, Depth: 0.45)
+  const stemGeo = new THREE.BoxGeometry(0.20, 3.2, 0.48);
+  const stemMesh = new THREE.Mesh(stemGeo, bronzeMat);
+  stemMesh.position.set(-0.24, 0, 0);
+  stemMesh.castShadow = true;
+  stemMesh.receiveShadow = true;
+  spineGroup.add(stemMesh);
 
-  // 2. Internal Fissure (The Core Awakens in Act III with Oxide Red #B6422E)
-  // A narrow vertical fissure carved into the monolith's front-right facet
-  const fissureGroup = new THREE.Group();
-  fissureGroup.name = 'FissureGroup';
+  // Upper Beveled Loop of the "R" (Interlocking Bronze Arch)
+  const loopGeo = new THREE.BoxGeometry(0.55, 0.95, 0.40);
+  const loopMesh = new THREE.Mesh(loopGeo, bronzeMat);
+  loopMesh.position.set(0.12, 0.65, 0.05);
+  loopMesh.rotation.z = -0.08;
+  loopMesh.castShadow = true;
+  spineGroup.add(loopMesh);
 
-  const fissureWidth = 0.038;
-  const fissureHeight = 1.95;
-  const fissureDepth = 0.12;
-  const fissureGeo = new THREE.BoxGeometry(fissureWidth, fissureHeight, fissureDepth);
+  // Lower Diagonal Brace / Leg of the "R" (Tactical Strut)
+  const legGeo = new THREE.BoxGeometry(0.22, 1.25, 0.42);
+  const legMesh = new THREE.Mesh(legGeo, bronzeMat);
+  legMesh.position.set(0.18, -0.62, 0.04);
+  legMesh.rotation.z = -0.48; // Architectural diagonal thrust
+  legMesh.castShadow = true;
+  spineGroup.add(legMesh);
+
+  // Structural Spine Edges
+  [stemMesh, loopMesh, legMesh].forEach((part) => {
+    const partEdges = new THREE.EdgesGeometry(part.geometry, 25);
+    const edgeLines = new THREE.LineSegments(partEdges, hairlineMat);
+    part.add(edgeLines);
+  });
+
+  root.add(spineGroup);
+
+  // ========================================================
+  // 2. 4 INTERNAL TACTICAL LAMELLAS (Precision Machined Core)
+  // ========================================================
+  const lamellasGroup = new THREE.Group();
+  lamellasGroup.name = 'TacticalLamellas';
+
+  const lamellaWidth = 0.58;
+  const lamellaHeight = 1.05;
+  const lamellaDepth = 0.045;
+  const lamellaGeo = new THREE.BoxGeometry(lamellaWidth, lamellaHeight, lamellaDepth);
+  const lamellaEdgesGeo = new THREE.EdgesGeometry(lamellaGeo);
+
+  // 4 Tactical Core Plates sitting inside the reliquary's chamber
+  const plateZOffsets = [-0.15, -0.05, 0.05, 0.15];
+  for (let i = 0; i < 4; i++) {
+    const lamella = new THREE.Mesh(lamellaGeo, lamellaMat);
+    lamella.name = `Lamella_${i}`;
+    lamella.position.set(0.08, 0.12, plateZOffsets[i]);
+    lamella.castShadow = true;
+
+    // Edge wireframe outlining each plate's tactical boundary
+    const lEdges = new THREE.LineSegments(lamellaEdgesGeo, hairlineMat);
+    lamella.add(lEdges);
+
+    lamellasGroup.add(lamella);
+  }
+
+  root.add(lamellasGroup);
+
+  // ========================================================
+  // 3. ASYMMETRICAL OBSIDIAN OUTER SHELL (3 Interlocking Facets)
+  // ========================================================
+  const shellGroup = new THREE.Group();
+  shellGroup.name = 'OuterShell';
+
+  // Facet A: Left Chiseled Wing (Armor flank)
+  const leftWingGeo = createChiseledFacetGeometry([
+    [-0.82, -1.55,  0.38],
+    [-0.30, -1.55,  0.42],
+    [-0.30,  1.55,  0.32],
+    [-0.68,  1.42,  0.22],
+    [-0.78, -1.55, -0.38],
+    [-0.30, -1.55, -0.42],
+    [-0.30,  1.55, -0.32],
+    [-0.64,  1.42, -0.22]
+  ]);
+  const leftWing = new THREE.Mesh(leftWingGeo, obsidianMat);
+  leftWing.name = 'ShellLeftWing';
+  leftWing.castShadow = true;
+  leftWing.receiveShadow = true;
+  shellGroup.add(leftWing);
+
+  // Facet B: Right Sloped Prow (Faceted angular face)
+  const rightProwGeo = createChiseledFacetGeometry([
+    [ 0.28, -1.55,  0.42],
+    [ 0.72, -1.55,  0.36],
+    [ 0.58,  1.45,  0.24],
+    [ 0.28,  1.55,  0.30],
+    [ 0.28, -1.55, -0.42],
+    [ 0.68, -1.55, -0.36],
+    [ 0.54,  1.45, -0.24],
+    [ 0.28,  1.55, -0.30]
+  ]);
+  const rightProw = new THREE.Mesh(rightProwGeo, obsidianMat);
+  rightProw.name = 'ShellRightProw';
+  rightProw.castShadow = true;
+  rightProw.receiveShadow = true;
+  shellGroup.add(rightProw);
+
+  // Facet C: Lower Base Keystone
+  const baseKeyGeo = new THREE.BoxGeometry(1.48, 0.45, 0.88);
+  const baseKey = new THREE.Mesh(baseKeyGeo, obsidianMat);
+  baseKey.name = 'ShellBaseKey';
+  baseKey.position.set(0, -1.62, 0);
+  baseKey.castShadow = true;
+  shellGroup.add(baseKey);
+
+  // Wireframe edges on shell facets
+  [leftWing, rightProw, baseKey].forEach((part) => {
+    const pEdges = new THREE.EdgesGeometry(part.geometry, 18);
+    const pLines = new THREE.LineSegments(pEdges, hairlineMat);
+    part.add(pLines);
+  });
+
+  root.add(shellGroup);
+
+  // ========================================================
+  // 4. CONTROLLED INTERNAL FISSURE (#B6422E Oxide Red Line)
+  // ========================================================
+  const fissureGeo = new THREE.BoxGeometry(0.028, 2.2, 0.08);
   const fissureMesh = new THREE.Mesh(fissureGeo, fissureMat);
   fissureMesh.name = 'InternalFissure';
-  fissureMesh.position.set(0.18, -0.05, 0.42);
-  fissureMesh.rotation.z = -0.04;
-  fissureGroup.add(fissureMesh);
+  fissureMesh.position.set(0.26, 0.08, 0.40);
+  fissureMesh.rotation.z = -0.05;
+  root.add(fissureMesh);
 
-  // Faint inner fracture branches
-  const branchGeo = new THREE.BufferGeometry().setFromPoints([
-    new THREE.Vector3(0.18, 0.45, 0.42),
-    new THREE.Vector3(0.29, 0.72, 0.40),
-    new THREE.Vector3(0.35, 0.88, 0.38)
-  ]);
-  const branchLine = new THREE.Line(branchGeo, mineralMat);
-  branchLine.name = 'FissureBranch';
-  fissureGroup.add(branchLine);
-
-  root.add(fissureGroup);
-
-  // 3. Faint Ivory Mineral Veins running across the monolithic facets
+  // Mineral micro-veins along the seam
   const veinPoints = [
-    new THREE.Vector3(-0.62, -1.2, 0.38),
-    new THREE.Vector3(-0.48, -0.4, 0.44),
-    new THREE.Vector3(-0.35, 0.35, 0.41),
-    new THREE.Vector3(-0.15, 0.95, 0.36),
-    new THREE.Vector3(0.05, 1.45, 0.32)
+    new THREE.Vector3(-0.52, -1.2, 0.38),
+    new THREE.Vector3(-0.35, -0.3, 0.44),
+    new THREE.Vector3(-0.22,  0.4, 0.42),
+    new THREE.Vector3(-0.10,  1.1, 0.36),
+    new THREE.Vector3( 0.05,  1.5, 0.30)
   ];
   const veinGeo = new THREE.BufferGeometry().setFromPoints(veinPoints);
   const veinLine = new THREE.Line(veinGeo, mineralMat);
-  veinLine.name = 'MineralVeinPrimary';
+  veinLine.name = 'MineralVein';
   root.add(veinLine);
-
-  // Secondary transverse micro-vein
-  const secVeinPoints = [
-    new THREE.Vector3(-0.48, -0.4, 0.44),
-    new THREE.Vector3(-0.12, -0.22, 0.46),
-    new THREE.Vector3(0.18, -0.15, 0.42)
-  ];
-  const secVeinGeo = new THREE.BufferGeometry().setFromPoints(secVeinPoints);
-  const secVeinLine = new THREE.Line(secVeinGeo, mineralMat);
-  secVeinLine.name = 'MineralVeinSecondary';
-  root.add(secVeinLine);
 
   return root;
 }
 
 /**
- * Builds an asymmetrical ceremonial monolithic geometry
- * with clean chiseled facets, non-uniform profile, and ceremonial taper.
+ * Builds faceted wedge/prism geometries from coordinate rings
  */
-function createMonolithGeometry(): THREE.BufferGeometry {
-  // 14 carefully crafted vertices defining an imposing, carved ceremonial monolith
-  // Height: ~3.3, Base width: ~1.4, Top width: ~1.0, Depth: ~0.84
-  const vertices = new Float32Array([
-    // Base ring (y = -1.65)
-    -0.72, -1.65,  0.42,  // 0: base front-left
-     0.68, -1.65,  0.40,  // 1: base front-right
-     0.64, -1.65, -0.42,  // 2: base back-right
-    -0.65, -1.65, -0.40,  // 3: base back-left
-
-    // Mid waist ring (y = 0.15) — slightly asymmetrical shift
-    -0.68,  0.15,  0.48,  // 4: mid front-left
-     0.62,  0.15,  0.44,  // 5: mid front-right
-     0.58,  0.15, -0.44,  // 6: mid back-right
-    -0.62,  0.15, -0.42,  // 7: mid back-left
-
-    // Shoulder ring (y = 1.35)
-    -0.54,  1.35,  0.38,  // 8: shoulder front-left
-     0.48,  1.35,  0.34,  // 9: shoulder front-right
-     0.44,  1.35, -0.36,  // 10: shoulder back-right
-    -0.50,  1.35, -0.34,  // 11: shoulder back-left
-
-    // Ceremonial Crown / Asymmetrical Beveled Apex (y = 1.75 to 1.62)
-    -0.42,  1.72,  0.18,  // 12: crown left apex (higher)
-     0.36,  1.58,  0.14,  // 13: crown right apex (sloped lower)
-     0.28,  1.55, -0.20,  // 14: crown back-right
-    -0.38,  1.68, -0.18   // 15: crown back-left
-  ]);
-
-  // Triangular facets composing the monolithic obsidian block
+function createChiseledFacetGeometry(coords: number[][]): THREE.BufferGeometry {
+  const vertices = new Float32Array(coords.flat());
   const indices = [
-    // Bottom cap
-    0, 2, 1,   0, 3, 2,
-
-    // Lower body facets (0..3 to 4..7)
-    0, 1, 5,   0, 5, 4, // front lower
-    1, 2, 6,   1, 6, 5, // right lower
-    2, 3, 7,   2, 7, 6, // back lower
-    3, 0, 4,   3, 4, 7, // left lower
-
-    // Mid to shoulder facets (4..7 to 8..11)
-    4, 5, 9,   4, 9, 8, // front mid
-    5, 6, 10,  5, 10, 9, // right mid
-    6, 7, 11,  6, 11, 10, // back mid
-    7, 4, 8,   7, 8, 11, // left mid
-
-    // Shoulder to ceremonial apex (8..11 to 12..15)
-    8, 9, 13,   8, 13, 12, // front crown
-    9, 10, 14,  9, 14, 13, // right crown
-    10, 11, 15, 10, 15, 14, // back crown
-    11, 8, 12,  11, 12, 15, // left crown
-
-    // Top crown cap
-    12, 13, 14,  12, 14, 15
+    // Front face
+    0, 1, 2,   0, 2, 3,
+    // Right face
+    1, 5, 6,   1, 6, 2,
+    // Back face
+    5, 4, 7,   5, 7, 6,
+    // Left face
+    4, 0, 3,   4, 3, 7,
+    // Top face
+    3, 2, 6,   3, 6, 7,
+    // Bottom face
+    4, 5, 1,   4, 1, 0
   ];
 
-  const geometry = new THREE.BufferGeometry();
-  geometry.setAttribute('position', new THREE.BufferAttribute(vertices, 3));
-  geometry.setIndex(indices);
-  geometry.computeVertexNormals();
-
-  return geometry;
+  const geo = new THREE.BufferGeometry();
+  geo.setAttribute('position', new THREE.BufferAttribute(vertices, 3));
+  geo.setIndex(indices);
+  geo.computeVertexNormals();
+  return geo;
 }

@@ -6,8 +6,6 @@ import gsap from 'gsap';
  * Emerges gracefully with rim light silhouette
  */
 export function playIntroAnimation(group: THREE.Group): void {
-  group.position.y -= 0.15;
-
   const materials: THREE.Material[] = [];
   group.traverse((child) => {
     if (child instanceof THREE.Mesh || child instanceof THREE.LineSegments || child instanceof THREE.Line) {
@@ -27,17 +25,11 @@ export function playIntroAnimation(group: THREE.Group): void {
     }
   });
 
-  gsap.to(group.position, {
-    y: group.position.y + 0.15,
-    duration: 2.4,
-    ease: 'power3.out'
-  });
-
   materials.forEach(mat => {
     const targetOpacity = (mat as THREE.LineBasicMaterial).type === 'LineBasicMaterial' ? 0.35 : 1.0;
     gsap.to(mat, {
       opacity: targetOpacity,
-      duration: 2.8,
+      duration: 2.2,
       ease: 'power2.out'
     });
   });

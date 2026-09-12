@@ -1,8 +1,9 @@
 import * as THREE from 'three';
+import gsap from 'gsap';
 import { createLights } from './lights';
 import { createCardGroup } from './CardGroup';
-import { playIntroAnimation, startBreathingAnimation } from './animations';
-import { setupMouseParallax, setupScrollCamera } from './interactions';
+import { playIntroAnimation } from './animations';
+import { createReliquaryController, ReliquaryController } from './interactions';
 import { shouldUseFallback, showFallbackImage } from './fallback';
 
 export class HeroScene {
@@ -11,13 +12,11 @@ export class HeroScene {
   private camera!: THREE.PerspectiveCamera;
   private scene!: THREE.Scene;
   private cardGroup!: THREE.Group;
-  private animationFrameId?: number;
+  private controller?: ReliquaryController;
+  private clock: THREE.Clock = new THREE.Clock();
+  private isVisible: boolean = true;
   private resizeObserver?: ResizeObserver;
   private intersectionObserver?: IntersectionObserver;
-  private isVisible: boolean = true;
-  private breathAnim?: { stop: () => void };
-  private mouseParallax?: { destroy: () => void };
-  private scrollCamera?: { destroy: () => void };
 
   constructor(container: HTMLElement) {
     this.container = container;
@@ -31,7 +30,8 @@ export class HeroScene {
 
     this.scene = new THREE.Scene();
 
-    const pixelRatio = Math.min(window.devicePixelRatio, 2);
+    // Cap devicePixelRatio at 1.5 to maintain stable 60/120fps across Windows high-DPI displays
+    const pixelRatio = Math.min(window.devicePixelRatio, 1.5);
     this.renderer = new THREE.WebGLRenderer({
       alpha: true,
       antialias: true,
@@ -58,21 +58,15 @@ export class HeroScene {
     this.scene.add(lights);
 
     this.cardGroup = createCardGroup();
+    this.scene.add(this.cardGroup);
 
-    const parallaxWrapper = new THREE.Group();
-    const breathingWrapper = new THREE.Group();
-    
-    parallaxWrapper.add(breathingWrapper);
-    breathingWrapper.add(this.cardGroup);
-    this.scene.add(parallaxWrapper);
-
-    this.updateLayout();
+    const width = this.container.clientWidth || window.innerWidth;
+    this.updateScale(width);
 
     playIntroAnimation(this.cardGroup);
 
-    this.breathAnim = startBreathingAnimation(breathingWrapper);
-    this.mouseParallax = setupMouseParallax(parallaxWrapper, this.container);
-    this.scrollCamera = setupScrollCamera(this.camera, this.container, this.cardGroup);
+    // Initialize unified Reliquary interaction controller
+    this.controller = createReliquaryController(this.camera, this.cardGroup, this.container);
 
     this.resizeObserver = new ResizeObserver(() => this.onResize());
     this.resizeObserver.observe(this.container);
@@ -82,64 +76,57 @@ export class HeroScene {
     });
     this.intersectionObserver.observe(this.container);
 
-    this.startRenderLoop();
+    // Unified Master Clock: hook render and damping directly into GSAP ticker
+    this.clock.start();
+    gsap.ticker.add(this.onTick);
   }
 
-  private updateLayout(): void {
-    if (!this.cardGroup || !this.camera) return;
-    const width = this.container.clientWidth || window.innerWidth;
+  private onTick = (): void => {
+    if (!this.isVisible) return;
+    // Delta clamping: 50ms cap prevents teleportation on tab switch
+    const rawDt = this.clock.getDelta();
+    const dt = Math.min(rawDt, 0.05);
 
-    // Desktop: ~8% right, ~5% down from optical center, occupying ~88% height
+    this.controller?.update(dt);
+    this.renderer.render(this.scene, this.camera);
+  };
+
+  private updateScale(width: number): void {
+    if (!this.cardGroup) return;
     if (width > 900) {
-      this.cardGroup.position.set(0.38, -0.18, 0);
       this.cardGroup.scale.set(1.08, 1.08, 1.08);
-      this.camera.position.set(0, -0.22, 4.6);
     } else if (width > 600) {
-      this.cardGroup.position.set(0.18, -0.10, 0);
       this.cardGroup.scale.set(0.85, 0.85, 0.85);
-      this.camera.position.set(0, -0.15, 5.0);
     } else {
-      // Mobile: Centered, lower down to avoid colliding with title typography
-      this.cardGroup.position.set(0.0, -0.35, 0);
       this.cardGroup.scale.set(0.72, 0.72, 0.72);
-      this.camera.position.set(0, -0.10, 5.2);
     }
   }
 
   private onResize(): void {
     if (!this.camera || !this.renderer) return;
-    
-    this.updateLayout();
-    this.camera.aspect = this.container.clientWidth / this.container.clientHeight;
-    this.camera.updateProjectionMatrix();
-    this.renderer.setSize(this.container.clientWidth, this.container.clientHeight);
-  }
+    const width = this.container.clientWidth;
+    const height = this.container.clientHeight;
 
-  private startRenderLoop(): void {
-    const render = () => {
-      this.animationFrameId = requestAnimationFrame(render);
-      if (this.isVisible) {
-        this.renderer.render(this.scene, this.camera);
-      }
-    };
-    render();
+    this.updateScale(width);
+    this.controller?.updateLayout(width);
+
+    this.camera.aspect = width / height;
+    this.camera.updateProjectionMatrix();
+    this.renderer.setSize(width, height);
   }
 
   public dispose(): void {
-    if (this.animationFrameId) {
-      cancelAnimationFrame(this.animationFrameId);
-    }
-    
-    if (this.breathAnim) this.breathAnim.stop();
-    if (this.mouseParallax) this.mouseParallax.destroy();
-    if (this.scrollCamera) this.scrollCamera.destroy();
-    
+    gsap.ticker.remove(this.onTick);
+
+    if (this.controller) this.controller.destroy();
     if (this.resizeObserver) this.resizeObserver.disconnect();
     if (this.intersectionObserver) this.intersectionObserver.disconnect();
-    
+
     if (this.renderer) {
       this.renderer.dispose();
-      this.container.removeChild(this.renderer.domElement);
+      if (this.renderer.domElement.parentElement === this.container) {
+        this.container.removeChild(this.renderer.domElement);
+      }
     }
   }
 }
