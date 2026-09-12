@@ -624,6 +624,190 @@
   color: var(--text-faint);
 }
 
+/* ========================================================
+   PROJECT EVIDENCE DRAWER (Visual Archive)
+   ======================================================== */
+.visual-archive-panel {
+  background: rgba(14, 14, 12, 0.92);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--hairline);
+  padding: 24px;
+  margin-top: 20px;
+  animation: fadeIn 0.35s ease;
+}
+
+.visual-archive-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--hairline);
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.archive-kicker {
+  color: var(--text-stone);
+}
+
+.archive-meta {
+  color: var(--text-faint);
+}
+
+.visual-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.visual-card-item {
+  margin: 0;
+  border: 1px solid #22211c;
+  background: #080806;
+  padding: 10px;
+  transition: border-color 0.25s ease, transform 0.25s ease;
+}
+
+.visual-card-item:hover {
+  border-color: var(--text-stone);
+  transform: translateY(-2px);
+}
+
+.visual-img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  filter: saturate(0.85) contrast(1.05);
+}
+
+.visual-caption {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-family: var(--font-mono);
+}
+
+.card-name {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-ivory);
+  letter-spacing: 0.12em;
+}
+
+.card-trait {
+  font-size: 9px;
+  color: var(--oxide-red);
+  letter-spacing: 0.14em;
+}
+
+.visual-app-showcase {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.visual-app-frame {
+  margin: 0;
+  border: 1px solid #22211c;
+  background: #080806;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.visual-app-img {
+  display: block;
+  width: 100%;
+  max-width: 380px;
+  height: auto;
+  border: 1px solid #25241f;
+  filter: contrast(1.04);
+}
+
+.visual-app-caption {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.app-screen-title {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-ivory);
+  letter-spacing: 0.14em;
+}
+
+.app-screen-sub {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: var(--text-stone);
+  font-weight: 300;
+  line-height: 1.5;
+}
+
+/* ========================================================
+   LAB ARCHIVE (Protocol-45 R&D Archive in Act IV)
+   ======================================================== */
+.lab-archive-wrapper {
+  margin-top: 56px;
+  padding-top: 32px;
+  border-top: 1px solid var(--hairline);
+}
+
+.lab-archive-card {
+  padding: 24px;
+  background: rgba(14, 14, 12, 0.4);
+  border: 1px solid #1c1b18;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: border-color 0.25s ease;
+}
+
+.lab-archive-card:hover {
+  border-color: var(--hairline);
+}
+
+.lab-archive-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+}
+
+.lab-archive-tag {
+  color: var(--text-faint);
+}
+
+.lab-archive-status {
+  color: #7d8790;
+}
+
+.lab-archive-title {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  color: var(--text-ivory);
+  font-weight: 400;
+  margin: 4px 0;
+}
+
+.lab-archive-desc {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: var(--text-stone);
+  font-weight: 300;
+  line-height: 1.6;
+  max-width: 720px;
+}
+
 /* Responsive adjustments */
 @media (max-width: 900px) {
   .specimen-body {
@@ -635,6 +819,14 @@
     padding-left: 0;
     border-top: 1px solid var(--hairline);
     padding-top: 24px;
+  }
+  .visual-cards-grid {
+    grid-template-columns: 1fr;
+  }
+  .visual-archive-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
   }
   .thesis-coordinates {
     grid-template-columns: 1fr;

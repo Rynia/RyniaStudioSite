@@ -83,6 +83,23 @@ server.listen(3000, async () => {
     await page.screenshot({ path: path.join(outDir, 'act-ii-systems-expanded.png') });
     console.log('Captured test-artifacts/act-ii-systems-expanded.png');
 
+    // 3b. Act II Visual Archive Drawers
+    console.log('Testing Kombo Kart visual archive drawer...');
+    await page.click('button[data-target="kombo-visual-archive"]');
+    await new Promise(r => setTimeout(r, 500));
+    await page.screenshot({ path: path.join(outDir, 'act-ii-kombo-visual-archive.png') });
+    console.log('Captured test-artifacts/act-ii-kombo-visual-archive.png');
+
+    console.log('Testing KALANLA visual archive drawer...');
+    await page.click('button[data-target="kalanla-visual-archive"]');
+    await new Promise(r => setTimeout(r, 500));
+    await page.screenshot({ path: path.join(outDir, 'act-ii-kalanla-visual-archive.png') });
+    console.log('Captured test-artifacts/act-ii-kalanla-visual-archive.png');
+
+    // Verify Protocol-45 is not in Act II
+    const protocolInAct2 = await page.$eval('#act-systems', el => el.innerText.includes('PROTOCOL-45'));
+    console.log(`Protocol-45 in Act II: ${protocolInAct2} (expected false)`);
+
     // 4. Act III Thesis (Macro close-up on Artefact fissure)
     await page.evaluate(() => {
       document.getElementById('act-thesis')?.scrollIntoView();
@@ -91,13 +108,17 @@ server.listen(3000, async () => {
     await page.screenshot({ path: path.join(outDir, 'act-iii-thesis.png') });
     console.log('Captured test-artifacts/act-iii-thesis.png');
 
-    // 5. Act IV Pipelines & Field Notes
+    // 5. Act IV Pipelines & Field Notes & Lab Archive
     await page.evaluate(() => {
       document.getElementById('act-forge')?.scrollIntoView();
     });
     await new Promise(r => setTimeout(r, 800));
     await page.screenshot({ path: path.join(outDir, 'act-iv-pipelines.png') });
     console.log('Captured test-artifacts/act-iv-pipelines.png');
+
+    // Verify Lab Archive exists in Act IV
+    const labArchiveExists = await page.$eval('.lab-archive-wrapper', el => el.innerText.includes('Protocol-45: Hubris'));
+    console.log(`Protocol-45 in Act IV Lab Archive: ${labArchiveExists} (expected true)`);
 
     // 6. Act V Dossier & The Invitation
     await page.evaluate(() => {
