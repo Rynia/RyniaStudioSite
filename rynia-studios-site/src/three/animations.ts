@@ -29,15 +29,15 @@ export function playIntroAnimation(group: THREE.Group): void {
     x: 1,
     y: 1,
     z: 1,
-    duration: 2.5,
+    duration: 2.2,
     ease: 'power2.out'
   });
 
   materials.forEach(mat => {
-    const targetOpacity = (mat as THREE.LineBasicMaterial).type === 'LineBasicMaterial' ? 0.6 : 1.0;
+    const targetOpacity = (mat as THREE.LineBasicMaterial).type === 'LineBasicMaterial' ? 0.45 : 1.0;
     gsap.to(mat, {
       opacity: targetOpacity,
-      duration: 2.5,
+      duration: 2.2,
       ease: 'power2.out'
     });
   });
@@ -45,29 +45,50 @@ export function playIntroAnimation(group: THREE.Group): void {
 
 export function startBreathingAnimation(group: THREE.Group): { stop: () => void } {
   let animationFrameId: number;
-  let shaderMaterials: THREE.ShaderMaterial[] = [];
-  
-  group.traverse((child) => {
-    if (child instanceof THREE.Mesh && child.material && (child.material as any).isShaderMaterial) {
-      shaderMaterials.push(child.material as THREE.ShaderMaterial);
-    }
-  });
+
+  const primaryRing = group.getObjectByName('PrimaryRing');
+  const secondaryRing = group.getObjectByName('SecondaryRing');
+  const gameNode = group.getObjectByName('GameNode');
+  const utilityNode = group.getObjectByName('UtilityNode');
+  const systemsNode = group.getObjectByName('SystemsNode');
+  const sigil = group.getObjectByName('EmissiveSigil');
 
   function animate() {
     const time = performance.now() / 1000;
-    // Slow, stately 14s breathing period
-    group.rotation.y = Math.sin(time * Math.PI * 2 / 14) * 0.035;
-    group.rotation.z = Math.sin(time * Math.PI * 2 / 14) * 0.017;
-    
-    shaderMaterials.forEach(mat => {
-      if (mat.uniforms && mat.uniforms.time) {
-        mat.uniforms.time.value = time;
-      }
-    });
+
+    // Slow, stately breathing oscillation for the monolith base
+    group.position.y = Math.sin(time * 0.8) * 0.04;
+
+    // Counter-rotating kinetic rings
+    if (primaryRing) {
+      primaryRing.rotation.z = time * 0.15;
+    }
+    if (secondaryRing) {
+      secondaryRing.rotation.y = -time * 0.22;
+    }
+
+    // Satellite orbital oscillations
+    if (gameNode) {
+      gameNode.position.y = 0.45 + Math.sin(time * 1.2) * 0.08;
+      gameNode.rotation.y = time * 0.6;
+    }
+    if (utilityNode) {
+      utilityNode.position.y = -0.55 + Math.cos(time * 1.1) * 0.08;
+      utilityNode.rotation.x = time * 0.5;
+    }
+    if (systemsNode) {
+      systemsNode.position.x = 0.18 + Math.sin(time * 0.9) * 0.06;
+      systemsNode.rotation.z = time * 0.7;
+    }
+
+    // Emissive Sigil pulse
+    if (sigil && (sigil as THREE.Mesh).material) {
+      const mat = (sigil as THREE.Mesh).material as THREE.MeshBasicMaterial;
+      mat.opacity = 0.7 + Math.sin(time * 2.0) * 0.2;
+    }
     
     animationFrameId = requestAnimationFrame(animate);
   }
-
 
   animate();
 

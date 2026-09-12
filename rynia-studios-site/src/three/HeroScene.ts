@@ -70,7 +70,7 @@ export class HeroScene {
 
     this.breathAnim = startBreathingAnimation(breathingWrapper);
     this.mouseParallax = setupMouseParallax(parallaxWrapper, this.container);
-    this.scrollCamera = setupScrollCamera(this.camera, this.container);
+    this.scrollCamera = setupScrollCamera(this.camera, this.container, this.cardGroup);
 
     this.resizeObserver = new ResizeObserver(() => this.onResize());
     this.resizeObserver.observe(this.container);

@@ -66,17 +66,44 @@
   pointer-events: none;
 }
 
+.hero-brand-line {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.hero-logo {
+  width: 54px;
+  height: 54px;
+  object-fit: contain;
+  display: block;
+}
+
+.hero-badge {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--accent-bronze);
+  background: rgba(183, 162, 122, 0.1);
+  border: 1px solid rgba(183, 162, 122, 0.25);
+  padding: 4px 10px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
 .eyebrow {
   color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 0.14em;
-  font-size: 0.76rem;
+  font-size: 0.75rem;
   font-weight: 600;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  font-family: var(--font-mono);
 }
 
 .eyebrow::before {
@@ -89,24 +116,26 @@
 }
 
 h1 {
-  font-size: clamp(2.8rem, 6.2vw, 5.2rem);
-  line-height: 1.05;
-  margin: 0 0 1.8rem;
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 5.8vw, 4.8rem);
+  line-height: 1.06;
+  margin: 0 0 1.6rem;
   max-width: 900px;
   color: var(--text-primary);
-  font-weight: 700;
-  letter-spacing: -0.045em;
+  font-weight: 600;
+  letter-spacing: -0.035em;
   font-optical-sizing: auto;
   position: relative;
 }
 
 h2 {
-  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.5vw, 2.8rem);
   line-height: 1.15;
-  margin: 0 0 20px;
+  margin: 0 0 16px;
   color: var(--text-primary);
-  font-weight: 700;
-  letter-spacing: -0.035em;
+  font-weight: 600;
+  letter-spacing: -0.025em;
 }
 
 h3 {
@@ -114,13 +143,13 @@ h3 {
   margin: 0 0 10px;
   color: var(--text-primary);
   font-weight: 600;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.015em;
 }
 
 .hero-text {
   color: var(--text-secondary);
   font-size: 1.12rem;
-  line-height: 1.68;
+  line-height: 1.7;
   letter-spacing: -0.01em;
   max-width: 520px;
   font-weight: 400;
@@ -133,15 +162,6 @@ h3 {
   gap: 16px;
   align-items: center;
   flex-wrap: wrap;
-}
-
-.hero-logo {
-  width: 80px;
-  height: 80px;
-  object-fit: contain;
-  margin-bottom: 20px;
-  display: block;
-  position: relative;
 }
 
 @media (max-width: 900px) {

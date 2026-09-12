@@ -10,7 +10,7 @@
   />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
 
   <link rel="icon" type="image/png" href="./assets/rynia-logo.png" />
@@ -91,14 +91,11 @@
     </button>
 
     <div class="nav-links" id="navLinks">
-      <a href="#top" data-i18n="nav.home">Home</a>
-      <a href="#origin" data-i18n="nav.about">About</a>
-      <a href="#products" data-i18n="nav.products">Products</a>
-      <a href="#games" data-i18n="nav.games">Games</a>
-      <a href="#development" data-i18n="nav.development">Development</a>
-      <a href="#devlog" data-i18n="nav.devlog">Devlog</a>
-      <a href="#announcements" data-i18n="nav.announcements">Announcements</a>
-      <a href="#community" data-i18n="nav.community">Community</a>
+      <a href="#selected-work" data-i18n="nav.work">Work</a>
+      <a href="#studio-thesis" data-i18n="nav.studio">Studio</a>
+      <a href="#the-forge" data-i18n="nav.forge">Forge</a>
+      <a href="#field-notes" data-i18n="nav.notes">Notes</a>
+      <a href="#press" data-i18n="nav.press">Press</a>
     </div>
 
     <div class="nav-right">
@@ -134,23 +131,26 @@
   </nav>
 
   <!-- 01 HERO -->
-  <header class="hero">
+  <header class="hero" id="hero">
     <div class="hero-content">
       <div id="hero-canvas-container" class="hero-canvas-container" aria-hidden="true"></div>
       <img src="./assets/hero-fallback.webp" alt="" class="hero-fallback" id="hero-fallback" style="display:none" aria-hidden="true">
       
       <div class="hero-text-block">
-        <img src="./assets/rynia-logo.png" alt="Rynia Studios Logo" class="hero-logo" />
-        <p class="eyebrow" data-i18n="hero.eyebrow">Independent Developer Studio</p>
-        <h1 data-i18n="hero.title" data-i18n-html="true">Turning Ideas Into<br>Engineered Systems.</h1>
+        <div class="hero-brand-line">
+          <img src="./assets/rynia-logo.png" alt="Rynia Studios Logo" class="hero-logo" />
+          <span class="hero-badge mono" data-i18n="hero.badge">RYNIA // 2026</span>
+        </div>
+        <p class="eyebrow" data-i18n="hero.eyebrow">INDEPENDENT GAMES · INTELLIGENT TOOLS · DIGITAL CRAFT</p>
+        <h1 data-i18n="hero.title" data-i18n-html="true">Engineered Systems.<br>Uncharted Worlds.</h1>
         <p class="hero-text" data-i18n="hero.text">
-          Rynia Studios is an independent developer studio crafting software, digital products, and interactive systems. Approaching every project with engineering discipline and patience.
+          Rynia Studios is an independent development atelier crafting strategic games, intelligent tools, and enduring digital products. We build small things with unreasonable care.
         </p>
 
         <div class="hero-buttons">
-          <a class="button primary" href="#products" data-i18n="hero.cta1">Explore Our Projects</a>
+          <a class="button primary" href="#selected-work" data-i18n="hero.cta1">Explore Selected Work</a>
           <a class="button secondary" href="https://discord.gg/HJ4hRrZcz" target="_blank" rel="noopener noreferrer" data-i18n="hero.cta2">
-            Join the Community
+            Enter Studio Discord
           </a>
         </div>
       </div>
@@ -158,344 +158,253 @@
   </header>
 
   <main>
-    <!-- 02 ORIGIN -->
-    <section class="section section--plain reveal" id="origin" data-number="02">
-      <div class="section-label" data-i18n="origin.label">02 — Origin</div>
-      <h2 data-i18n="origin.title">From a Nickname to a Developer Studio.</h2>
-      <p data-i18n="origin.p1">
-        Rynia didn't begin with deep or mystical meanings. Around 2019, it started simply from a search for a nickname that would fit naturally and stay with me for years. Over time, in every server, project, and community, my identity became Rynia.
-      </p>
-      <p data-i18n="origin.p2">
-        I later learned it was the name of a village in Poland, but for me it was never a location—it was my digital identity forged across years online. When founding Rynia Studios, carrying this name was natural: it reminds me never to leave things unfinished, to build patiently layer by layer, and to evolve step by step. What started as a simple online handle has now transformed into the name of an independent studio where I build software, digital products, and games.
-      </p>
-    </section>
+    <!-- 02 SELECTED WORK -->
+    <section class="section section--featured reveal" id="selected-work" data-number="01">
+      <div class="section-label" data-i18n="work.label">01 — Selected Work</div>
+      <h2 data-i18n="work.title">Systems in Active Production.</h2>
+      <p class="section-subtitle" data-i18n="work.subtitle">Strategic games, intelligent utilities, and experimental prototypes.</p>
 
-    <!-- 03 VISION / MISSION -->
-    <section class="section section--plain reveal" id="vision" data-number="03">
-      <div class="section-label" data-i18n="vision.label">03 — Vision & Mission</div>
-      <h2 data-i18n="vision.title">Discipline, Systems, Sustainability.</h2>
-
-      <div class="info-grid">
-        <div class="info-card">
-          <h3 data-i18n="vision.visionTitle">Vision</h3>
-          <p data-i18n="vision.visionText">
-            To establish an impactful independent studio by engineering focused, well-architected, and enduring digital products and software systems.
-          </p>
+      <!-- 01 KOMBO KART -->
+      <div class="work-dossier">
+        <div class="work-visual">
+          <img src="./assets/hero-fallback.webp" alt="Kombo Kart Composition" class="work-visual-img" loading="lazy">
+          <span class="work-visual-meta mono" data-i18n="work.komboMeta">SYSTEM-01 // AUTO-BATTLER</span>
         </div>
-
-        <div class="info-card">
-          <h3 data-i18n="vision.missionTitle">Mission</h3>
-          <p data-i18n="vision.missionText">
-            To design manageable and scalable digital systems while relentlessly refining our engineering standards, creative workflows, and production efficiency.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- 04 PRODUCTS & SYSTEMS -->
-    <section class="section section--featured reveal" id="products" data-number="04">
-      <div class="section-label" data-i18n="products.label">04 — Products & Systems</div>
-      <h2 data-i18n="products.title">Our Digital Products.</h2>
-      <p class="section-subtitle" data-i18n="products.subtitle">Focused software solving real-world friction.</p>
-
-      <!-- Kiler // Kitchen OS -->
-      <div class="game-primary product-primary">
-        <div class="game-primary-visual product-visual" id="product-card-container" aria-hidden="true">
-          <div class="product-badge-icon">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent-bronze);">
-              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
-              <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
-              <line x1="12" y1="22.08" x2="12" y2="12"></line>
-            </svg>
-          </div>
-          <span class="visual-caption" data-i18n="products.kilerVisualCaption">Prototype interface coming soon</span>
-        </div>
-
-        <div class="game-primary-info">
-          <div class="project-status testing" data-i18n="products.kilerStatus">IN DESIGN / PROTOTYPE</div>
-          <h3 data-i18n="products.kilerTitle">Kiler // Kitchen OS</h3>
-          <p class="project-tagline" data-i18n="products.kilerTagline">Smart Consumption & Anti-Waste Decision Engine</p>
-          <p class="project-platform" data-i18n="products.kilerPlatform">Web · PWA · Mobile</p>
-          <p class="project-description" data-i18n="products.kilerDescription">
-            Snap a photo of your fridge or scan your groceries; the system identifies expiring items, prevents waste, and outputs an optimized 15-minute rescue recipe.
-          </p>
-
-          <ol class="loop-stepper" aria-label="Core workflow loop">
-            <li><span class="loop-node"></span><span data-i18n="products.kilerLoop1">Scan</span></li>
-            <li><span class="loop-node"></span><span data-i18n="products.kilerLoop2">Waste Radar</span></li>
-            <li><span class="loop-node"></span><span data-i18n="products.kilerLoop3">Rescue Recipe</span></li>
-            <li><span class="loop-node"></span><span data-i18n="products.kilerLoop4">Savings Report</span></li>
-          </ol>
-
-          <p class="project-note" data-i18n="products.kilerNote">"Few ingredients. Zero waste. Maximum savings."</p>
-          <a href="#development" class="project-link" data-i18n="products.kilerLink">Follow Development →</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- 05 GAMES -->
-    <section class="section reveal" id="games" data-number="05">
-      <div class="section-label" data-i18n="games.label">05 — Game Development</div>
-      <h2 data-i18n="games.title">We Build Games Too.</h2>
-      <p class="section-subtitle" data-i18n="games.subtitle">Alongside digital tools and software, we engineer interactive game systems.</p>
-
-      <!-- Kombo Kart — primary project, full visual weight -->
-      <div class="game-primary">
-        <div class="game-primary-visual" id="game-card-container" aria-hidden="true">
-          <img src="./assets/hero-fallback.webp" alt="Kombo Kart card composition" class="game-visual-static" loading="lazy">
-          <span class="visual-caption" data-i18n="games.komboVisualCaption">Gameplay visuals coming soon</span>
-        </div>
-
-        <div class="game-primary-info">
-          <div class="project-status development" data-i18n="games.komboStatus">IN DEVELOPMENT</div>
-          <h3 data-i18n="games.komboTitle">Kombo Kart</h3>
-          <p class="project-tagline" data-i18n="games.komboTagline">Strategy. Element. Victory.</p>
-          <p class="project-platform" data-i18n="games.komboPlatform">iOS · Mobile</p>
-          <p class="project-description" data-i18n="games.komboDescription">
-            Kombo Kart is a mobile auto-battler card game built around drafting, card
-            evolution, positioning, and elemental synergies.
+        <div class="work-info">
+          <div class="project-status development" data-i18n="work.komboStatus">GAME · IN DEVELOPMENT</div>
+          <h3 data-i18n="work.komboTitle">Kombo Kart</h3>
+          <p class="project-tagline" data-i18n="work.komboTagline">Tactical Drafting, Card Evolution & Elemental Synergies</p>
+          <p class="project-platform mono" data-i18n="work.komboPlatform">Unity · iOS & Mobile</p>
+          <p class="project-description" data-i18n="work.komboDescription">
+            A focused mobile auto-battler card game built around high-consequence drafting, elemental resonance, and spatial card positioning. Few cards, many decisions.
           </p>
 
           <ol class="loop-stepper" aria-label="Core gameplay loop">
-            <li><span class="loop-node"></span><span data-i18n="games.komboLoop1">Draft</span></li>
-            <li><span class="loop-node"></span><span data-i18n="games.komboLoop2">Evolution</span></li>
-            <li><span class="loop-node"></span><span data-i18n="games.komboLoop3">Position</span></li>
-            <li><span class="loop-node"></span><span data-i18n="games.komboLoop4">Auto Battle</span></li>
+            <li><span class="loop-node"></span><span data-i18n="work.komboLoop1">Draft</span></li>
+            <li><span class="loop-node"></span><span data-i18n="work.komboLoop2">Evolution</span></li>
+            <li><span class="loop-node"></span><span data-i18n="work.komboLoop3">Position</span></li>
+            <li><span class="loop-node"></span><span data-i18n="work.komboLoop4">Auto Battle</span></li>
           </ol>
-
-          <p class="project-note" data-i18n="games.komboNote">"Few cards. Many decisions."</p>
-          <a href="#development" class="project-link" data-i18n="games.komboLink">Follow Development →</a>
+          <a href="#the-forge" class="project-link" data-i18n="work.komboLink">Examine Forge Architecture →</a>
         </div>
       </div>
 
-      <!-- Protocol-45 — secondary / archive, intentionally quiet -->
-      <div class="game-archive">
-        <span class="project-status concept" data-i18n="games.protocolStatus">CONCEPT</span>
-        <div class="game-archive-text">
-          <h3 data-i18n="games.protocolTitle">Protocol-45: Hubris</h3>
-          <p data-i18n="games.protocolDescription">
-            An early-stage, multi-platform concept exploring complex systems and narrative
-            depth. No confirmed platform or timeline yet—details will surface as the design
-            takes shape.
+      <!-- 02 KALANLA (KITCHEN OS) -->
+      <div class="work-dossier work-dossier--alt">
+        <div class="work-visual">
+          <div class="kalanla-preview-card">
+            <div class="kalanla-badge-icon">
+              <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent-bronze);">
+                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                <line x1="12" y1="22.08" x2="12" y2="12"></line>
+              </svg>
+            </div>
+            <span class="work-visual-meta mono" data-i18n="work.kalanlaMeta">SYSTEM-02 // INTELLIGENT UTILITY</span>
+          </div>
+        </div>
+        <div class="work-info">
+          <div class="project-status live" data-i18n="work.kalanlaStatus">UTILITY · STANDALONE APK LIVE</div>
+          <h3 data-i18n="work.kalanlaTitle">KALANLA // Kitchen OS</h3>
+          <p class="project-tagline" data-i18n="work.kalanlaTagline">Zero-Waste Culinary Intelligence & Pantry Inventory Engine</p>
+          <p class="project-platform mono" data-i18n="work.kalanlaPlatform">React Native · Expo · Android & Web/PWA</p>
+          <p class="project-description" data-i18n="work.kalanlaDescription">
+            Input what is left in your pantry or scan your fridge; the deterministic algorithm pairs ingredients, prevents food waste, and serves an optimized rescue recipe.
           </p>
+
+          <ol class="loop-stepper" aria-label="Core utility workflow">
+            <li><span class="loop-node"></span><span data-i18n="work.kalanlaLoop1">Input</span></li>
+            <li><span class="loop-node"></span><span data-i18n="work.kalanlaLoop2">Waste Radar</span></li>
+            <li><span class="loop-node"></span><span data-i18n="work.kalanlaLoop3">Rescue Recipe</span></li>
+            <li><span class="loop-node"></span><span data-i18n="work.kalanlaLoop4">Thermal Index</span></li>
+          </ol>
+          <a href="https://drive.google.com/file/d/1vtUbWwvVbxu3vQOgkVipK_3ECrIvQLrN/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="project-link" data-i18n="work.kalanlaLink">Download Android APK (v1.0) →</a>
+        </div>
+      </div>
+
+      <!-- 03 PROTOCOL-45 & LABS -->
+      <div class="work-archive">
+        <div class="archive-header">
+          <span class="project-status concept mono" data-i18n="work.protocolStatus">INCUBATION</span>
+          <span class="archive-code mono">LAB-03 // DORMANT SYSTEM</span>
+        </div>
+        <h3 data-i18n="work.protocolTitle">Protocol-45: Hubris</h3>
+        <p data-i18n="work.protocolDescription">
+          An exploratory narrative simulation studying systemic collapse, procedural mechanics, and moral friction. Maintained in the incubator stage until core systems mature.
+        </p>
+      </div>
+    </section>
+
+    <!-- 03 STUDIO THESIS -->
+    <section class="section section--plain reveal" id="studio-thesis" data-number="02">
+      <div class="section-label" data-i18n="thesis.label">02 — Studio Thesis</div>
+      <h2 data-i18n="thesis.title">Different Outputs. One Discipline.</h2>
+      <p class="section-subtitle" data-i18n="thesis.subtitle">We forge digital artifacts with intentional architecture and patience.</p>
+
+      <div class="thesis-grid">
+        <div class="thesis-card">
+          <span class="thesis-num mono">01</span>
+          <h3 data-i18n="thesis.t1Title">Systems before spectacle</h3>
+          <p data-i18n="thesis.t1Text">
+            Eye candy degrades quickly without solid underlying mathematics. We build robust loops, determinism, and data structures before polishing the surface.
+          </p>
+        </div>
+
+        <div class="thesis-card">
+          <span class="thesis-num mono">02</span>
+          <h3 data-i18n="thesis.t2Title">Iteration before assumption</h3>
+          <p data-i18n="thesis.t2Text">
+            No design survives first contact with reality unchanged. We deploy early test builds, gather ground-truth telemetry, and refine relentlessly.
+          </p>
+        </div>
+
+        <div class="thesis-card">
+          <span class="thesis-num mono">03</span>
+          <h3 data-i18n="thesis.t3Title">Longevity before noise</h3>
+          <p data-i18n="thesis.t3Text">
+            We reject ephemeral trends and hype cycles. Whether a strategy card game or a kitchen utility, our work is engineered to endure and respect user agency.
+          </p>
+        </div>
+      </div>
+
+      <!-- Concise Origin Note -->
+      <div class="origin-dossier">
+        <span class="origin-tag mono" data-i18n="thesis.originTag">ORIGIN NOTE</span>
+        <p data-i18n="thesis.originText">
+          Rynia began in 2019 as a personal handle and evolved into a disciplined independent atelier. Bearing this mark is a reminder never to abandon an unfinished craft—to build patiently, layer by layer.
+        </p>
+      </div>
+    </section>
+
+    <!-- 04 THE FORGE -->
+    <section class="section reveal" id="the-forge" data-number="03">
+      <div class="section-label" data-i18n="forge.label">03 — The Forge</div>
+      <h2 data-i18n="forge.title">Active Engineering Pipelines.</h2>
+      <p class="section-subtitle" data-i18n="forge.subtitle">Live technical disciplines and architectural focus areas across the atelier.</p>
+
+      <div class="forge-grid">
+        <div class="forge-card">
+          <div class="forge-meta mono">
+            <span class="forge-status testing" data-i18n="forge.combatStatus">IN VERIFICATION</span>
+            <span class="forge-id">ENG-01</span>
+          </div>
+          <h3 data-i18n="forge.combatTitle">Deterministic Combat Core</h3>
+          <p data-i18n="forge.combatDesc">
+            Tick-rate resolution, card state transitions, damage calculation matrices, and elemental resonance simulations in Unity.
+          </p>
+          <div class="forge-stack mono">UNITY · C# · STATE MACHINES</div>
+        </div>
+
+        <div class="forge-card">
+          <div class="forge-meta mono">
+            <span class="forge-status development" data-i18n="forge.utilityStatus">IN ACTIVE FIELD TEST</span>
+            <span class="forge-id">ENG-02</span>
+          </div>
+          <h3 data-i18n="forge.utilityTitle">Zero-Waste Culinary Intelligence</h3>
+          <p data-i18n="forge.utilityDesc">
+            Dynamic ingredient categorization, recipe generation pipelines, offline-first SQLite state persistence, and thermal telemetry.
+          </p>
+          <div class="forge-stack mono">EXPO · TYPESCRIPT · SQLITE · EAS</div>
+        </div>
+
+        <div class="forge-card">
+          <div class="forge-meta mono">
+            <span class="forge-status live" data-i18n="forge.webglStatus">LIVE RUNTIME</span>
+            <span class="forge-id">ENG-03</span>
+          </div>
+          <h3 data-i18n="forge.webglTitle">Kinetic WebGL Engine</h3>
+          <p data-i18n="forge.webglDesc">
+            Shader-driven monolithic PBR rendering, spring physics parallax, and 100/100 Lighthouse performance architecture.
+          </p>
+          <div class="forge-stack mono">THREE.JS · GLSL · VITE · GSAP</div>
         </div>
       </div>
     </section>
 
-    <!-- 06 PRESS KIT -->
-    <section class="section reveal" id="press" data-number="06">
-      <div class="section-label" data-i18n="press.label">06 — Press Kit</div>
-      <h2 data-i18n="press.title">For press & content creators.</h2>
-      <p data-i18n="press.p1">
-        Everything you need to cover Rynia Studios projects—factsheet, descriptions, and contact details.
-      </p>
+    <!-- 05 FIELD NOTES -->
+    <section class="section reveal" id="field-notes" data-number="04">
+      <div class="section-label" data-i18n="notes.label">04 — Field Notes & Dispatch</div>
+      <h2 data-i18n="notes.title">Atelier Journal.</h2>
+      <p class="section-subtitle" data-i18n="notes.subtitle">Dispatches on game architecture, product philosophy, and live announcements.</p>
 
-      <div class="info-grid">
+      <div class="notes-grid">
+        <article class="note-card">
+          <time class="note-date mono">SEP 2026</time>
+          <h3 data-i18n="notes.n1Title">Transition to the Dual-Core Atelier Model</h3>
+          <p data-i18n="notes.n1Text">
+            Why Rynia Studios expanded beyond purely game systems to forge intelligent everyday tools like KALANLA.
+          </p>
+          <span class="note-tag mono">STUDIO DISPATCH</span>
+        </article>
+
+        <article class="note-card">
+          <time class="note-date mono">AUG 2026</time>
+          <h3 data-i18n="notes.n2Title">Designing Auto-Battlers Around Constraint</h3>
+          <p data-i18n="notes.n2Text">
+            Exploring why restrictive drafting spaces and rigid positioning grids amplify strategic depth in Kombo Kart.
+          </p>
+          <span class="note-tag mono">SYSTEM DESIGN</span>
+        </article>
+
+        <article class="note-card">
+          <time class="note-date mono">JUL 2026</time>
+          <h3 data-i18n="notes.n3Title">Zero-Waste UI: The Thermal Receipt Paradigm</h3>
+          <p data-i18n="notes.n3Text">
+            Reflecting kitchen economics through the visual language of physical thermal receipts and the Dürüm Index.
+          </p>
+          <span class="note-tag mono">INTERACTION STUDY</span>
+        </article>
+      </div>
+
+      <!-- Live Discord Announcements -->
+      <div class="announcements-wrapper" id="announcements">
+        <div class="announcements-header">
+          <span class="announcements-title mono" data-i18n="notes.liveFeed">LIVE STUDIO DISPATCH // SUPABASE FEED</span>
+          <a href="https://discord.gg/HJ4hRrZcz" target="_blank" rel="noopener noreferrer" class="announcements-discord-link mono">Join Server →</a>
+        </div>
+        <div id="announcements-container" class="announcements-list">
+          <div class="announcement-loading">
+            <span class="announcement-spinner"></span>
+            <p>Fetching atelier dispatches...</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06 PRESS KIT & CONTACT -->
+    <section class="section reveal" id="press" data-number="05">
+      <div class="section-label" data-i18n="press.label">05 — Press & Inquiries</div>
+      <h2 data-i18n="press.title">Studio Dossier.</h2>
+      <p class="section-subtitle" data-i18n="press.subtitle">Verified factsheet for press, publishers, and collaborators.</p>
+
+      <div class="press-grid">
         <div class="info-card">
-          <h3 data-i18n="press.factsheetTitle">Factsheet</h3>
-          <p data-i18n="press.factsheetText" data-i18n-html="true">
-            Developer: Rynia Studios (solo)<br>
-            Focus: Software, Digital Products & Games<br>
-            Location: Turkey<br>
-            Status: Independent Production<br>
-            Discord: <a href="https://discord.gg/HJ4hRrZcz" target="_blank" rel="noopener noreferrer" class="inline-link">discord.gg/HJ4hRrZcz</a>
-          </p>
+          <h3 data-i18n="press.factsheetTitle">Studio Factsheet</h3>
+          <ul class="factsheet-list mono">
+            <li><span class="fact-label">Entity:</span> Rynia Studios (Independent Atelier)</li>
+            <li><span class="fact-label">Disciplines:</span> Interactive Games · Intelligent Utilities</li>
+            <li><span class="fact-label">Location:</span> Turkey (Global Distribution)</li>
+            <li><span class="fact-label">Active Works:</span> Kombo Kart · KALANLA Kitchen OS</li>
+            <li><span class="fact-label">Core Tech:</span> Unity · C# · TypeScript · Three.js · Expo</li>
+          </ul>
         </div>
 
         <div class="info-card">
-          <h3 data-i18n="press.shortTitle">Short Description</h3>
-          <p data-i18n="press.shortText">
-            Rynia Studios is an independent developer studio building engineered systems, digital utilities, and strategic games.
+          <h3 data-i18n="press.directTitle">Direct Inquiries</h3>
+          <p data-i18n="press.directText">
+            For press coverage, publishing inquiries, or architectural collaboration:
           </p>
+          <a href="mailto:ryniastudios@gmail.com" class="direct-email-pill mono">ryniastudios@gmail.com</a>
+          <p class="press-note" data-i18n="press.directNote">PGP and secure communication channels available upon request.</p>
         </div>
-      </div>
-
-      <p data-i18n="press.p2">
-        We approach every project with the same foundational philosophy: clean loops, disciplined architecture, and continuous iteration. We maintain the same rigor across both practical digital products and deep game systems.
-      </p>
-
-      <p class="project-note" data-i18n="press.note" data-i18n-html="true">
-        Press & collaboration inquiries: <a href="mailto:ryniastudios@gmail.com" class="inline-link">ryniastudios@gmail.com</a>
-      </p>
-    </section>
-
-    <!-- 07 DEVELOPMENT -->
-    <section class="section reveal" id="development" data-number="07">
-      <div class="section-label" data-i18n="development.label">07 — Development</div>
-      <h2 data-i18n="development.title">Active Systems & Focus Areas.</h2>
-      <p class="section-subtitle" data-i18n="development.subtitle">What's actually being built right now across our studio.</p>
-      <p data-i18n="development.p1">
-        This section tracks the core systems currently in development for Rynia Studios projects. It represents the heart of the production pipeline and our technical foundation.
-      </p>
-
-      <div class="dev-roadmap" aria-label="Development methodology">
-        <div class="roadmap-step is-active">
-          <span class="roadmap-icon">⚙️</span>
-          <span class="roadmap-dot"></span>
-          <span data-i18n="development.roadmapBuild">Build</span>
-        </div>
-        <div class="roadmap-connector"></div>
-        <div class="roadmap-step is-active">
-          <span class="roadmap-icon">🧪</span>
-          <span class="roadmap-dot"></span>
-          <span data-i18n="development.roadmapTest">Test</span>
-        </div>
-        <div class="roadmap-connector"></div>
-        <div class="roadmap-step">
-          <span class="roadmap-icon">🔁</span>
-          <span class="roadmap-dot"></span>
-          <span data-i18n="development.roadmapIterate">Iterate</span>
-        </div>
-      </div>
-
-
-      <div class="dev-notes-grid">
-        <div class="dev-card dev-card--testing">
-          <div class="project-status testing" data-i18n="development.testingStatus">IN TESTING</div>
-          <h3 data-i18n="development.combatTitle">Combat Engine (Kombo Kart)</h3>
-          <p data-i18n="development.combatText">
-            Core systems are being tested in Unity, including tick rate, card states, targeting, attacks, damage calculation, and elemental damage.
-          </p>
-          <div class="dev-stage" aria-hidden="true">
-            <span class="dev-stage-seg is-filled"></span>
-            <span class="dev-stage-seg is-filled"></span>
-            <span class="dev-stage-seg"></span>
-          </div>
-        </div>
-
-        <div class="dev-card dev-card--progress">
-          <div class="project-status development" data-i18n="development.progressStatus">IN PROGRESS</div>
-          <h3 data-i18n="development.cardTitle">Product & Card Architecture</h3>
-          <p data-i18n="development.cardText">
-            Designing smart inventory algorithms for Kiler OS and structured elemental synergy models for Kombo Kart.
-          </p>
-          <div class="dev-stage" aria-hidden="true">
-            <span class="dev-stage-seg is-filled"></span>
-            <span class="dev-stage-seg"></span>
-            <span class="dev-stage-seg"></span>
-          </div>
-        </div>
-
-        <div class="dev-card dev-card--concept">
-          <div class="project-status concept" data-i18n="development.conceptStatus">NOT STARTED</div>
-          <h3 data-i18n="development.battleTitle">System Workflows</h3>
-          <p data-i18n="development.battleText">
-            Planning caching architectures for digital products and advanced combat sequences for game projects.
-          </p>
-          <div class="dev-stage" aria-hidden="true">
-            <span class="dev-stage-seg"></span>
-            <span class="dev-stage-seg"></span>
-            <span class="dev-stage-seg"></span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 08 DEVELOPMENT PHILOSOPHY -->
-    <section class="section section--plain reveal" id="philosophy" data-number="08">
-      <div class="section-label" data-i18n="philosophy.label">08 — Development Philosophy</div>
-      <h2 data-i18n="philosophy.title">Build. Test. Iterate.</h2>
-
-      <div class="philosophy-grid">
-        <div class="philosophy-item">
-          <h3 data-i18n="philosophy.buildTitle">Build</h3>
-          <p data-i18n="philosophy.buildText">Create the foundation.</p>
-        </div>
-        <div class="philosophy-item">
-          <h3 data-i18n="philosophy.testTitle">Test</h3>
-          <p data-i18n="philosophy.testText">Find what works and what doesn't.</p>
-        </div>
-        <div class="philosophy-item">
-          <h3 data-i18n="philosophy.iterateTitle">Iterate</h3>
-          <p data-i18n="philosophy.iterateText">Improve, refine, and repeat.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- 09 DEVLOG -->
-    <section class="section reveal" id="devlog" data-number="09">
-      <div class="section-label" data-i18n="devlog.label">09 — Development Updates</div>
-      <h2 data-i18n="devlog.title">Latest Development.</h2>
-
-      <div class="devlog-timeline">
-        <div class="devlog-entry">
-          <div class="devlog-marker"></div>
-          <div class="devlog-body">
-            <span class="devlog-date" data-i18n="devlog.date">August 2026</span>
-            <h3 data-i18n="devlog.entryTitle">System Architecture & Combat Engine</h3>
-            <p data-i18n="devlog.entryText">
-              Core systems, data pipelines, and Unity combat loop tests are progressing steadily.
-            </p>
-          </div>
-        </div>
-
-        <div class="devlog-continue">
-          <div class="devlog-marker devlog-marker--open"></div>
-          <a href="https://discord.gg/HJ4hRrZcz" target="_blank" rel="noopener noreferrer" class="devlog-continue-link" data-i18n="devlog.link">
-            Followed live on Discord as it happens →
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- 09.5 ANNOUNCEMENTS -->
-    <section class="section reveal announcements-section" id="announcements" data-number="★">
-      <div class="section-label">Topluluk & Duyurular</div>
-      <h2>Son Duyurular</h2>
-      <p class="section-subtitle">Discord sunucumuzdan aktarılan son gelişmeler ve duyurular.</p>
-
-      <div id="announcements-container" class="announcements-list">
-        <div class="announcement-loading">
-          <span class="announcement-spinner"></span>
-          <p>Duyurular yükleniyor...</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- 10 STUDIO IDENTITY -->
-    <section class="section section--plain reveal" id="identity" data-number="10">
-      <div class="section-label" data-i18n="identity.label">10 — Studio Identity</div>
-      <h2 data-i18n="identity.title">What we build on.</h2>
-
-      <div class="identity-strip">
-        <span data-i18n="identity.word1">Discipline</span>
-        <span class="identity-dot">·</span>
-        <span data-i18n="identity.word2">Consistency</span>
-        <span class="identity-dot">·</span>
-        <span data-i18n="identity.word3">Iteration</span>
-        <span class="identity-dot">·</span>
-        <span data-i18n="identity.word4">Improvement</span>
-      </div>
-    </section>
-
-    <!-- 11 COMMUNITY -->
-    <section class="section section--plain reveal" id="community" data-number="11">
-      <div class="section-label" data-i18n="community.label">11 — Community</div>
-      <h2 data-i18n="community.title">Follow the Journey.</h2>
-      <p data-i18n="community.p1">
-        Follow development, share feedback, discover new projects, and become part of
-        Rynia Studios.
-      </p>
-
-      <div class="hero-buttons">
-        <a class="button primary" href="https://discord.gg/HJ4hRrZcz" target="_blank" rel="noopener noreferrer" data-i18n="community.joinDiscord">
-          Join Discord
-        </a>
-      </div>
-
-      <div class="social-links">
-        <a href="https://discord.gg/HJ4hRrZcz" target="_blank" rel="noopener noreferrer" class="social-pill" data-i18n="community.discord">Discord</a>
-        <a href="https://x.com/RyniaStudio" target="_blank" rel="noopener noreferrer" class="social-pill" data-i18n="community.x">X</a>
-        <a href="https://www.instagram.com/ryniastudio/" target="_blank" rel="noopener noreferrer" class="social-pill" data-i18n="community.instagram">Instagram</a>
-        <a href="https://www.youtube.com/@RyniaStudio" target="_blank" rel="noopener noreferrer" class="social-pill" data-i18n="community.youtube">YouTube</a>
       </div>
 
       <div class="newsletter">
-        <h3 data-i18n="community.newsletterTitle">Prefer email?</h3>
-        <p data-i18n="community.newsletterText">Get notified when Kombo Kart reaches major milestones—no spam, just the essentials.</p>
+        <h3 data-i18n="press.newsletterTitle">Stay Informed</h3>
+        <p data-i18n="press.newsletterText">Receive major production milestones and releases. Strictly essential dispatches.</p>
         <form class="newsletter-form" action="https://formspree.io/f/mzepgjyz" method="POST">
-          <input type="email" name="email" placeholder="you@email.com" required class="newsletter-input" />
-          <button type="submit" class="button primary newsletter-submit" data-i18n="community.subscribe">Subscribe</button>
+          <input type="email" name="email" placeholder="atelier@domain.com" required class="newsletter-input mono" />
+          <button type="submit" class="button primary newsletter-submit" data-i18n="press.subscribe">Subscribe</button>
         </form>
       </div>
     </section>

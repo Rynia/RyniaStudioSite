@@ -54,7 +54,11 @@ export function setupMouseParallax(group: THREE.Group, _container: HTMLElement):
 }
 
 
-export function setupScrollCamera(camera: THREE.PerspectiveCamera, container: HTMLElement): { destroy: () => void } {
+export function setupScrollCamera(
+  camera: THREE.PerspectiveCamera,
+  container: HTMLElement,
+  group?: THREE.Group
+): { destroy: () => void } {
   const heroElement = container.closest('.hero') || container;
   
   const tl = gsap.timeline({
@@ -67,14 +71,45 @@ export function setupScrollCamera(camera: THREE.PerspectiveCamera, container: HT
   });
 
   tl.to(camera.position, {
-    z: 3.4,
+    z: 3.6,
     ease: "power1.out"
   }, 0);
 
   tl.to(camera.rotation, {
-    y: 0.04,
+    y: 0.05,
     ease: "power1.out"
   }, 0);
+
+  if (group) {
+    const primaryRing = group.getObjectByName('PrimaryRing');
+    const secondaryRing = group.getObjectByName('SecondaryRing');
+    const monolith = group.getObjectByName('MonolithCore');
+
+    if (primaryRing) {
+      tl.to(primaryRing.scale, {
+        x: 1.22,
+        y: 1.22,
+        z: 1.22,
+        ease: "power1.out"
+      }, 0);
+    }
+
+    if (secondaryRing) {
+      tl.to(secondaryRing.scale, {
+        x: 1.35,
+        y: 1.35,
+        z: 1.35,
+        ease: "power1.out"
+      }, 0);
+    }
+
+    if (monolith) {
+      tl.to(monolith.rotation, {
+        y: 0.25,
+        ease: "power1.out"
+      }, 0);
+    }
+  }
 
   return {
     destroy: () => {

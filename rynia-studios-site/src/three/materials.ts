@@ -1,67 +1,78 @@
 import * as THREE from 'three';
 
-// Ceramic White Core Material (Apple / Teenage Engineering Industrial Look)
-export function createCeramicCoreMaterial(): THREE.MeshPhysicalMaterial {
+// 1. Obsidian & Titanium Monolith Core
+export function createObsidianCoreMaterial(): THREE.MeshPhysicalMaterial {
   return new THREE.MeshPhysicalMaterial({
-    color: new THREE.Color(0xf6f7fa),
-    roughness: 0.22,
-    metalness: 0.06,
-    clearcoat: 0.65,
-    clearcoatRoughness: 0.12,
-    reflectivity: 0.85
+    color: new THREE.Color(0x101216),
+    metalness: 0.82,
+    roughness: 0.32,
+    clearcoat: 0.45,
+    clearcoatRoughness: 0.18,
+    reflectivity: 0.9
   });
 }
 
-// Refractive Frosted Glass Material (High Transmission & IOR)
-export function createRefractiveGlassMaterial(): THREE.MeshPhysicalMaterial {
-  return new THREE.MeshPhysicalMaterial({
-    color: new THREE.Color(0xffffff),
-    transmission: 0.92,
-    opacity: 0.95,
-    transparent: true,
-    roughness: 0.08,
-    ior: 1.52,
-    thickness: 1.2,
-    specularIntensity: 1.0,
-    specularColor: new THREE.Color(0xffffff)
-  });
-}
-
-// Brushed Titanium & Platinum Material
-export function createTitaniumAccentMaterial(): THREE.MeshStandardMaterial {
+// 2. Brushed Champagne Gold Accents & Frames
+export function createChampagneGoldMaterial(): THREE.MeshStandardMaterial {
   return new THREE.MeshStandardMaterial({
-    color: new THREE.Color(0xbcc2cb),
+    color: new THREE.Color(0xb7a27a),
     metalness: 0.88,
-    roughness: 0.22
+    roughness: 0.24
   });
 }
 
-// Hairline Wireframe & Precision Lines
+// 3. Inner Energy & Runic Emissive Glyphs
+export function createEmissiveGlyphMaterial(): THREE.MeshBasicMaterial {
+  return new THREE.MeshBasicMaterial({
+    color: new THREE.Color(0xd4af37),
+    transparent: true,
+    opacity: 0.85
+  });
+}
+
+// 4. Kinetic Orbital Rings & Precision Hairlines
+export function createOrbitalRingMaterial(): THREE.LineBasicMaterial {
+  return new THREE.LineBasicMaterial({
+    color: 0xb7a27a,
+    transparent: true,
+    opacity: 0.38
+  });
+}
+
+// 5. Precision Hairline Wireframe
 export function createEdgeMaterial(): THREE.LineBasicMaterial {
   return new THREE.LineBasicMaterial({
-    color: 0x0d0d11,
-    opacity: 0.18,
+    color: 0xf1eee8,
+    opacity: 0.12,
     transparent: true
   });
+}
+
+// Backward-compatibility exports
+export function createCeramicCoreMaterial(): THREE.MeshPhysicalMaterial {
+  return createObsidianCoreMaterial();
+}
+
+export function createRefractiveGlassMaterial(): THREE.MeshPhysicalMaterial {
+  return createObsidianCoreMaterial();
+}
+
+export function createTitaniumAccentMaterial(): THREE.MeshStandardMaterial {
+  return createChampagneGoldMaterial();
 }
 
 export function createInsetMaterial(): THREE.LineBasicMaterial {
-  return new THREE.LineBasicMaterial({
-    color: 0xb08d57,
-    opacity: 0.5,
-    transparent: true
-  });
+  return createOrbitalRingMaterial();
 }
 
-// Backward compatibility exports so no existing references break
 export function createCardMaterial(): THREE.MeshPhysicalMaterial {
-  return createCeramicCoreMaterial();
+  return createObsidianCoreMaterial();
 }
 
 export function createRimMaterial(): THREE.MeshStandardMaterial {
-  return createTitaniumAccentMaterial();
+  return createChampagneGoldMaterial();
 }
 
 export function createFresnelShaderMaterial(): THREE.MeshPhysicalMaterial {
-  return createRefractiveGlassMaterial();
+  return createObsidianCoreMaterial();
 }

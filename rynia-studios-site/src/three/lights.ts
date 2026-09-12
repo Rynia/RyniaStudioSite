@@ -3,24 +3,24 @@ import * as THREE from 'three';
 export function createLights(): THREE.Group {
   const group = new THREE.Group();
   
-  // 1. Studio Key Light (Pure White with Crisp Angle)
-  const keyLight = new THREE.DirectionalLight(0xffffff, 2.8);
-  keyLight.position.set(5, 7, 5);
+  // 1. Studio Key Area Light (Warm Champagne & Bone White)
+  const keyLight = new THREE.DirectionalLight(0xf5eedb, 2.4);
+  keyLight.position.set(4, 6, 4);
   group.add(keyLight);
   
-  // 2. Soft Ambient Hemisphere Light (Sky White to Cool Gray)
-  const hemisphereLight = new THREE.HemisphereLight(0xffffff, 0xe2e6ea, 1.3);
+  // 2. Soft Ambient Hemisphere Light (Dark Obsidian to Bone)
+  const hemisphereLight = new THREE.HemisphereLight(0x1a1d24, 0x08090a, 1.2);
   group.add(hemisphereLight);
   
-  // 3. Rim / Edge Contrast Light (Subtle cool titanium backlight)
-  const rimLight = new THREE.DirectionalLight(0xcfd6df, 1.8);
-  rimLight.position.set(-5, -3, -4);
+  // 3. Rim / Contour Light (Sharp Cold Rim for Monolith Silhouette)
+  const rimLight = new THREE.DirectionalLight(0x7a9dff, 2.2);
+  rimLight.position.set(-6, 3, -5);
   group.add(rimLight);
 
-  // 4. Soft Bottom Fill for grounding
-  const bottomLight = new THREE.DirectionalLight(0xf0f3f6, 0.9);
-  bottomLight.position.set(0, -4, 2);
-  group.add(bottomLight);
+  // 4. Subtle Champagne Fill Light from opposite quadrant
+  const fillLight = new THREE.DirectionalLight(0xb7a27a, 1.4);
+  fillLight.position.set(-3, -4, 3);
+  group.add(fillLight);
   
   return group;
 }
