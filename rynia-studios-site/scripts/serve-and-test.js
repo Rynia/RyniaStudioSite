@@ -64,19 +64,26 @@ server.listen(3000, async () => {
     await page.goto('http://localhost:3000/', { waitUntil: 'networkidle0', timeout: 15000 });
     await new Promise(r => setTimeout(r, 1800));
 
-    // Capture Act I Hero Desktop
+    // 1. Act I Hero Desktop
     await page.screenshot({ path: path.join(outDir, 'artefact-hero-desktop.png') });
     console.log('Captured test-artifacts/artefact-hero-desktop.png');
 
-    // Scroll to Act II
+    // 2. Act II Systems Initial (Clean & un-cluttered)
     await page.evaluate(() => {
       document.getElementById('act-systems')?.scrollIntoView();
     });
     await new Promise(r => setTimeout(r, 800));
-    await page.screenshot({ path: path.join(outDir, 'act-ii-systems.png') });
-    console.log('Captured test-artifacts/act-ii-systems.png');
+    await page.screenshot({ path: path.join(outDir, 'act-ii-systems-clean.png') });
+    console.log('Captured test-artifacts/act-ii-systems-clean.png');
 
-    // Scroll to Act III
+    // 3. Act II Progressive Disclosure Expansion
+    console.log('Testing progressive disclosure in Act II...');
+    await page.click('button[data-target="kombo-matrix"]');
+    await new Promise(r => setTimeout(r, 400));
+    await page.screenshot({ path: path.join(outDir, 'act-ii-systems-expanded.png') });
+    console.log('Captured test-artifacts/act-ii-systems-expanded.png');
+
+    // 4. Act III Thesis (Macro close-up on Artefact fissure)
     await page.evaluate(() => {
       document.getElementById('act-thesis')?.scrollIntoView();
     });
@@ -84,7 +91,15 @@ server.listen(3000, async () => {
     await page.screenshot({ path: path.join(outDir, 'act-iii-thesis.png') });
     console.log('Captured test-artifacts/act-iii-thesis.png');
 
-    // Scroll to Act V
+    // 5. Act IV Pipelines & Field Notes
+    await page.evaluate(() => {
+      document.getElementById('act-forge')?.scrollIntoView();
+    });
+    await new Promise(r => setTimeout(r, 800));
+    await page.screenshot({ path: path.join(outDir, 'act-iv-pipelines.png') });
+    console.log('Captured test-artifacts/act-iv-pipelines.png');
+
+    // 6. Act V Dossier & The Invitation
     await page.evaluate(() => {
       document.getElementById('act-dossier')?.scrollIntoView();
     });
@@ -92,7 +107,7 @@ server.listen(3000, async () => {
     await page.screenshot({ path: path.join(outDir, 'act-v-dossier.png') });
     console.log('Captured test-artifacts/act-v-dossier.png');
 
-    // Test Language Toggle
+    // 7. Test Language Toggle to TR
     console.log('Testing language switch to TR...');
     await page.evaluate(() => {
       window.scrollTo(0, 0);
@@ -107,12 +122,28 @@ server.listen(3000, async () => {
     await page.screenshot({ path: path.join(outDir, 'artefact-hero-turkish.png') });
     console.log('Captured test-artifacts/artefact-hero-turkish.png');
 
-    // Test Index Drawer
+    // 8. Test Index Drawer & Escape key
     console.log('Testing INDEX drawer trigger...');
     await page.click('#indexTrigger');
     await new Promise(r => setTimeout(r, 600));
     await page.screenshot({ path: path.join(outDir, 'index-drawer-open.png') });
     console.log('Captured test-artifacts/index-drawer-open.png');
+
+    console.log('Testing Escape key to close drawer...');
+    await page.keyboard.press('Escape');
+    await new Promise(r => setTimeout(r, 400));
+    const isDrawerOpen = await page.$eval('#indexDrawer', el => el.classList.contains('is-open'));
+    console.log(`Drawer is open after Escape: ${isDrawerOpen} (expected false)`);
+
+    // 9. Mobile Viewport Test (390 x 844)
+    console.log('Testing mobile viewport...');
+    await page.setViewport({ width: 390, height: 844, deviceScaleFactor: 2, isMobile: true });
+    await page.evaluate(() => {
+      window.scrollTo(0, 0);
+    });
+    await new Promise(r => setTimeout(r, 800));
+    await page.screenshot({ path: path.join(outDir, 'mobile-hero.png') });
+    console.log('Captured test-artifacts/mobile-hero.png');
 
     await browser.close();
 

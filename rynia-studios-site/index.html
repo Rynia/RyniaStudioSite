@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RYNIA STUDIOS — Archaeological Future & Digital Craft Atelier</title>
+  <title>RYNIA STUDIOS — Digital Craft Atelier</title>
   <meta
     name="description"
     content="Rynia Studios is an independent atelier forging strategic games, intelligent tools, and digital systems. Engineered with unreasonable care."
@@ -69,17 +69,15 @@
   }
   </script>
 
-  <!-- Supabase CDN -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script type="module" src="./src/main.ts"></script>
 </head>
 
 <body>
-  <!-- 3D THE RYNIA ARTEFACT CANVAS (Fixed Background Installation) -->
+  <!-- 3D THE RYNIA ARTEFACT CANVAS (Fixed Background Layer) -->
   <div id="hero-canvas-container" class="hero-canvas-container" aria-hidden="true"></div>
   <div id="hero-fallback" class="hero-fallback" style="display: none;"></div>
 
-  <!-- FIXED MINIMAL TELEMETRY & NAVIGATION -->
+  <!-- FIXED MINIMAL HEADER -->
   <header class="atelier-header" id="siteHeader">
     <div class="header-brand">
       <a href="#act-artefact" class="brand-title" data-i18n="nav.brand">Rynia Studios</a>
@@ -96,17 +94,17 @@
 
     <div class="header-controls">
       <button class="lang-toggle" id="langToggle" aria-label="Toggle language">EN</button>
-      <button class="index-trigger" id="indexTrigger" aria-label="Open Studio Index">
+      <button class="index-trigger" id="indexTrigger" aria-label="Open Studio Index" aria-expanded="false">
         <span class="index-dot"></span>
         <span class="index-label" data-i18n="nav.index">INDEX</span>
       </button>
     </div>
   </header>
 
-  <!-- TYPOGRAPHIC INDEX DRAWER -->
-  <aside class="index-drawer" id="indexDrawer" aria-hidden="true">
+  <!-- TYPOGRAPHIC INDEX DRAWER (Modal Navigation Overlay) -->
+  <aside class="index-drawer" id="indexDrawer" role="dialog" aria-modal="true" aria-label="Atelier Index" aria-hidden="true">
     <div class="drawer-header">
-      <span class="drawer-caption">ATELIER INDEX // MMXXVI</span>
+      <span class="drawer-caption">ATELIER INDEX · MMXXVI</span>
       <button class="drawer-close" id="drawerClose" aria-label="Close index" data-i18n="nav.close">CLOSE ✕</button>
     </div>
     <div class="drawer-content">
@@ -168,14 +166,6 @@
     </div>
   </div>
 
-  <!-- BOTTOM EDGE TELEMETRY LABELS -->
-  <div class="edge-telemetry telemetry-left" aria-hidden="true">
-    LAT 41.0082° N · LON 28.9784° E // STUDIO ISTANBUL
-  </div>
-  <div class="edge-telemetry telemetry-right" aria-hidden="true">
-    <span class="telemetry-dot"></span> RUNTIME 60 FPS · THE RYNIA ARTEFACT
-  </div>
-
   <!-- MASTER EXHIBITION MAIN -->
   <main class="exhibition-flow">
 
@@ -185,7 +175,7 @@
     <section class="act act-hero" id="act-artefact">
       <div class="act-inner hero-inner">
         <div class="hero-left-editorial">
-          <div class="micro-provenance" data-i18n="hero.provenance">PROVENANCE 01 // INDEPENDENT ATELIER</div>
+          <div class="micro-provenance" data-i18n="hero.provenance">INDEPENDENT ATELIER · EST. 2019</div>
           <h1 class="hero-title">
             <span class="title-line" data-i18n="hero.titleLine1">ENGINEERED SYSTEMS.</span>
             <span class="title-line title-line-accent" data-i18n="hero.titleLine2" data-i18n-html="true"><em>UNCHARTED</em> WORLDS.</span>
@@ -207,61 +197,64 @@
         </div>
 
         <div class="hero-bottom-telemetry">
-          <span class="telemetry-marker" data-i18n="hero.telemetryScroll">SCROLL TO INSPECT ARTEFACT // 01</span>
+          <span class="telemetry-marker" data-i18n="hero.telemetryScroll">SCROLL TO EXPLORE</span>
         </div>
       </div>
     </section>
 
 
     <!-- ========================================================
-         ACT II — SELECTED SYSTEMS (Specimen Dossier)
+         ACT II — SELECTED SYSTEMS (Progressive Disclosure)
          ======================================================== -->
     <section class="act act-systems" id="act-systems">
       <div class="act-inner">
         <header class="act-header">
-          <div class="act-index-label" data-i18n="systems.label">02 / V // SPECIMEN DOSSIER</div>
+          <div class="act-index-label" data-i18n="systems.label">02 · SELECTED SYSTEMS</div>
           <h2 class="act-title" data-i18n="systems.title">SYSTEMS IN ACTIVE PRODUCTION.</h2>
-          <p class="act-subtitle" data-i18n="systems.subtitle">Strategic games, intelligent utilities, and experimental prototypes.</p>
+          <p class="act-subtitle" data-i18n="systems.subtitle">Games, intelligent utilities, and experimental prototypes.</p>
         </header>
 
         <!-- SPECIMEN 01: KOMBO KART -->
         <article class="specimen-entry">
           <div class="specimen-meta">
-            <span class="specimen-id" data-i18n="systems.specimen01">SPECIMEN 01 · AUTO-BATTLER TACTICAL ENGINE</span>
-            <span class="specimen-status status-active" data-i18n="systems.komboStatus">ACTIVE PRODUCTION // UNITY · IOS & MOBILE</span>
+            <span class="specimen-id" data-i18n="systems.specimen01">TACTICAL AUTO-BATTLER</span>
+            <span class="specimen-status status-active" data-i18n="systems.komboStatus">UNITY · IN DEVELOPMENT</span>
           </div>
 
           <div class="specimen-body">
             <div class="specimen-left">
               <h3 class="specimen-name" data-i18n="systems.komboTitle">KOMBO KART</h3>
               <p class="specimen-description" data-i18n="systems.komboDesc">
-                A focused mobile auto-battler card game built around high-consequence drafting, elemental resonance, and spatial card positioning. Few cards, many decisions.
+                A focused mobile auto-battler card game built around high-consequence drafting, elemental resonance, and spatial card positioning.
               </p>
-              <div class="specimen-action">
-                <a href="#act-forge" class="typo-link">
-                  <span data-i18n="systems.komboLink">EXAMINE COMBAT PIPELINE</span>
-                  <span class="arrow">→</span>
-                </a>
+              <div class="specimen-actions">
+                <button class="disclosure-btn" aria-expanded="false" data-target="kombo-matrix">
+                  <span data-i18n="systems.komboToggle">SYSTEM SPECIFICATION</span>
+                  <span class="toggle-icon">+</span>
+                </button>
               </div>
             </div>
 
             <div class="specimen-right">
-              <div class="system-loop-matrix">
-                <div class="loop-step">
-                  <span class="step-code" data-i18n="systems.loop1">01 DRAFT</span>
-                  <span class="step-desc" data-i18n="systems.loop1Desc">Strict agency selection under card scarcity</span>
-                </div>
-                <div class="loop-step">
-                  <span class="step-code" data-i18n="systems.loop2">02 EVOLUTION</span>
-                  <span class="step-desc" data-i18n="systems.loop2Desc">Archetype fusion into higher tier ranks</span>
-                </div>
-                <div class="loop-step">
-                  <span class="step-code" data-i18n="systems.loop3">03 POSITION</span>
-                  <span class="step-desc" data-i18n="systems.loop3Desc">Spatial row placement determining aggro & defense</span>
-                </div>
-                <div class="loop-step">
-                  <span class="step-code" data-i18n="systems.loop4">04 AUTO-BATTLE</span>
-                  <span class="step-desc" data-i18n="systems.loop4Desc">Deterministic tick-rate clash resolution</span>
+              <!-- Progressive disclosure: hidden on initial view, expands on demand -->
+              <div class="disclosure-panel" id="kombo-matrix" hidden>
+                <div class="system-loop-matrix">
+                  <div class="loop-step">
+                    <span class="step-code" data-i18n="systems.loop1">01 DRAFT</span>
+                    <span class="step-desc" data-i18n="systems.loop1Desc">Strict agency selection under card scarcity</span>
+                  </div>
+                  <div class="loop-step">
+                    <span class="step-code" data-i18n="systems.loop2">02 EVOLUTION</span>
+                    <span class="step-desc" data-i18n="systems.loop2Desc">Archetype fusion into higher tier ranks</span>
+                  </div>
+                  <div class="loop-step">
+                    <span class="step-code" data-i18n="systems.loop3">03 POSITION</span>
+                    <span class="step-desc" data-i18n="systems.loop3Desc">Spatial row placement determining aggro & defense</span>
+                  </div>
+                  <div class="loop-step">
+                    <span class="step-code" data-i18n="systems.loop4">04 AUTO-BATTLE</span>
+                    <span class="step-desc" data-i18n="systems.loop4Desc">Deterministic tick-rate clash resolution</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -273,8 +266,8 @@
         <!-- SPECIMEN 02: KALANLA // Kitchen OS -->
         <article class="specimen-entry">
           <div class="specimen-meta">
-            <span class="specimen-id" data-i18n="systems.specimen02">SPECIMEN 02 · ZERO-WASTE CULINARY INTELLIGENCE</span>
-            <span class="specimen-status status-live" data-i18n="systems.kalanlaStatus">STANDALONE APK LIVE // ANDROID & WEB</span>
+            <span class="specimen-id" data-i18n="systems.specimen02">ZERO-WASTE INTELLIGENCE</span>
+            <span class="specimen-status status-live" data-i18n="systems.kalanlaStatus">ANDROID & WEB</span>
           </div>
 
           <div class="specimen-body">
@@ -284,37 +277,40 @@
                 <span class="specimen-name-sub" data-i18n="systems.kalanlaSubtitle">Kitchen Operating System</span>
               </h3>
               <p class="specimen-description" data-i18n="systems.kalanlaDesc">
-                Input what is left in your pantry or scan your fridge; the deterministic algorithm pairs ingredients, prevents food waste, and serves an optimized rescue recipe.
+                Deterministic ingredient pairing that inputs pantry leftovers, prevents food waste, and serves an optimized rescue recipe.
               </p>
               <div class="specimen-action-row">
                 <a href="https://drive.google.com/file/d/10x_p2E4k9F-9l6w5r0N-u0zQ9M_zP6gG/view" target="_blank" rel="noopener noreferrer" class="typo-link typo-highlight">
                   <span data-i18n="systems.kalanlaApk">DOWNLOAD ANDROID APK (V1.0)</span>
                   <span class="arrow">↗</span>
                 </a>
-                <a href="https://kalanla.netlify.app" target="_blank" rel="noopener noreferrer" class="typo-link">
-                  <span data-i18n="systems.kalanlaWeb">LAUNCH WEB INSTANCE</span>
-                  <span class="arrow">↗</span>
-                </a>
+                <button class="disclosure-btn" aria-expanded="false" data-target="kalanla-matrix">
+                  <span data-i18n="systems.kalanlaToggle">CORE MODULES</span>
+                  <span class="toggle-icon">+</span>
+                </button>
               </div>
             </div>
 
             <div class="specimen-right">
-              <div class="system-loop-matrix">
-                <div class="loop-step">
-                  <span class="step-code" data-i18n="systems.mod1">01 PANTRY INPUT</span>
-                  <span class="step-desc" data-i18n="systems.mod1Desc">Dynamic shelf-life categorization</span>
-                </div>
-                <div class="loop-step">
-                  <span class="step-code" data-i18n="systems.mod2">02 WASTE RADAR</span>
-                  <span class="step-desc" data-i18n="systems.mod2Desc">Expiry tracking and waste prevention metrics</span>
-                </div>
-                <div class="loop-step">
-                  <span class="step-code" data-i18n="systems.mod3">03 RESCUE ENGINE</span>
-                  <span class="step-desc" data-i18n="systems.mod3Desc">Algorithmic ingredient pairing & substitutions</span>
-                </div>
-                <div class="loop-step">
-                  <span class="step-code" data-i18n="systems.mod4">04 DÜRÜM INDEX</span>
-                  <span class="step-desc" data-i18n="systems.mod4Desc">Economic waste-to-value ratio calculation</span>
+              <!-- Progressive disclosure: expands on click -->
+              <div class="disclosure-panel" id="kalanla-matrix" hidden>
+                <div class="system-loop-matrix">
+                  <div class="loop-step">
+                    <span class="step-code" data-i18n="systems.mod1">01 PANTRY INPUT</span>
+                    <span class="step-desc" data-i18n="systems.mod1Desc">Dynamic shelf-life categorization</span>
+                  </div>
+                  <div class="loop-step">
+                    <span class="step-code" data-i18n="systems.mod2">02 WASTE RADAR</span>
+                    <span class="step-desc" data-i18n="systems.mod2Desc">Expiry tracking and waste prevention metrics</span>
+                  </div>
+                  <div class="loop-step">
+                    <span class="step-code" data-i18n="systems.mod3">03 RESCUE ENGINE</span>
+                    <span class="step-desc" data-i18n="systems.mod3Desc">Algorithmic ingredient pairing & substitutions</span>
+                  </div>
+                  <div class="loop-step">
+                    <span class="step-code" data-i18n="systems.mod4">04 DÜRÜM INDEX</span>
+                    <span class="step-desc" data-i18n="systems.mod4Desc">Economic waste-to-value ratio calculation</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -326,22 +322,16 @@
         <!-- SPECIMEN 03: PROTOCOL-45: HUBRIS -->
         <article class="specimen-entry specimen-dormant">
           <div class="specimen-meta">
-            <span class="specimen-id" data-i18n="systems.specimen03">SPECIMEN 03 · DORMANT INCUBATION RECORD</span>
-            <span class="specimen-status status-dormant" data-i18n="systems.protocolStatus">INCUBATION // DORMANT PROTOTYPE</span>
+            <span class="specimen-id" data-i18n="systems.specimen03">INCUBATION RECORD</span>
+            <span class="specimen-status status-dormant" data-i18n="systems.protocolStatus">DORMANT PROTOTYPE</span>
           </div>
 
           <div class="specimen-body">
             <div class="specimen-left">
               <h3 class="specimen-name" data-i18n="systems.protocolTitle" data-i18n-html="true">PROTOCOL-45: <em>HUBRIS</em></h3>
               <p class="specimen-description" data-i18n="systems.protocolDesc">
-                An exploratory narrative simulation studying systemic collapse, procedural mechanics, and moral friction. Maintained in the incubator stage until core systems mature.
+                An exploratory narrative simulation studying systemic collapse and moral friction. In active incubation.
               </p>
-            </div>
-            <div class="specimen-right">
-              <div class="dormant-annotation">
-                <span class="dormant-label">// RECORD SEALED</span>
-                <span class="dormant-text">State machine locked until Combat Core and Kitchen OS reach stage v2.1.</span>
-              </div>
             </div>
           </div>
         </article>
@@ -350,29 +340,29 @@
 
 
     <!-- ========================================================
-         ACT III — THE STUDIO THESIS (Archaeological Principles)
+         ACT III — THE STUDIO THESIS (Archaeological Inscriptions)
          ======================================================== -->
     <section class="act act-thesis" id="act-thesis">
       <div class="act-inner">
         <header class="act-header">
-          <div class="act-index-label" data-i18n="thesis.label">03 / V // PHILOSOPHICAL DISCIPLINE</div>
+          <div class="act-index-label" data-i18n="thesis.label">03 · STUDIO THESIS</div>
           <h2 class="act-title" data-i18n="thesis.title" data-i18n-html="true">DIFFERENT OUTPUTS. <em>ONE</em> DISCIPLINE.</h2>
-          <p class="act-subtitle" data-i18n="thesis.subtitle">We forge digital artifacts with intentional architecture, mathematical rigor, and unreasonable care.</p>
+          <p class="act-subtitle" data-i18n="thesis.subtitle">Intentional architecture, mathematical rigor, and patience.</p>
         </header>
 
         <div class="thesis-coordinates">
           <!-- Principle 01 -->
           <div class="thesis-inscription coord-01">
-            <div class="inscription-code" data-i18n="thesis.p1Num">[PRINCIPLE 01]</div>
+            <div class="inscription-code" data-i18n="thesis.p1Num">01</div>
             <h3 class="inscription-heading" data-i18n="thesis.p1Title">Systems before spectacle</h3>
             <p class="inscription-body" data-i18n="thesis.p1Text">
-              Eye candy degrades quickly without solid underlying mathematics. We build robust loops, determinism, and data structures before polishing the surface.
+              Eye candy degrades without solid mathematics. We build robust loops, determinism, and data structures before polishing the surface.
             </p>
           </div>
 
           <!-- Principle 02 -->
           <div class="thesis-inscription coord-02">
-            <div class="inscription-code" data-i18n="thesis.p2Num">[PRINCIPLE 02]</div>
+            <div class="inscription-code" data-i18n="thesis.p2Num">02</div>
             <h3 class="inscription-heading" data-i18n="thesis.p2Title">Iteration before assumption</h3>
             <p class="inscription-body" data-i18n="thesis.p2Text">
               No design survives first contact with reality unchanged. We deploy early test builds, gather ground-truth telemetry, and refine relentlessly.
@@ -381,17 +371,17 @@
 
           <!-- Principle 03 -->
           <div class="thesis-inscription coord-03">
-            <div class="inscription-code" data-i18n="thesis.p3Num">[PRINCIPLE 03]</div>
+            <div class="inscription-code" data-i18n="thesis.p3Num">03</div>
             <h3 class="inscription-heading" data-i18n="thesis.p3Title">Longevity before noise</h3>
             <p class="inscription-body" data-i18n="thesis.p3Text">
-              We reject ephemeral trends and hype cycles. Whether a strategy card game or a kitchen utility, our work is engineered to endure and respect user agency.
+              We reject ephemeral trends and hype cycles. Our work is engineered to endure and respect user agency.
             </p>
           </div>
         </div>
 
         <!-- Origin Note Footnote -->
         <div class="origin-footnote">
-          <span class="footnote-label" data-i18n="thesis.originLabel">ORIGIN NOTE // ATELIER PROVENANCE</span>
+          <span class="footnote-label" data-i18n="thesis.originLabel">ORIGIN NOTE</span>
           <p class="footnote-text" data-i18n="thesis.originText">
             Rynia began in 2019 as a personal handle and evolved into a disciplined independent atelier. Bearing this mark is a reminder never to abandon an unfinished craft—to build patiently, layer by layer.
           </p>
@@ -406,9 +396,9 @@
     <section class="act act-forge" id="act-forge">
       <div class="act-inner">
         <header class="act-header">
-          <div class="act-index-label" data-i18n="forge.label">04 / V // SYSTEMS ARCHITECTURE</div>
+          <div class="act-index-label" data-i18n="forge.label">04 · ENGINEERING PIPELINES</div>
           <h2 class="act-title" data-i18n="forge.title">ACTIVE ENGINEERING PIPELINES.</h2>
-          <p class="act-subtitle" data-i18n="forge.subtitle">Live technical disciplines and architectural focus areas across the atelier.</p>
+          <p class="act-subtitle" data-i18n="forge.subtitle">Technical disciplines and architectural focus areas across the atelier.</p>
         </header>
 
         <!-- Engineering Pipelines Annotations -->
@@ -447,7 +437,7 @@
                 <span class="pipeline-status" data-i18n="forge.p3Status">LIVE RUNTIME</span>
               </div>
               <p class="pipeline-desc" data-i18n="forge.p3Desc">
-                Shader-driven monolithic PBR rendering, spring physics parallax, and 100/100 Lighthouse performance architecture.
+                Shader-driven monolithic PBR rendering, spring physics parallax, and responsive performance architecture.
               </p>
             </div>
           </div>
@@ -458,7 +448,7 @@
         <!-- Field Notes / Atelier Journal Dispatches -->
         <div class="field-notes-wrapper">
           <div class="notes-header">
-            <span class="notes-caption" data-i18n="forge.notesLabel">ATELIER JOURNAL // DATED DISPATCHES</span>
+            <span class="notes-caption" data-i18n="forge.notesLabel">ATELIER JOURNAL</span>
             <h3 class="notes-heading" data-i18n="forge.notesTitle">FIELD NOTES.</h3>
           </div>
 
@@ -487,64 +477,67 @@
               </p>
             </article>
           </div>
-
-          <!-- Supabase Live Stream Container (Fallback-enabled) -->
-          <div class="live-dispatch-stream" id="supabaseFeedContainer">
-            <span class="stream-label" data-i18n="forge.liveFeed">LIVE STUDIO DISPATCH // SUPABASE FEED</span>
-            <div id="supabase-feed" class="stream-content">
-              <span class="stream-idle">[TELEMETRY READY // ALL CHANNELS NOMINAL]</span>
-            </div>
-          </div>
         </div>
       </div>
     </section>
 
 
     <!-- ========================================================
-         ACT V — DOSSIER / THE INVITATION
+         ACT V — DOSSIER / THE INVITATION (Streamlined Hierarchy)
+         1. BRING US THE UNCOMMON.
+         2. BEGIN A CONVERSATION ↗
+         3. ryniastudios@gmail.com
+         4. Factsheet (Secondary)
+         5. Compact Channels & RYNIA / MMXXVI
          ======================================================== -->
     <section class="act act-dossier" id="act-dossier">
       <div class="act-inner dossier-inner">
         <header class="act-header">
-          <div class="act-index-label" data-i18n="dossier.label">05 / V // ARCHIVE & INVITATION</div>
+          <div class="act-index-label" data-i18n="dossier.label">05 · ARCHIVE & INQUIRIES</div>
           <h2 class="act-title" data-i18n="dossier.title" data-i18n-html="true">BRING US THE <em>UNCOMMON</em>.</h2>
           <p class="act-subtitle" data-i18n="dossier.subtitle">Verified factsheet and direct channels for press, publishers, and collaborators.</p>
         </header>
 
-        <!-- Technical Factsheet Telemetry -->
-        <div class="factsheet-matrix">
-          <div class="fact-row">
-            <span class="fact-key" data-i18n="dossier.factEntity">ENTITY</span>
-            <span class="fact-val" data-i18n="dossier.factEntityVal">Rynia Studios (Independent Atelier)</span>
-          </div>
-          <div class="fact-row">
-            <span class="fact-key" data-i18n="dossier.factFocus">FOCUS</span>
-            <span class="fact-val" data-i18n="dossier.factFocusVal">Strategic Games, Intelligent Tools & Digital Systems</span>
-          </div>
-          <div class="fact-row">
-            <span class="fact-key" data-i18n="dossier.factOrigin">PROVENANCE</span>
-            <span class="fact-val" data-i18n="dossier.factOriginVal">Est. 2019 · Istanbul / Global Distribution</span>
-          </div>
-          <div class="fact-row">
-            <span class="fact-key" data-i18n="dossier.factStack">CORE STACK</span>
-            <span class="fact-val" data-i18n="dossier.factStackVal">TypeScript, Three.js, Unity, React Native, SQLite, Supabase</span>
-          </div>
-        </div>
-
-        <!-- Master Typographic Callout (Letter-spacing expand + oxide red sweep on hover) -->
+        <!-- Master Typographic Callout Zone -->
         <div class="invitation-action-zone">
           <a href="mailto:ryniastudios@gmail.com" class="invitation-callout">
             <span class="invitation-text" data-i18n="dossier.cta">BEGIN A CONVERSATION</span>
             <span class="invitation-arrow">↗</span>
             <div class="oxide-sweep-line"></div>
           </a>
+          <a href="mailto:ryniastudios@gmail.com" class="invitation-email" data-i18n="dossier.email">ryniastudios@gmail.com</a>
           <span class="direct-caption" data-i18n="dossier.directNote">For commissions, publishing, and architectural inquiries:</span>
+        </div>
+
+        <!-- Secondary Collapsible Factsheet -->
+        <div class="factsheet-wrapper">
+          <button class="disclosure-btn factsheet-toggle" aria-expanded="false" data-target="factsheet-matrix">
+            <span data-i18n="dossier.factToggle">VIEW STUDIO FACTSHEET</span>
+            <span class="toggle-icon">+</span>
+          </button>
+          <div class="factsheet-matrix disclosure-panel" id="factsheet-matrix" hidden>
+            <div class="fact-row">
+              <span class="fact-key" data-i18n="dossier.factEntity">ENTITY</span>
+              <span class="fact-val" data-i18n="dossier.factEntityVal">Rynia Studios (Independent Atelier)</span>
+            </div>
+            <div class="fact-row">
+              <span class="fact-key" data-i18n="dossier.factFocus">FOCUS</span>
+              <span class="fact-val" data-i18n="dossier.factFocusVal">Strategic Games, Intelligent Tools & Digital Systems</span>
+            </div>
+            <div class="fact-row">
+              <span class="fact-key" data-i18n="dossier.factOrigin">PROVENANCE</span>
+              <span class="fact-val" data-i18n="dossier.factOriginVal">Est. 2019 · Global Distribution</span>
+            </div>
+            <div class="fact-row">
+              <span class="fact-key" data-i18n="dossier.factStack">CORE STACK</span>
+              <span class="fact-val" data-i18n="dossier.factStackVal">TypeScript, Three.js, Unity, React Native, SQLite, Supabase</span>
+            </div>
+          </div>
         </div>
 
         <!-- Integrated Edge Footer -->
         <footer class="exhibition-footer">
           <div class="footer-left">
-            <a href="mailto:ryniastudios@gmail.com" class="footer-direct" data-i18n="dossier.email">ryniastudios@gmail.com</a>
             <div class="footer-socials">
               <a href="https://discord.gg/HJ4hRrZcz" target="_blank" rel="noopener noreferrer">Discord</a>
               <a href="https://x.com/RyniaStudio" target="_blank" rel="noopener noreferrer">X</a>

@@ -57,23 +57,22 @@ export function setupMouseParallax(group: THREE.Group, _container: HTMLElement):
 }
 
 /**
- * Setup Scroll-driven Choreography across the 5 Acts
- * - Total scroll rotation strictly 110–140 degrees (approx 2.1 rad)
- * - Act I: Rim-lit silhouette and authority
- * - Act II: Chiseled facets and mineral vein reveal
- * - Act III: Internal fissure awakens with #B6422E oxide red emissive light (up to 1.35)
- * - Act IV: Deep inspection angle
- * - Act V: Camera pulls back into the void, revealing the monolith's scale standing alone
+ * Setup 5 Distinct Dramatic States for The Rynia Artefact
+ * Sol Master Art Direction Pass:
+ * 1. Hero: Monumental & dark silhouette (imposing upward angle).
+ * 2. Systems: Chiseled industrial face & mineral veins, framed to the right.
+ * 3. Thesis: Extreme macro close-up on obsidian facets & #B6422E fissure awakening.
+ * 4. Pipelines: Steep architectural cross-section & rim edge profile.
+ * 5. Dossier: Dramatic camera pullback into infinite dark void, revealing solitary scale.
  */
 export function setupScrollCamera(
   camera: THREE.PerspectiveCamera,
   _container: HTMLElement,
   artefactGroup?: THREE.Group
 ): { destroy: () => void } {
-  // Check if reduced motion is preferred
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     if (artefactGroup) {
-      artefactGroup.rotation.y = 0.35;
+      artefactGroup.rotation.y = 0.4;
     }
     return { destroy: () => {} };
   }
@@ -81,81 +80,104 @@ export function setupScrollCamera(
   const fissureMesh = artefactGroup?.getObjectByName('InternalFissure') as THREE.Mesh | undefined;
   const fissureMat = fissureMesh?.material as THREE.MeshStandardMaterial | undefined;
 
-  // Master scroll timeline scrubbed through page scroll
-  const masterTimeline = gsap.timeline({
-    scrollTrigger: {
-      trigger: document.body,
-      start: 'top top',
-      end: 'bottom bottom',
-      scrub: 1.2
-    }
-  });
+  const triggers: ScrollTrigger[] = [];
 
-  if (artefactGroup) {
-    // Initial position: optik merkezden yaklasik %8 saga ve %5 asagiya
-    // Rotation starts at -0.2 rad (-11 deg) and reaches +2.0 rad (+114 deg) -> total 125 deg!
-    artefactGroup.rotation.y = -0.2;
+  // Helper to safely register section-based scroll animation
+  const actArtefact = document.getElementById('act-artefact');
+  const actSystems = document.getElementById('act-systems');
+  const actThesis = document.getElementById('act-thesis');
+  const actForge = document.getElementById('act-forge');
+  const actDossier = document.getElementById('act-dossier');
 
-    // Scroll progression of Artefact Rotation (Total: 125 degrees)
-    masterTimeline.to(artefactGroup.rotation, {
-      y: 2.0, // Strictly within 110° - 140° range!
-      ease: 'power1.inOut'
-    }, 0);
+  if (artefactGroup && actArtefact && actSystems && actThesis && actForge && actDossier) {
+    // Initial State (Act I Hero)
+    artefactGroup.position.set(0.38, -0.18, 0);
+    artefactGroup.rotation.set(0.04, -0.22, 0);
+    camera.position.set(0, -0.22, 4.6);
+    if (fissureMat) fissureMat.emissiveIntensity = 0.0;
 
-    // Subtle pitch tilt during descent
-    masterTimeline.to(artefactGroup.rotation, {
-      x: 0.12,
-      ease: 'sine.inOut'
-    }, 0);
-  }
-
-  // Camera Pullback in Act V (Dramatic zoom out to reveal solitary monolith in void)
-  // Camera moves from 4.6 to 7.8 in the final third of the page
-  masterTimeline.to(camera.position, {
-    z: 7.6,
-    y: 0.3,
-    ease: 'power2.inOut'
-  }, 0.65);
-
-  // Act III Awakening: Internal Fissure glows with Oxide Red #B6422E (intensity up to 1.35)
-  // Awakens around 35%-60% scroll, then gently recedes at the end of Act V
-  if (fissureMat) {
-    fissureMat.emissiveIntensity = 0.0;
-
-    const fissureTl = gsap.timeline({
-      scrollTrigger: {
-        trigger: document.body,
-        start: 'top top',
-        end: 'bottom bottom',
-        scrub: 1.0
+    // Transition Act I -> Act II (Systems: Reveal chiseled facets, move right)
+    const st1 = ScrollTrigger.create({
+      trigger: actSystems,
+      start: 'top bottom',
+      end: 'top center',
+      scrub: 1.2,
+      onUpdate: (self) => {
+        const p = self.progress;
+        artefactGroup.rotation.y = THREE.MathUtils.lerp(-0.22, 0.52, p);
+        artefactGroup.rotation.x = THREE.MathUtils.lerp(0.04, 0.08, p);
+        artefactGroup.position.x = THREE.MathUtils.lerp(0.38, 0.50, p);
+        camera.position.z = THREE.MathUtils.lerp(4.6, 4.2, p);
+        camera.position.y = THREE.MathUtils.lerp(-0.22, -0.14, p);
+        if (fissureMat) fissureMat.emissiveIntensity = THREE.MathUtils.lerp(0.0, 0.15, p);
       }
     });
+    triggers.push(st1);
 
-    fissureTl.to(fissureMat, {
-      emissiveIntensity: 0.0,
-      duration: 0.25
+    // Transition Act II -> Act III (Thesis: Macro close-up on fissure awakening)
+    const st2 = ScrollTrigger.create({
+      trigger: actThesis,
+      start: 'top bottom',
+      end: 'top center',
+      scrub: 1.2,
+      onUpdate: (self) => {
+        const p = self.progress;
+        artefactGroup.rotation.y = THREE.MathUtils.lerp(0.52, 1.08, p);
+        artefactGroup.rotation.x = THREE.MathUtils.lerp(0.08, 0.03, p);
+        artefactGroup.position.x = THREE.MathUtils.lerp(0.50, 0.18, p);
+        artefactGroup.position.y = THREE.MathUtils.lerp(-0.14, -0.04, p);
+        // Zoom camera in tight for macro material examination
+        camera.position.z = THREE.MathUtils.lerp(4.2, 2.85, p);
+        camera.position.y = THREE.MathUtils.lerp(-0.14, 0.02, p);
+        // Fissure awakens with deep oxide red glow
+        if (fissureMat) fissureMat.emissiveIntensity = THREE.MathUtils.lerp(0.15, 1.45, p);
+      }
     });
-    // Act III: Awakens
-    fissureTl.to(fissureMat, {
-      emissiveIntensity: 1.38,
-      duration: 0.25,
-      ease: 'power2.out'
+    triggers.push(st2);
+
+    // Transition Act III -> Act IV (Pipelines: Pull out to steep architectural edge silhouette)
+    const st3 = ScrollTrigger.create({
+      trigger: actForge,
+      start: 'top bottom',
+      end: 'top center',
+      scrub: 1.2,
+      onUpdate: (self) => {
+        const p = self.progress;
+        artefactGroup.rotation.y = THREE.MathUtils.lerp(1.08, 1.68, p);
+        artefactGroup.rotation.x = THREE.MathUtils.lerp(0.03, 0.12, p);
+        artefactGroup.position.x = THREE.MathUtils.lerp(0.18, 0.58, p);
+        artefactGroup.position.y = THREE.MathUtils.lerp(-0.04, -0.12, p);
+        camera.position.z = THREE.MathUtils.lerp(2.85, 4.8, p);
+        camera.position.y = THREE.MathUtils.lerp(0.02, 0.08, p);
+        if (fissureMat) fissureMat.emissiveIntensity = THREE.MathUtils.lerp(1.45, 0.35, p);
+      }
     });
-    // Act IV: Sustains
-    fissureTl.to(fissureMat, {
-      emissiveIntensity: 0.95,
-      duration: 0.25
+    triggers.push(st3);
+
+    // Transition Act IV -> Act V (Dossier: Dramatic pullback into the void)
+    const st4 = ScrollTrigger.create({
+      trigger: actDossier,
+      start: 'top bottom',
+      end: 'center center',
+      scrub: 1.4,
+      onUpdate: (self) => {
+        const p = self.progress;
+        artefactGroup.rotation.y = THREE.MathUtils.lerp(1.68, 2.15, p); // Total rotation ~135°!
+        artefactGroup.position.x = THREE.MathUtils.lerp(0.58, 0.0, p);
+        artefactGroup.position.y = THREE.MathUtils.lerp(-0.12, 0.0, p);
+        // Camera retreats into vast space
+        camera.position.z = THREE.MathUtils.lerp(4.8, 8.2, p);
+        camera.position.y = THREE.MathUtils.lerp(0.08, 0.25, p);
+        // Fissure dims leaving cold dark solitary silhouette
+        if (fissureMat) fissureMat.emissiveIntensity = THREE.MathUtils.lerp(0.35, 0.02, p);
+      }
     });
-    // Act V: Recedes to cold dark silhouette
-    fissureTl.to(fissureMat, {
-      emissiveIntensity: 0.05,
-      duration: 0.25,
-      ease: 'power2.in'
-    });
+    triggers.push(st4);
   }
 
   return {
     destroy: () => {
+      triggers.forEach(t => t.kill());
       ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     }
   };

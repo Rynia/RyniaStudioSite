@@ -1,18 +1,23 @@
 export function initNav(): void {
   const header = document.getElementById('siteHeader');
-  const indexTrigger = document.getElementById('indexTrigger');
+  const indexTrigger = document.getElementById('indexTrigger') as HTMLButtonElement | null;
   const indexDrawer = document.getElementById('indexDrawer');
-  const drawerClose = document.getElementById('drawerClose');
+  const drawerClose = document.getElementById('drawerClose') as HTMLButtonElement | null;
   const actThumb = document.getElementById('actThumb');
   const actSteps = document.querySelectorAll<HTMLElement>('.act-step');
   const navLinks = document.querySelectorAll<HTMLElement>('.nav-act-link');
 
-  // 1. Drawer open/close
+  // 1. Drawer open/close with focus trap & accessibility
   if (indexTrigger && indexDrawer) {
     indexTrigger.addEventListener('click', () => {
       indexDrawer.classList.add('is-open');
       indexDrawer.setAttribute('aria-hidden', 'false');
+      indexTrigger.setAttribute('aria-expanded', 'true');
       document.body.style.overflow = 'hidden';
+
+      // Focus first focusable item in drawer
+      const firstFocusable = indexDrawer.querySelector<HTMLElement>('button, a');
+      firstFocusable?.focus();
     });
   }
 
@@ -20,7 +25,9 @@ export function initNav(): void {
     if (indexDrawer) {
       indexDrawer.classList.remove('is-open');
       indexDrawer.setAttribute('aria-hidden', 'true');
+      if (indexTrigger) indexTrigger.setAttribute('aria-expanded', 'false');
       document.body.style.overflow = '';
+      indexTrigger?.focus();
     }
   };
 
@@ -33,12 +40,51 @@ export function initNav(): void {
     link.addEventListener('click', closeDrawer);
   });
 
-  // Close drawer on Escape key
+  // Close drawer on Escape key & Focus Trap
   window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeDrawer();
+    if (indexDrawer?.classList.contains('is-open')) {
+      if (e.key === 'Escape') {
+        closeDrawer();
+      } else if (e.key === 'Tab') {
+        const focusables = indexDrawer.querySelectorAll<HTMLElement>('a, button');
+        if (focusables.length === 0) return;
+        const first = focusables[0];
+        const last = focusables[focusables.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    }
   });
 
-  // 2. Scroll-based header collapse & Act indicator tracking
+  // 2. Progressive Disclosure Accordion Handling
+  document.querySelectorAll<HTMLButtonElement>('.disclosure-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const targetId = btn.getAttribute('data-target');
+      if (!targetId) return;
+      const target = document.getElementById(targetId);
+      if (!target) return;
+
+      const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', isExpanded ? 'false' : 'true');
+
+      if (isExpanded) {
+        target.hidden = true;
+        const icon = btn.querySelector('.toggle-icon');
+        if (icon) icon.textContent = '+';
+      } else {
+        target.hidden = false;
+        const icon = btn.querySelector('.toggle-icon');
+        if (icon) icon.textContent = '−';
+      }
+    });
+  });
+
+  // 3. Scroll-based header collapse & Act indicator tracking
   const acts = [
     document.getElementById('act-artefact'),
     document.getElementById('act-systems'),
@@ -98,5 +144,5 @@ export function initNav(): void {
   };
 
   window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll(); // initial state
+  onScroll();
 }
