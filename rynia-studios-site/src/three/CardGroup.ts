@@ -161,22 +161,22 @@ export function createReliquary(): THREE.Group {
   root.add(shellGroup);
 
   // ========================================================
-  // 4. CONTROLLED INTERNAL FISSURE (#B6422E Oxide Red Line)
+  // 4. CONTROLLED INTERNAL FISSURE (#8A2416 Recessed Core Seam)
   // ========================================================
-  const fissureGeo = new THREE.BoxGeometry(0.028, 2.2, 0.08);
+  const fissureGeo = new THREE.BoxGeometry(0.014, 2.4, 0.03);
   const fissureMesh = new THREE.Mesh(fissureGeo, fissureMat);
   fissureMesh.name = 'InternalFissure';
-  fissureMesh.position.set(0.26, 0.08, 0.40);
-  fissureMesh.rotation.z = -0.05;
+  fissureMesh.position.set(-0.06, 0.05, 0.02);
+  fissureMesh.rotation.z = -0.04;
   root.add(fissureMesh);
 
   // Mineral micro-veins along the seam
   const veinPoints = [
-    new THREE.Vector3(-0.52, -1.2, 0.38),
-    new THREE.Vector3(-0.35, -0.3, 0.44),
-    new THREE.Vector3(-0.22,  0.4, 0.42),
-    new THREE.Vector3(-0.10,  1.1, 0.36),
-    new THREE.Vector3( 0.05,  1.5, 0.30)
+    new THREE.Vector3(-0.42, -1.2, 0.22),
+    new THREE.Vector3(-0.28, -0.3, 0.24),
+    new THREE.Vector3(-0.16,  0.4, 0.20),
+    new THREE.Vector3(-0.08,  1.1, 0.16),
+    new THREE.Vector3( 0.02,  1.5, 0.12)
   ];
   const veinGeo = new THREE.BufferGeometry().setFromPoints(veinPoints);
   const veinLine = new THREE.Line(veinGeo, mineralMat);

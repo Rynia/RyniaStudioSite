@@ -6,27 +6,27 @@ import * as THREE from 'three';
  */
 export function createObsidianMaterial(): THREE.MeshPhysicalMaterial {
   return new THREE.MeshPhysicalMaterial({
-    color: new THREE.Color(0x0a0b0d),
-    metalness: 0.86,
+    color: new THREE.Color(0x16181e),
+    metalness: 0.78,
     roughness: 0.28,
-    clearcoat: 0.5,
-    clearcoatRoughness: 0.2,
-    reflectivity: 0.92,
+    clearcoat: 0.85,
+    clearcoatRoughness: 0.18,
+    reflectivity: 0.95,
     flatShading: true // Faceted ceremonial carved monolith look
   });
 }
 
 /**
- * 2. Internal Fissure Core Material (Oxide Red #B6422E)
- * Awakens in Act III with controllable emissive intensity up to ~1.4
+ * 2. Internal Fissure Core Material (Oxide Red #9E2F1E)
+ * Awakens with subtle smoldering core glow
  */
 export function createFissureMaterial(): THREE.MeshStandardMaterial {
   return new THREE.MeshStandardMaterial({
-    color: new THREE.Color(0xb6422e),
-    emissive: new THREE.Color(0xb6422e),
-    emissiveIntensity: 0.0, // Dormant in Act I and II
-    roughness: 0.4,
-    metalness: 0.2
+    color: new THREE.Color(0x8a2416),
+    emissive: new THREE.Color(0xa63220),
+    emissiveIntensity: 0.0, // Controlled by interactions
+    roughness: 0.35,
+    metalness: 0.4
   });
 }
 
@@ -37,7 +37,7 @@ export function createMineralVeinMaterial(): THREE.LineBasicMaterial {
   return new THREE.LineBasicMaterial({
     color: 0xd6c5a2,
     transparent: true,
-    opacity: 0.35,
+    opacity: 0.4,
     linewidth: 1
   });
 }
@@ -49,19 +49,19 @@ export function createHairlineEdgeMaterial(): THREE.LineBasicMaterial {
   return new THREE.LineBasicMaterial({
     color: 0xe8e2d6,
     transparent: true,
-    opacity: 0.14
+    opacity: 0.22
   });
 }
 
 /**
- * 5. Aged Bronze Structural Spine Material (#4A3C2C)
- * Deep aged bronze with subtle warm metallic reflection
+ * 5. Aged Bronze Structural Spine Material (#6E553C)
+ * Deep aged ceremonial bronze with warm metallic reflection
  */
 export function createAgedBronzeMaterial(): THREE.MeshStandardMaterial {
   return new THREE.MeshStandardMaterial({
-    color: new THREE.Color(0x4e3e2c),
-    metalness: 0.85,
-    roughness: 0.36,
+    color: new THREE.Color(0x6e553c),
+    metalness: 0.88,
+    roughness: 0.32,
     flatShading: true
   });
 }
@@ -72,11 +72,11 @@ export function createAgedBronzeMaterial(): THREE.MeshStandardMaterial {
  */
 export function createTacticalLamellaMaterial(): THREE.MeshPhysicalMaterial {
   return new THREE.MeshPhysicalMaterial({
-    color: new THREE.Color(0x101114),
+    color: new THREE.Color(0x1a1c22),
     metalness: 0.92,
-    roughness: 0.22,
-    clearcoat: 0.4,
-    clearcoatRoughness: 0.25,
+    roughness: 0.20,
+    clearcoat: 0.6,
+    clearcoatRoughness: 0.20,
     flatShading: true
   });
 }

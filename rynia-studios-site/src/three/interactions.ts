@@ -1,4 +1,4 @@
-﻿import * as THREE from 'three';
+import * as THREE from 'three';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -61,8 +61,8 @@ export function createReliquaryController(
     camX: 0,
     camY: -0.22,
     camZ: 4.6,
-    groupX: 0.38 * layoutScale,
-    groupY: -0.18 + layoutOffsetY,
+    groupX: 0.78 * layoutScale,
+    groupY: -0.16 + layoutOffsetY,
     rotX: 0.04,
     rotY: -0.22,
     shellOpen: 0.0,      // 0.0 = closed, 1.0 = open
@@ -75,8 +75,8 @@ export function createReliquaryController(
     camX: 0,
     camY: -0.22,
     camZ: 4.6,
-    groupX: 0.38 * layoutScale,
-    groupY: -0.18 + layoutOffsetY,
+    groupX: 0.78 * layoutScale,
+    groupY: -0.16 + layoutOffsetY,
     rotX: 0.04,
     rotY: -0.22,
     shellOpen: 0.0,
@@ -117,9 +117,9 @@ export function createReliquaryController(
     const p3 = st3?.progress ?? 0;
     const p4 = st4?.progress ?? 0;
 
-    // Base Act I values
-    let gx = 0.38 * layoutScale;
-    let gy = -0.18 + layoutOffsetY;
+    // Base Act I values: Framed majestically to the right flank
+    let gx = 0.78 * layoutScale;
+    let gy = -0.16 + layoutOffsetY;
     let rx = 0.04;
     let ry = -0.22;
     let cz = 4.6;
@@ -130,54 +130,54 @@ export function createReliquaryController(
 
     // Transition 1: Act I -> Act II (Systems: Unlocking, tactical tiering)
     if (p1 > 0) {
-      gx = THREE.MathUtils.lerp(gx, 0.50 * layoutScale, p1);
+      gx = THREE.MathUtils.lerp(gx, 0.82 * layoutScale, p1);
       gy = THREE.MathUtils.lerp(gy, -0.14 + layoutOffsetY, p1);
       rx = THREE.MathUtils.lerp(rx, 0.08, p1);
       ry = THREE.MathUtils.lerp(ry, 0.52, p1);
-      cz = THREE.MathUtils.lerp(cz, 4.2, p1);
+      cz = THREE.MathUtils.lerp(cz, 4.3, p1);
       cy = THREE.MathUtils.lerp(cy, -0.14, p1);
       sOpen = THREE.MathUtils.lerp(sOpen, 1.0, p1);
       lTier = THREE.MathUtils.lerp(lTier, 1.0, p1);
-      fGlow = THREE.MathUtils.lerp(fGlow, 0.25, p1);
+      fGlow = THREE.MathUtils.lerp(fGlow, 0.20, p1);
     }
 
-    // Transition 2: Act II -> Act III (Thesis: Macro close-up & core awakening)
+    // Transition 2: Act II -> Act III (Thesis: Architectural macro close-up)
     if (p2 > 0) {
-      gx = THREE.MathUtils.lerp(0.50 * layoutScale, 0.18 * layoutScale, p2);
+      gx = THREE.MathUtils.lerp(0.82 * layoutScale, 0.54 * layoutScale, p2);
       gy = THREE.MathUtils.lerp(-0.14 + layoutOffsetY, -0.04 + layoutOffsetY, p2);
       rx = THREE.MathUtils.lerp(0.08, 0.03, p2);
       ry = THREE.MathUtils.lerp(0.52, 1.08, p2);
-      cz = THREE.MathUtils.lerp(4.2, 2.85, p2);
+      cz = THREE.MathUtils.lerp(4.3, 3.6, p2); // Elegant macro inspection
       cy = THREE.MathUtils.lerp(-0.14, 0.02, p2);
-      sOpen = THREE.MathUtils.lerp(1.0, 0.6, p2);
-      lTier = THREE.MathUtils.lerp(1.0, 0.15, p2);
-      fGlow = THREE.MathUtils.lerp(0.25, 1.60, p2);
+      sOpen = THREE.MathUtils.lerp(1.0, 0.5, p2);
+      lTier = THREE.MathUtils.lerp(1.0, 0.2, p2);
+      fGlow = THREE.MathUtils.lerp(0.20, 0.70, p2); // Controlled warm ember glow
     }
 
     // Transition 3: Act III -> Act IV (Forge: Architectural cross-section & rack)
     if (p3 > 0) {
-      gx = THREE.MathUtils.lerp(0.18 * layoutScale, 0.54 * layoutScale, p3);
+      gx = THREE.MathUtils.lerp(0.54 * layoutScale, 0.80 * layoutScale, p3);
       gy = THREE.MathUtils.lerp(-0.04 + layoutOffsetY, -0.12 + layoutOffsetY, p3);
       rx = THREE.MathUtils.lerp(0.03, 0.12, p3);
       ry = THREE.MathUtils.lerp(1.08, 1.68, p3);
-      cz = THREE.MathUtils.lerp(2.85, 4.8, p3);
+      cz = THREE.MathUtils.lerp(3.6, 4.8, p3);
       cy = THREE.MathUtils.lerp(0.02, 0.08, p3);
-      sOpen = THREE.MathUtils.lerp(0.6, 0.4, p3);
-      lTier = THREE.MathUtils.lerp(0.15, 2.0, p3);
-      fGlow = THREE.MathUtils.lerp(1.60, 0.40, p3);
+      sOpen = THREE.MathUtils.lerp(0.5, 0.35, p3);
+      lTier = THREE.MathUtils.lerp(0.2, 2.0, p3);
+      fGlow = THREE.MathUtils.lerp(0.70, 0.25, p3);
     }
 
     // Transition 4: Act IV -> Act V (Dossier: Void pullback & ceremonial lock)
     if (p4 > 0) {
-      gx = THREE.MathUtils.lerp(0.54 * layoutScale, 0.0, p4);
+      gx = THREE.MathUtils.lerp(0.80 * layoutScale, 0.0, p4);
       gy = THREE.MathUtils.lerp(-0.12 + layoutOffsetY, 0.0, p4);
       rx = THREE.MathUtils.lerp(0.12, 0.02, p4);
       ry = THREE.MathUtils.lerp(1.68, 2.20, p4);
-      cz = THREE.MathUtils.lerp(4.8, 8.5, p4);
-      cy = THREE.MathUtils.lerp(0.08, 0.35, p4);
-      sOpen = THREE.MathUtils.lerp(0.4, 0.0, p4);
+      cz = THREE.MathUtils.lerp(4.8, 8.2, p4);
+      cy = THREE.MathUtils.lerp(0.08, 0.30, p4);
+      sOpen = THREE.MathUtils.lerp(0.35, 0.0, p4);
       lTier = THREE.MathUtils.lerp(2.0, 0.0, p4);
-      fGlow = THREE.MathUtils.lerp(0.40, 0.02, p4);
+      fGlow = THREE.MathUtils.lerp(0.25, 0.01, p4);
     }
 
     targets.groupX = gx;

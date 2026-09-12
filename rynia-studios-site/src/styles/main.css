@@ -57,11 +57,21 @@ div:has(a[href*="netlify.com"]),
 div:has(> iframe[src*="netlify"]),
 div[class*="netlify"],
 div[id*="netlify"],
-iframe[src*="netlify"],
 div[style*="fixed"][style*="bottom"][style*="right"],
 div[style*="fixed"][style*="right"][style*="bottom"] {
   background: transparent !important;
   background-color: transparent !important;
   border-color: transparent !important;
   box-shadow: none !important;
+  opacity: 0.2 !important;
+  filter: grayscale(1) contrast(0.7) !important;
+  transition: opacity 0.3s ease, filter 0.3s ease !important;
+}
+
+.netlify-badge:hover,
+#netlify-badge:hover,
+a[href*="netlify.com"]:hover,
+div:has(> a[href*="netlify.com"]):hover {
+  opacity: 0.85 !important;
+  filter: none !important;
 }
