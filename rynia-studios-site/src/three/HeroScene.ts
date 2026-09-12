@@ -37,12 +37,28 @@ export class HeroScene {
       antialias: true,
       powerPreference: 'high-performance'
     });
+    this.renderer.setClearColor(0x080806, 1.0); // Solid obsidian void background preventing white flashes
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
     this.renderer.toneMappingExposure = 1.05;
     this.renderer.setPixelRatio(pixelRatio);
     this.renderer.setSize(this.container.clientWidth, this.container.clientHeight);
     this.renderer.domElement.className = 'hero-canvas';
     this.container.appendChild(this.renderer.domElement);
+
+    // Fail-safe WebGL context loss handling
+    this.renderer.domElement.addEventListener('webglcontextlost', (event: Event) => {
+      event.preventDefault();
+      console.warn('HeroScene: WebGL context lost. Gracefully activating fallback.');
+      gsap.ticker.remove(this.onTick);
+      showFallbackImage(this.container);
+      document.documentElement.classList.add('webgl-failed');
+    });
+
+    this.renderer.domElement.addEventListener('webglcontextrestored', () => {
+      console.info('HeroScene: WebGL context restored.');
+      document.documentElement.classList.remove('webgl-failed');
+      gsap.ticker.add(this.onTick);
+    });
 
     // 35mm lens feel (~38° FOV), camera looking slightly upward
     this.camera = new THREE.PerspectiveCamera(
@@ -83,12 +99,19 @@ export class HeroScene {
 
   private onTick = (): void => {
     if (!this.isVisible) return;
-    // Delta clamping: 50ms cap prevents teleportation on tab switch
-    const rawDt = this.clock.getDelta();
-    const dt = Math.min(rawDt, 0.05);
+    try {
+      // Delta clamping: 50ms cap prevents teleportation on tab switch
+      const rawDt = this.clock.getDelta();
+      const dt = Math.min(rawDt, 0.05);
 
-    this.controller?.update(dt);
-    this.renderer.render(this.scene, this.camera);
+      this.controller?.update(dt);
+      this.renderer.render(this.scene, this.camera);
+    } catch (err) {
+      console.error('HeroScene: Render error encountered, switching to fallback.', err);
+      gsap.ticker.remove(this.onTick);
+      showFallbackImage(this.container);
+      document.documentElement.classList.add('webgl-failed');
+    }
   };
 
   private updateScale(width: number): void {

@@ -80,16 +80,16 @@
   <!-- FIXED MINIMAL HEADER -->
   <header class="atelier-header" id="siteHeader">
     <div class="header-brand">
-      <a href="#act-artefact" class="brand-title" data-i18n="nav.brand">Rynia Studios</a>
+      <a href="#act-artefact" class="brand-title" data-i18n="nav.brand" aria-label="Rynia Studios — Return to top">Rynia Studios</a>
       <span class="brand-provenance" data-i18n="nav.est">EST. 2019</span>
     </div>
 
-    <nav class="header-nav" id="headerNav">
-      <a href="#act-artefact" class="nav-act-link" data-i18n="nav.act1">I · Artefact</a>
-      <a href="#act-systems" class="nav-act-link" data-i18n="nav.act2">II · Work</a>
-      <a href="#act-thesis" class="nav-act-link" data-i18n="nav.act3">III · Thesis</a>
-      <a href="#act-forge" class="nav-act-link" data-i18n="nav.act4">IV · Process</a>
-      <a href="#act-dossier" class="nav-act-link" data-i18n="nav.act5">V · Contact</a>
+    <nav class="header-nav" id="headerNav" aria-label="Acts navigation">
+      <a href="#act-artefact" class="nav-act-link" aria-label="Act I · Artefact" data-i18n="nav.act1">I · Artefact</a>
+      <a href="#act-systems" class="nav-act-link" aria-label="Act II · Work" data-i18n="nav.act2">II · Work</a>
+      <a href="#act-thesis" class="nav-act-link" aria-label="Act III · Thesis" data-i18n="nav.act3">III · Thesis</a>
+      <a href="#act-forge" class="nav-act-link" aria-label="Act IV · Process" data-i18n="nav.act4">IV · Process</a>
+      <a href="#act-dossier" class="nav-act-link" aria-label="Act V · Contact" data-i18n="nav.act5">V · Contact</a>
     </nav>
 
     <div class="header-controls">
@@ -98,6 +98,11 @@
         <span class="index-dot"></span>
         <span class="index-label" data-i18n="nav.index">INDEX</span>
       </button>
+    </div>
+
+    <!-- Mobile Act Progress Bar (O5) -->
+    <div class="mobile-act-bar" id="mobileActBar" aria-hidden="true">
+      <div class="mobile-act-progress" id="mobileActProgress"></div>
     </div>
   </header>
 
@@ -108,24 +113,24 @@
       <button class="drawer-close" id="drawerClose" aria-label="Close index" data-i18n="nav.close">CLOSE ✕</button>
     </div>
     <div class="drawer-content">
-      <nav class="drawer-nav">
-        <a href="#act-artefact" class="drawer-link">
+      <nav class="drawer-nav" aria-label="Index drawer navigation">
+        <a href="#act-artefact" class="drawer-link" aria-label="Act I: The Artefact">
           <span class="drawer-num">01</span>
           <span class="drawer-title" data-i18n="nav.act1">I · Artefact</span>
         </a>
-        <a href="#act-systems" class="drawer-link">
+        <a href="#act-systems" class="drawer-link" aria-label="Act II: Selected Work">
           <span class="drawer-num">02</span>
           <span class="drawer-title" data-i18n="nav.act2">II · Work</span>
         </a>
-        <a href="#act-thesis" class="drawer-link">
+        <a href="#act-thesis" class="drawer-link" aria-label="Act III: Studio Thesis">
           <span class="drawer-num">03</span>
           <span class="drawer-title" data-i18n="nav.act3">III · Thesis</span>
         </a>
-        <a href="#act-forge" class="drawer-link">
+        <a href="#act-forge" class="drawer-link" aria-label="Act IV: Process & Pipelines">
           <span class="drawer-num">04</span>
           <span class="drawer-title" data-i18n="nav.act4">IV · Process</span>
         </a>
-        <a href="#act-dossier" class="drawer-link">
+        <a href="#act-dossier" class="drawer-link" aria-label="Act V: Contact & Dossier">
           <span class="drawer-num">05</span>
           <span class="drawer-title" data-i18n="nav.act5">V · Contact</span>
         </a>
@@ -134,18 +139,18 @@
       <div class="drawer-meta">
         <div class="meta-block">
           <span class="meta-label">DIRECT SIGNAL</span>
-          <a href="mailto:ryniastudios@gmail.com" class="meta-val">ryniastudios@gmail.com</a>
+          <a href="mailto:ryniastudios@gmail.com" class="meta-val" aria-label="Send direct email to Rynia Studios">ryniastudios@gmail.com</a>
         </div>
         <div class="meta-block">
           <span class="meta-label">COMMUNITY</span>
-          <a href="https://discord.gg/HJ4hRrZcz" target="_blank" rel="noopener noreferrer" class="meta-val">Discord Atelier ↗</a>
+          <a href="https://discord.gg/HJ4hRrZcz" target="_blank" rel="noopener noreferrer" class="meta-val" aria-label="Join Rynia Studios Discord Atelier">Discord Atelier ↗</a>
         </div>
         <div class="meta-block">
           <span class="meta-label">CHANNELS</span>
           <div class="meta-links">
-            <a href="https://x.com/RyniaStudio" target="_blank" rel="noopener noreferrer">X / Twitter</a>
-            <a href="https://www.instagram.com/ryniastudio/" target="_blank" rel="noopener noreferrer">Instagram</a>
-            <a href="https://www.youtube.com/@RyniaStudio" target="_blank" rel="noopener noreferrer">YouTube</a>
+            <a href="https://x.com/RyniaStudio" target="_blank" rel="noopener noreferrer" aria-label="Follow Rynia Studios on X / Twitter">X / Twitter</a>
+            <a href="https://www.instagram.com/ryniastudio/" target="_blank" rel="noopener noreferrer" aria-label="Follow Rynia Studios on Instagram">Instagram</a>
+            <a href="https://www.youtube.com/@RyniaStudio" target="_blank" rel="noopener noreferrer" aria-label="Follow Rynia Studios on YouTube">YouTube</a>
           </div>
         </div>
       </div>
@@ -185,11 +190,11 @@
           </p>
 
           <div class="hero-actions">
-            <a href="#act-systems" class="typo-link">
+            <a href="#act-systems" class="typo-link" aria-label="Explore Selected Work">
               <span data-i18n="hero.exploreWork">EXPLORE SELECTED WORK</span>
               <span class="arrow">↓</span>
             </a>
-            <a href="https://discord.gg/HJ4hRrZcz" target="_blank" rel="noopener noreferrer" class="typo-link">
+            <a href="https://discord.gg/HJ4hRrZcz" target="_blank" rel="noopener noreferrer" class="typo-link" aria-label="Join Rynia Studios Discord Atelier">
               <span data-i18n="hero.discord">DISCORD ATELIER</span>
               <span class="arrow">↗</span>
             </a>
@@ -265,7 +270,7 @@
               <!-- Progressive disclosure: Visual Archive Drawer -->
               <div class="disclosure-panel visual-archive-panel" id="kombo-visual-archive" hidden>
                 <div class="visual-archive-header">
-                  <span class="archive-kicker">ARCHIVAL SPECIMENS · PRODUCTION ASSETS</span>
+                  <span class="archive-kicker">PRODUCTION ASSETS · LIVE CARDS</span>
                   <span class="archive-meta">UNITY 2022 LTS // C# CORE</span>
                 </div>
                 <div class="visual-cards-grid">
@@ -315,15 +320,15 @@
                 Deterministic ingredient pairing that inputs pantry leftovers, prevents food waste, and serves an optimized rescue recipe.
               </p>
               <div class="specimen-action-row">
-                <a href="https://drive.google.com/file/d/10x_p2E4k9F-9l6w5r0N-u0zQ9M_zP6gG/view" target="_blank" rel="noopener noreferrer" class="typo-link typo-highlight">
-                  <span data-i18n="systems.kalanlaApk">DOWNLOAD ANDROID APK (V1.0)</span>
+                <a href="https://discord.gg/HJ4hRrZcz" target="_blank" rel="noopener noreferrer" class="typo-link typo-highlight" aria-label="Join Discord Atelier to download KALANLA Android APK">
+                  <span data-i18n="systems.kalanlaApk">GET ANDROID BUILD (DISCORD) ↗</span>
                   <span class="arrow">↗</span>
                 </a>
-                <button class="disclosure-btn" aria-expanded="false" data-target="kalanla-matrix">
+                <button class="disclosure-btn" aria-expanded="false" data-target="kalanla-matrix" aria-label="Toggle KALANLA Core Modules">
                   <span data-i18n="systems.kalanlaToggle">CORE MODULES</span>
                   <span class="toggle-icon">+</span>
                 </button>
-                <button class="disclosure-btn" aria-expanded="false" data-target="kalanla-visual-archive">
+                <button class="disclosure-btn" aria-expanded="false" data-target="kalanla-visual-archive" aria-label="Toggle KALANLA Project Artifacts">
                   <span data-i18n="systems.kalanlaVisualToggle">PROJECT ARTIFACTS</span>
                   <span class="toggle-icon">+</span>
                 </button>
@@ -356,7 +361,7 @@
               <!-- Progressive disclosure: Visual Archive Drawer -->
               <div class="disclosure-panel visual-archive-panel" id="kalanla-visual-archive" hidden>
                 <div class="visual-archive-header">
-                  <span class="archive-kicker">INTERFACE ARTIFACT · PRODUCTION RUNTIME</span>
+                  <span class="archive-kicker">PRODUCTION RUNTIME · APP FLOWS</span>
                   <span class="archive-meta">REACT NATIVE / EXPO // SQLITE</span>
                 </div>
                 <div class="visual-app-showcase">
@@ -585,11 +590,11 @@
         <footer class="exhibition-footer">
           <div class="footer-left">
             <div class="footer-socials">
-              <a href="https://discord.gg/HJ4hRrZcz" target="_blank" rel="noopener noreferrer">Discord</a>
-              <a href="https://x.com/RyniaStudio" target="_blank" rel="noopener noreferrer">X</a>
-              <a href="https://www.instagram.com/ryniastudio/" target="_blank" rel="noopener noreferrer">Instagram</a>
-              <a href="https://www.youtube.com/@RyniaStudio" target="_blank" rel="noopener noreferrer">YouTube</a>
-              <a href="./assets/rynia-press-kit.zip" download>Press Kit</a>
+              <a href="https://discord.gg/HJ4hRrZcz" target="_blank" rel="noopener noreferrer" aria-label="Join Rynia Studios Discord Atelier">Discord</a>
+              <a href="https://x.com/RyniaStudio" target="_blank" rel="noopener noreferrer" aria-label="Follow Rynia Studios on X / Twitter">X</a>
+              <a href="https://www.instagram.com/ryniastudio/" target="_blank" rel="noopener noreferrer" aria-label="Follow Rynia Studios on Instagram">Instagram</a>
+              <a href="https://www.youtube.com/@RyniaStudio" target="_blank" rel="noopener noreferrer" aria-label="Subscribe to Rynia Studios on YouTube">YouTube</a>
+              <a href="./assets/rynia-press-kit.zip" download aria-label="Download Rynia Studios Press Kit (ZIP)">Press Kit</a>
             </div>
           </div>
 

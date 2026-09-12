@@ -399,6 +399,23 @@ body.is-scrolled .edge-telemetry {
   .edge-telemetry {
     display: none;
   }
+  .mobile-act-bar {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 24px;
+    right: 24px;
+    height: 2px;
+    background: rgba(232, 226, 214, 0.08);
+    overflow: hidden;
+  }
+  .mobile-act-progress {
+    height: 100%;
+    width: 20%;
+    background: var(--oxide-red);
+    transform: translateX(0);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
   .index-drawer {
     padding: 28px 24px;
   }

@@ -70,21 +70,26 @@ export function initNav(): void {
       if (!target) return;
 
       const isExpanded = btn.getAttribute('aria-expanded') === 'true';
-      btn.setAttribute('aria-expanded', isExpanded ? 'false' : 'true');
+      const willExpand = !isExpanded;
+      btn.setAttribute('aria-expanded', willExpand ? 'true' : 'false');
 
-      if (isExpanded) {
-        target.hidden = true;
-        const icon = btn.querySelector('.toggle-icon');
-        if (icon) icon.textContent = '+';
-      } else {
+      if (willExpand) {
         target.hidden = false;
         const icon = btn.querySelector('.toggle-icon');
         if (icon) icon.textContent = '−';
+        target.setAttribute('tabindex', '-1');
+        target.focus();
+      } else {
+        target.hidden = true;
+        const icon = btn.querySelector('.toggle-icon');
+        if (icon) icon.textContent = '+';
+        btn.focus();
       }
     });
   });
 
   // 3. Scroll-based header collapse & Act indicator tracking
+  const mobileActProgress = document.getElementById('mobileActProgress');
   const acts = [
     document.getElementById('act-artefact'),
     document.getElementById('act-systems'),
@@ -132,14 +137,25 @@ export function initNav(): void {
           actThumb.style.transform = `translateY(${activeIndex * stepHeight}px)`;
         }
 
+        // Update mobile act progress bar (O5)
+        if (mobileActProgress) {
+          mobileActProgress.style.transform = `translateX(${activeIndex * 100}%)`;
+        }
+
         // Update active step labels
         actSteps.forEach((step, idx) => {
           step.classList.toggle('is-active', idx === activeIndex);
         });
 
-        // Update header links active state
+        // Update header links active state and aria-current (O2)
         navLinks.forEach((link, idx) => {
-          link.classList.toggle('is-active', idx === activeIndex);
+          const isActive = idx === activeIndex;
+          link.classList.toggle('is-active', isActive);
+          if (isActive) {
+            link.setAttribute('aria-current', 'page');
+          } else {
+            link.removeAttribute('aria-current');
+          }
         });
 
         ticking = false;

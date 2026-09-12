@@ -4,14 +4,11 @@ import * as THREE from 'three';
  * 1. Monolith Obsidian & Oxidized Metal Material
  * Black oxidized metal, obsidian, mineral reflections
  */
-export function createObsidianMaterial(): THREE.MeshPhysicalMaterial {
-  return new THREE.MeshPhysicalMaterial({
+export function createObsidianMaterial(): THREE.MeshStandardMaterial {
+  return new THREE.MeshStandardMaterial({
     color: new THREE.Color(0x16181e),
-    metalness: 0.78,
-    roughness: 0.28,
-    clearcoat: 0.85,
-    clearcoatRoughness: 0.18,
-    reflectivity: 0.95,
+    metalness: 0.82,
+    roughness: 0.25,
     flatShading: true // Faceted ceremonial carved monolith look
   });
 }
@@ -70,19 +67,17 @@ export function createAgedBronzeMaterial(): THREE.MeshStandardMaterial {
  * 6. Tactical Lamella Core Plate Material
  * Precision-machined dark obsidian/titanium plates
  */
-export function createTacticalLamellaMaterial(): THREE.MeshPhysicalMaterial {
-  return new THREE.MeshPhysicalMaterial({
+export function createTacticalLamellaMaterial(): THREE.MeshStandardMaterial {
+  return new THREE.MeshStandardMaterial({
     color: new THREE.Color(0x1a1c22),
     metalness: 0.92,
     roughness: 0.20,
-    clearcoat: 0.6,
-    clearcoatRoughness: 0.20,
     flatShading: true
   });
 }
 
 // Backward compatibility exports
-export function createObsidianCoreMaterial(): THREE.MeshPhysicalMaterial {
+export function createObsidianCoreMaterial(): THREE.MeshStandardMaterial {
   return createObsidianMaterial();
 }
 export function createChampagneGoldMaterial(): THREE.MeshStandardMaterial {

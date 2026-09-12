@@ -206,9 +206,10 @@ function createChiseledFacetGeometry(coords: number[][]): THREE.BufferGeometry {
     4, 5, 1,   4, 1, 0
   ];
 
-  const geo = new THREE.BufferGeometry();
-  geo.setAttribute('position', new THREE.BufferAttribute(vertices, 3));
-  geo.setIndex(indices);
+  const indexedGeo = new THREE.BufferGeometry();
+  indexedGeo.setAttribute('position', new THREE.BufferAttribute(vertices, 3));
+  indexedGeo.setIndex(indices);
+  const geo = indexedGeo.toNonIndexed();
   geo.computeVertexNormals();
   return geo;
 }
