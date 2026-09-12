@@ -121,6 +121,11 @@ export function initNav(): void {
           }
         });
 
+        // Ensure Act V is selected when user reaches the footer
+        if (window.innerHeight + scrollY >= document.body.scrollHeight - 80) {
+          activeIndex = acts.length - 1;
+        }
+
         // Update thumb position smoothly (0 to 140px)
         if (actThumb && stepCount > 1) {
           const stepHeight = trackIndicatorHeight / (stepCount - 1);

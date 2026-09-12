@@ -61,7 +61,7 @@ export function createReliquaryController(
     camX: 0,
     camY: -0.22,
     camZ: 4.6,
-    groupX: 0.78 * layoutScale,
+    groupX: 1.35 * layoutScale,
     groupY: -0.16 + layoutOffsetY,
     rotX: 0.04,
     rotY: -0.22,
@@ -75,7 +75,7 @@ export function createReliquaryController(
     camX: 0,
     camY: -0.22,
     camZ: 4.6,
-    groupX: 0.78 * layoutScale,
+    groupX: 1.35 * layoutScale,
     groupY: -0.16 + layoutOffsetY,
     rotX: 0.04,
     rotY: -0.22,
@@ -118,7 +118,7 @@ export function createReliquaryController(
     const p4 = st4?.progress ?? 0;
 
     // Base Act I values: Framed majestically to the right flank
-    let gx = 0.78 * layoutScale;
+    let gx = 1.35 * layoutScale;
     let gy = -0.16 + layoutOffsetY;
     let rx = 0.04;
     let ry = -0.22;
@@ -130,7 +130,7 @@ export function createReliquaryController(
 
     // Transition 1: Act I -> Act II (Systems: Unlocking, tactical tiering)
     if (p1 > 0) {
-      gx = THREE.MathUtils.lerp(gx, 0.82 * layoutScale, p1);
+      gx = THREE.MathUtils.lerp(gx, 1.45 * layoutScale, p1);
       gy = THREE.MathUtils.lerp(gy, -0.14 + layoutOffsetY, p1);
       rx = THREE.MathUtils.lerp(rx, 0.08, p1);
       ry = THREE.MathUtils.lerp(ry, 0.52, p1);
@@ -143,7 +143,7 @@ export function createReliquaryController(
 
     // Transition 2: Act II -> Act III (Thesis: Architectural macro close-up)
     if (p2 > 0) {
-      gx = THREE.MathUtils.lerp(0.82 * layoutScale, 0.54 * layoutScale, p2);
+      gx = THREE.MathUtils.lerp(1.45 * layoutScale, 1.10 * layoutScale, p2);
       gy = THREE.MathUtils.lerp(-0.14 + layoutOffsetY, -0.04 + layoutOffsetY, p2);
       rx = THREE.MathUtils.lerp(0.08, 0.03, p2);
       ry = THREE.MathUtils.lerp(0.52, 1.08, p2);
@@ -156,7 +156,7 @@ export function createReliquaryController(
 
     // Transition 3: Act III -> Act IV (Forge: Architectural cross-section & rack)
     if (p3 > 0) {
-      gx = THREE.MathUtils.lerp(0.54 * layoutScale, 0.80 * layoutScale, p3);
+      gx = THREE.MathUtils.lerp(1.10 * layoutScale, 1.40 * layoutScale, p3);
       gy = THREE.MathUtils.lerp(-0.04 + layoutOffsetY, -0.12 + layoutOffsetY, p3);
       rx = THREE.MathUtils.lerp(0.03, 0.12, p3);
       ry = THREE.MathUtils.lerp(1.08, 1.68, p3);
@@ -169,7 +169,7 @@ export function createReliquaryController(
 
     // Transition 4: Act IV -> Act V (Dossier: Void pullback & ceremonial lock)
     if (p4 > 0) {
-      gx = THREE.MathUtils.lerp(0.80 * layoutScale, 0.0, p4);
+      gx = THREE.MathUtils.lerp(1.40 * layoutScale, 0.0, p4);
       gy = THREE.MathUtils.lerp(-0.12 + layoutOffsetY, 0.0, p4);
       rx = THREE.MathUtils.lerp(0.12, 0.02, p4);
       ry = THREE.MathUtils.lerp(1.68, 2.20, p4);
