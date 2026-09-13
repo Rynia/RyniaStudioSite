@@ -129,16 +129,20 @@ export function createReliquaryController(
     let fGlow = 0.0;
 
     // Transition 1: Act I -> Act II (Systems: Unlocking, tactical tiering)
-    if (p1 > 0) {
-      gx = THREE.MathUtils.lerp(gx, 1.45 * layoutScale, p1);
-      gy = THREE.MathUtils.lerp(gy, -0.14 + layoutOffsetY, p1);
-      rx = THREE.MathUtils.lerp(rx, 0.08, p1);
-      ry = THREE.MathUtils.lerp(ry, 0.52, p1);
-      cz = THREE.MathUtils.lerp(cz, 4.3, p1);
-      cy = THREE.MathUtils.lerp(cy, -0.14, p1);
-      sOpen = THREE.MathUtils.lerp(sOpen, 1.0, p1);
-      lTier = THREE.MathUtils.lerp(lTier, 1.0, p1);
-      fGlow = THREE.MathUtils.lerp(fGlow, 0.20, p1);
+    // Dead-zone: First 8% of scroll leaves Act I calm and stable
+    const smoothP1 = THREE.MathUtils.clamp((p1 - 0.08) / 0.92, 0, 1);
+    const easedP1 = smoothP1 * smoothP1 * (3 - 2 * smoothP1); // Cubic smoothstep
+
+    if (easedP1 > 0) {
+      gx = THREE.MathUtils.lerp(gx, 1.42 * layoutScale, easedP1);
+      gy = THREE.MathUtils.lerp(gy, -0.14 + layoutOffsetY, easedP1);
+      rx = THREE.MathUtils.lerp(rx, 0.07, easedP1);
+      ry = THREE.MathUtils.lerp(ry, 0.48, easedP1);
+      cz = THREE.MathUtils.lerp(cz, 4.45, easedP1); // Gentle camera framing, not an aggressive zoom
+      cy = THREE.MathUtils.lerp(cy, -0.16, easedP1);
+      sOpen = THREE.MathUtils.lerp(sOpen, 1.0, easedP1);
+      lTier = THREE.MathUtils.lerp(lTier, 1.0, easedP1);
+      fGlow = THREE.MathUtils.lerp(fGlow, 0.20, easedP1);
     }
 
     // Transition 2: Act II -> Act III (Thesis: Architectural macro close-up)
@@ -256,9 +260,9 @@ export function createReliquaryController(
       currentParallaxX += pVelX * dt;
       currentParallaxY += pVelY * dt;
 
-      // 2. Exponential damping on Camera (lambda = 9.0)
-      current.camY = expDamp(current.camY, targets.camY, 9.0, dt);
-      current.camZ = expDamp(current.camZ, targets.camZ, 9.0, dt);
+      // 2. Exponential damping on Camera (lambda = 5.5, composed motion)
+      current.camY = expDamp(current.camY, targets.camY, 5.5, dt);
+      current.camZ = expDamp(current.camZ, targets.camZ, 5.5, dt);
       camera.position.y = current.camY;
       camera.position.z = current.camZ;
 

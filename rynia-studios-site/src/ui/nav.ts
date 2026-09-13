@@ -101,18 +101,31 @@ export function initNav(): void {
   const trackIndicatorHeight = 140; // Total track height in px
   const stepCount = acts.length;
 
+  let lastScrollY = 0;
+  let isHeaderCollapsed = false;
+  const HIDE_THRESHOLD = 140; // Won't collapse on light initial wheel touches
+  const SHOW_THRESHOLD = 60;  // Restores immediately near the top
+
   let ticking = false;
   const onScroll = () => {
     if (!ticking) {
       requestAnimationFrame(() => {
         const scrollY = window.scrollY;
+        const delta = scrollY - lastScrollY;
 
-        // Header collapses to minimal INDEX trigger
-        const isScrolled = scrollY > 80;
-        document.body.classList.toggle('is-scrolled', isScrolled);
-        if (header) {
-          header.classList.toggle('is-scrolled', isScrolled);
+        // Directional hysteresis: collapse only after 140px scrolling downwards
+        // Restore immediately when scrolling up or returning to top
+        if (scrollY > HIDE_THRESHOLD && delta > 2) {
+          isHeaderCollapsed = true;
+        } else if (delta < -2 || scrollY < SHOW_THRESHOLD) {
+          isHeaderCollapsed = false;
         }
+
+        document.body.classList.toggle('is-scrolled', isHeaderCollapsed);
+        if (header) {
+          header.classList.toggle('is-scrolled', isHeaderCollapsed);
+        }
+        lastScrollY = scrollY;
 
         // Determine active act
         const viewportMiddle = scrollY + window.innerHeight * 0.45;

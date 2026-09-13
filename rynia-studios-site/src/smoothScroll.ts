@@ -19,7 +19,8 @@ export function initSmoothScroll(): Lenis {
     autoRaf: false,
     smoothWheel: true,
     syncTouch: false, // Native touch behavior on mobile devices
-    duration: 1.1,
+    wheelMultiplier: 0.85, // Dampens Windows mouse notch jumps
+    duration: 1.0,
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
   });
 
