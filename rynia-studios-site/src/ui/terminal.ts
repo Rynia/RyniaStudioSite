@@ -109,10 +109,11 @@ Contact: <span class="term-green">ryniastudios@gmail.com</span>
   },
 
   guard: {
-    desc: 'Run simulated expo-release-guard pre-flight scan',
+    desc: 'Simulate expo-release-guard pre-flight store safety scan',
     run: async () => {
       return `
-<span class="term-dim">$ npx expo-release-guard --project=./kiler-kitchen-os</span>
+<span class="term-dim">$ npx expo-release-guard --demo</span>
+<span class="term-cyan">[DEMO MODE] Simulating pre-flight static audit on sample Expo SDK 52 project:</span>
 
 [1/5] Checking Android versionCode & release tags... <span class="term-green">PASS</span> (versionCode: 1, v1.0.0)
 [2/5] Auditing Apple Privacy Manifest (ITMS-91053)... <span class="term-green">PASS</span> (NSPrivacyAccessedAPITypes declared)
@@ -123,7 +124,45 @@ Contact: <span class="term-green">ryniastudios@gmail.com</span>
 ==================================================
 🛡️ <span class="term-green">EXPO RELEASE GUARD AUDIT: PASSED (Score: 10/10)</span>
 Ready for Google Play Store & Apple App Store submission.
+Run in your own repo: <span class="term-yellow">npx expo-release-guard</span>
 ==================================================
+`;
+    }
+  },
+
+  whoami: {
+    desc: 'Print current session identity',
+    run: () => `<span class="term-green">guest</span> @ <span class="term-cyan">rynia-studios</span> (ambient atelier explorer)`
+  },
+
+  sudo: {
+    desc: 'Privilege escalation',
+    run: () => `<span style="color:#ef4444">permission denied:</span> nice try! Guest sessions cannot escalate privileges in a local-first sandbox.`
+  },
+
+  rm: {
+    desc: 'Remove files',
+    run: () => `<span style="color:#ef4444">rm: operation prohibited:</span> This atelier operates on an append-only event log. Deletion is an illusion; use undo() instead.`
+  },
+
+  ping: {
+    desc: 'Network ping test',
+    run: () => `64 bytes from local-first: icmp_seq=1 ttl=64 <span class="term-green">time=0.042 ms</span> (100% offline, zero cloud latency)`
+  },
+
+  neofetch: {
+    desc: 'System telemetry overview',
+    run: () => {
+      return `
+<span class="term-cyan">       /\\        </span>  <span class="term-bold">rynia@studios-v1.0.0</span>
+<span class="term-cyan">      /  \\       </span>  --------------------
+<span class="term-cyan">     / /\\ \\      </span>  <span class="term-green">OS:</span> Rynia Ambient WebGL OS
+<span class="term-cyan">    / /  \\ \\     </span>  <span class="term-green">Host:</span> Three.js Spatial Viewport
+<span class="term-cyan">   / / /\\ \\ \\    </span>  <span class="term-green">Kernel:</span> local-first-kernel v1.0.0
+<span class="term-cyan">  / / /  \\ \\ \\   </span>  <span class="term-green">Uptime:</span> 100% (Offline-Ready)
+<span class="term-cyan"> /_/_/____\\_\\_\\  </span>  <span class="term-green">Shell:</span> Rynia CLI v1.0.0
+<span class="term-cyan"> \\_\\_\\____/_/_/  </span>  <span class="term-green">Theme:</span> Dark Obsidian Titanium (#090A0F)
+                 <span class="term-green">Architect:</span> Muharrem Özmen (@Rynia)
 `;
     }
   },
