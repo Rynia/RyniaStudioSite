@@ -6,6 +6,7 @@ import { initTheme } from './ui/theme';
 import { initNav } from './ui/nav';
 import { initReveal } from './ui/reveal';
 import { initNewsletter } from './ui/newsletter';
+import { initTerminal } from './ui/terminal';
 
 // Import smooth scrolling (Lenis + GSAP unified)
 import { initSmoothScroll } from './smoothScroll';
@@ -25,6 +26,7 @@ function init(): void {
   initNav();
   initReveal();
   initNewsletter();
+  initTerminal();
   initNetlifyBadgeFix();
 
   // Initialize language (load preference & bind buttons)

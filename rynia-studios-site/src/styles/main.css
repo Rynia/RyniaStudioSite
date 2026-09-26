@@ -3,6 +3,7 @@
 @import './_hero.css';
 @import './_sections.css';
 @import './_components.css';
+@import './_terminal.css';
 
 /* BASE & RESET STYLES */
 @media (prefers-reduced-motion: reduce) {
