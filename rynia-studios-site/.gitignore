@@ -2,7 +2,7 @@
 node_modules/
 
 # Build çıktıları
-dist/
+# dist/ is tracked for zero-credit Netlify static deploy
 build/
 
 # Test ürünleri
