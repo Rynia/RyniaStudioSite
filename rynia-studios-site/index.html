@@ -1,898 +1,3606 @@
 <!DOCTYPE html>
-<html lang="tr">
+
+<html lang="en">
+
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Rynia Studios — Independent Software &amp; Game Laboratory</title>
-  <meta name="description" content="Rynia Studios: Bağımsız yazılım ve oyun laboratuvarı. Craft over bloat. Yerel öncelikli (Local-First), sıfır takip ve tavizsiz estetik.">
-  <meta name="theme-color" content="#0A0A0E">
-  <meta name="color-scheme" content="dark">
 
-  <!-- Open Graph -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Rynia Studios — Craft over bloat">
-  <meta property="og:description" content="Independent software &amp; game laboratory. Local-first by default.">
-  <meta property="og:url" content="https://ryniastudios.com.tr">
+<meta charset="UTF-8" />
 
-  <!-- Favicon (Inline SVG, Zero Network Overhead) -->
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230A0A0E'/%3E%3Cpath d='M8 25V7h9a5.5 5.5 0 0 1 1 10.9L24 25h-4l-5-6.8H11.5V25z M11.5 10v6h5.4a3 3 0 0 0 0-6z' fill='%23E24A2B'/%3E%3C/svg%3E">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 
-  <style>
-    /* ═══════════════════════════════════════════════════════════════
-       RYNIA STUDIOS // CYBER-EDITORIAL NEO-BRUTALIST SYSTEM
-       100% Zero-Dependency • Titanium Palette • Pure System Fonts
-       ═══════════════════════════════════════════════════════════════ */
-    :root {
-      --bg: #0A0A0E;
-      --surface: #121217;
-      --surface-2: #181822;
-      --border: rgba(237, 233, 224, 0.12);
-      --border-hi: rgba(237, 233, 224, 0.28);
-      --text: #EDE9E0;
-      --text-mid: #9E9C96;
-      --text-dim: #605E5A;
-      --accent: #E24A2B;
-      --accent-soft: rgba(226, 74, 43, 0.14);
-      --emerald: #10B981;
-      --amber: #F59E0B;
-      --mono: ui-monospace, "SF Mono", "Cascadia Code", "Roboto Mono", Menlo, Consolas, monospace;
-      --serif: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
-      --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      --ease: cubic-bezier(0.22, 1, 0.36, 1);
-    }
+<meta name="theme-color" content="#FF5722" />
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; background: var(--bg); scroll-padding-top: 32px; }
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--sans);
-      font-size: 16px;
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-      min-height: 100vh;
-    }
+<meta name="description" content="Rynia Studios — Independent software & game laboratory. Craft over bloat." />
 
-    /* Architectural Background Grid */
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-      background-image:
-        linear-gradient(var(--border) 1px, transparent 1px),
-        linear-gradient(90deg, var(--border) 1px, transparent 1px);
-      background-size: 80px 80px;
-      background-position: -1px -1px;
-      mask-image: radial-gradient(ellipse 90% 75% at 50% 10%, #000 20%, transparent 90%);
-      -webkit-mask-image: radial-gradient(ellipse 90% 75% at 50% 10%, #000 20%, transparent 90%);
-    }
+<meta property="og:title" content="Rynia Studios — Craft over bloat." />
 
-    a { color: inherit; text-decoration: none; }
-    button { font: inherit; background: none; border: none; cursor: pointer; color: inherit; }
-    :focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+<meta property="og:description" content="Independent software & game laboratory. Local-first by default." />
 
-    .wrap {
-      max-width: 1240px;
-      margin: 0 auto;
-      border-left: 1px solid var(--border);
-      border-right: 1px solid var(--border);
-      position: relative;
-      z-index: 1;
-      background: var(--bg);
-    }
+<meta property="og:type" content="website" />
 
-    /* ─── SCROLL INDICATOR BAR ─── */
-    .progress-line {
-      position: fixed;
-      top: 0; left: 0;
-      height: 2px;
-      width: 0%;
-      background: var(--accent);
-      z-index: 9999;
-      box-shadow: 0 0 10px rgba(226, 74, 43, 0.6);
-      transition: width 0.1s linear;
-    }
+<title>Rynia Studios — Craft over bloat.</title>
 
-    /* ─── TOP WIRE STATUS BAR ─── */
-    .top-wire {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 14px 28px;
-      border-bottom: 1px solid var(--border);
-      background: rgba(10, 10, 14, 0.85);
-      backdrop-filter: blur(12px);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-    .brand-mark {
-      font-family: var(--mono);
-      font-size: 13px;
-      font-weight: 800;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .brand-box {
-      width: 24px; height: 24px;
-      border: 1px solid var(--accent);
-      color: var(--accent);
-      display: grid;
-      place-items: center;
-      font-size: 13px;
-      font-weight: 900;
-    }
-    .top-nav {
-      display: flex;
-      gap: 24px;
-    }
-    .top-nav a {
-      font-family: var(--mono);
-      font-size: 11px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--text-mid);
-      transition: color 0.2s;
-    }
-    .top-nav a:hover { color: var(--text); }
-    .status-badge {
-      font-family: var(--mono);
-      font-size: 10px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--emerald);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .dot {
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: var(--emerald);
-      box-shadow: 0 0 8px var(--emerald);
-      animation: pulse 2.2s infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.85); }
-    }
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23FF5722'/%3E%3Ctext x='16' y='22' font-family='monospace' font-size='18' font-weight='800' fill='%23ECE8E1' text-anchor='middle'%3ER%3C/text%3E%3C/svg%3E" />
 
-    /* ─── HERO SECTION ─── */
-    .hero {
-      padding: 88px 32px 0;
-      border-bottom: 1px solid var(--border);
-    }
-    .hero-meta-row {
-      display: flex;
-      justify-content: space-between;
-      font-family: var(--mono);
-      font-size: 11px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--text-dim);
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 18px;
-      margin-bottom: 48px;
-    }
-    .hero-meta-row span b { color: var(--accent); }
-    h1 {
-      font-family: var(--serif);
-      font-size: clamp(52px, 11vw, 150px);
-      line-height: 0.92;
-      font-weight: 400;
-      letter-spacing: -0.04em;
-      margin-bottom: 36px;
-    }
-    h1 em {
-      font-style: italic;
-      color: var(--accent);
-    }
-    .hero-sub {
-      display: grid;
-      grid-template-columns: 1.4fr 1fr;
-      gap: 48px;
-      align-items: end;
-      padding-bottom: 64px;
-    }
-    .hero-desc {
-      font-size: clamp(17px, 2vw, 22px);
-      line-height: 1.45;
-      color: var(--text-mid);
-      max-width: 38ch;
-    }
-    .hero-desc strong { color: var(--text); font-weight: 500; }
-    .hero-actions {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 14px;
-    }
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      padding: 14px 24px;
-      font-family: var(--mono);
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      border: 1px solid var(--text);
-      transition: all 0.2s var(--ease);
-    }
-    .btn.primary {
-      background: var(--text);
-      color: var(--bg);
-    }
-    .btn.primary:hover {
-      background: var(--accent);
-      border-color: var(--accent);
-      color: #FFF;
-      transform: translateY(-2px);
-    }
-    .btn.ghost {
-      border-color: var(--border-hi);
-      color: var(--text-mid);
-    }
-    .btn.ghost:hover {
-      color: var(--accent);
-      border-color: var(--accent);
-    }
+<style>
 
-    /* Hero Strip */
-    .hero-specs {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      border-top: 1px solid var(--border);
-      margin: 0 -32px;
-    }
-    .spec-item {
-      padding: 20px 32px;
-      border-right: 1px solid var(--border);
-    }
-    .spec-item:last-child { border-right: none; }
-    .spec-k {
-      font-family: var(--mono);
-      font-size: 10px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--text-dim);
-      margin-bottom: 6px;
-    }
-    .spec-v {
-      font-family: var(--serif);
-      font-size: 22px;
-      color: var(--text);
-    }
-    .spec-v em { font-style: italic; color: var(--accent); }
+/* ═══════════════════════════════════════════════════════════════
 
-    /* Industrial Marquee Ticker */
-    .ticker {
-      border-bottom: 1px solid var(--border);
-      overflow: hidden;
-      padding: 14px 0;
-      background: var(--accent);
-      color: #0A0A0E;
-      font-family: var(--mono);
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-    .ticker-content {
-      display: inline-block;
-      animation: marquee 32s linear infinite;
-    }
-    @keyframes marquee {
-      from { transform: translateX(0); }
-      to { transform: translateX(-50%); }
-    }
+   RYNIA STUDIOS — HYBRID EDITORIAL + CANVAS SCROLL
 
-    /* ─── SECTION ARCHITECTURE ─── */
-    section {
-      display: grid;
-      grid-template-columns: 240px 1fr;
-      border-bottom: 1px solid var(--border);
-    }
-    .section-sidebar {
-      padding: 48px 28px;
-      border-right: 1px solid var(--border);
-      font-family: var(--mono);
-      font-size: 11px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--text-dim);
-    }
-    .section-sidebar b {
-      display: block;
-      color: var(--text);
-      font-size: 13px;
-      margin-bottom: 4px;
-    }
-    .section-body {
-      padding: 72px 48px;
-    }
-    h2 {
-      font-family: var(--serif);
-      font-size: clamp(32px, 5vw, 64px);
-      font-weight: 400;
-      line-height: 1.05;
-      letter-spacing: -0.03em;
-      margin-bottom: 20px;
-    }
-    h2 em { font-style: italic; color: var(--accent); }
-    .lead-text {
-      font-size: 17px;
-      color: var(--text-mid);
-      max-width: 44ch;
-      line-height: 1.6;
-      margin-bottom: 48px;
-    }
+   ═══════════════════════════════════════════════════════════════ */
 
-    /* ─── 01 // MANIFESTO ─── */
-    .manifesto-cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      border: 1px solid var(--border);
-    }
-    .m-card {
-      padding: 32px 28px;
-      border-right: 1px solid var(--border);
-      background: var(--surface);
-      transition: background 0.25s;
-    }
-    .m-card:last-child { border-right: none; }
-    .m-card:hover { background: var(--surface-2); }
-    .m-num {
-      font-family: var(--mono);
-      font-size: 11px;
-      color: var(--accent);
-      font-weight: 800;
-      letter-spacing: 0.15em;
-      margin-bottom: 16px;
-    }
-    .m-card h3 {
-      font-family: var(--mono);
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-      color: var(--text);
-    }
-    .m-card p {
-      font-size: 14px;
-      color: var(--text-mid);
-      line-height: 1.6;
-    }
+:root {
 
-    /* ─── 02 // FLAGSHIP: KALANLA ─── */
-    .flagship-split {
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 48px;
-      align-items: start;
-    }
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 12px;
-      font-family: var(--mono);
-      font-size: 11px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      border: 1px solid rgba(226, 74, 43, 0.4);
-      background: rgba(226, 74, 43, 0.08);
-      color: var(--accent);
-      margin-bottom: 24px;
-    }
-    .pill .dot-amber {
-      width: 6px; height: 6px;
-      background: var(--amber);
-      border-radius: 50%;
-      box-shadow: 0 0 6px var(--amber);
-    }
-    .flagship-features {
-      list-style: none;
-      border-top: 1px solid var(--border);
-      margin: 36px 0;
-    }
-    .flagship-features li {
-      display: grid;
-      grid-template-columns: 140px 1fr;
-      padding: 14px 0;
-      border-bottom: 1px solid var(--border);
-      font-size: 14px;
-      gap: 16px;
-    }
-    .flagship-features b {
-      font-family: var(--mono);
-      font-size: 11px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--accent);
-    }
-    .flagship-features span { color: var(--text-mid); }
+  /* Palette */
 
-    /* The Photorealistic Thermal Receipt CSS */
-    .receipt-wrapper {
-      display: flex;
-      justify-content: center;
-      padding-top: 24px;
-    }
-    .receipt {
-      width: 100%;
-      max-width: 320px;
-      background: #EAE5D9;
-      color: #1A1713;
-      padding: 24px 20px 32px;
-      font-family: var(--mono);
-      font-size: 11px;
-      line-height: 1.5;
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
-      transform: rotate(1.2deg);
-      border: 1px solid #D1CAC0;
-      mask: conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) 50%/14px 100%;
-      -webkit-mask: conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) 50%/14px 100%;
-      transition: transform 0.3s;
-    }
-    .receipt:hover { transform: rotate(0deg) scale(1.02); }
-    .r-head {
-      text-align: center;
-      border-bottom: 2px dashed rgba(26, 23, 19, 0.4);
-      padding-bottom: 10px;
-      margin-bottom: 12px;
-    }
-    .r-head h4 { font-size: 14px; font-weight: 900; letter-spacing: 0.14em; }
-    .r-head span { font-size: 9px; color: #6E685E; }
-    .r-row { display: flex; justify-content: space-between; margin: 3px 0; }
-    .r-divider {
-      border-top: 2px dashed rgba(26, 23, 19, 0.4);
-      margin: 10px 0;
-      padding-top: 10px;
-    }
-    .r-total {
-      display: flex;
-      justify-content: space-between;
-      font-weight: 900;
-      font-size: 13px;
-    }
-    .r-durum {
-      background: #1A1713;
-      color: #EAE5D9;
-      text-align: center;
-      padding: 8px;
-      margin-top: 12px;
-      font-weight: 800;
-      font-size: 10px;
-    }
+  --orange:       #FF5722;
 
-    /* ─── 03 // THE VAULT (GAMES & EXPERIMENTS) ─── */
-    .vault-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      border: 1px solid var(--border);
-    }
-    .vault-card {
-      padding: 32px 28px;
-      border-right: 1px solid var(--border);
-      background: var(--surface);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      min-height: 280px;
-      transition: all 0.25s;
-    }
-    .vault-card:last-child { border-right: none; }
-    .vault-card:hover { background: var(--surface-2); }
-    .vault-top {
-      display: flex;
-      justify-content: space-between;
-      font-family: var(--mono);
-      font-size: 10px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--text-dim);
-      margin-bottom: 24px;
-    }
-    .vault-top span:last-child { color: var(--amber); }
-    .vault-card h3 {
-      font-family: var(--serif);
-      font-size: 26px;
-      font-weight: 400;
-      letter-spacing: -0.02em;
-      margin-bottom: 12px;
-    }
-    .redact {
-      background: var(--text);
-      color: transparent;
-      padding: 0 4px;
-      user-select: none;
-      transition: background 0.3s, color 0.3s;
-    }
-    .vault-card:hover .redact {
-      background: transparent;
-      color: var(--accent);
-    }
-    .vault-card p {
-      font-size: 13px;
-      color: var(--text-mid);
-      line-height: 1.6;
-    }
+  --orange-hot:   #FF6B3D;
 
-    /* ─── 04 // COLOPHON & DIRECT WIRE ─── */
-    .colophon-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      border: 1px solid var(--border);
-      margin-top: 40px;
-    }
-    .col-cell {
-      padding: 28px;
-      border-right: 1px solid var(--border);
-      background: var(--surface);
-    }
-    .col-cell:last-child { border-right: none; }
-    .col-cell h4 {
-      font-family: var(--mono);
-      font-size: 11px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--text-dim);
-      margin-bottom: 18px;
-    }
-    .col-cell a {
-      display: block;
-      font-family: var(--mono);
-      font-size: 13px;
-      color: var(--text-mid);
-      margin-bottom: 10px;
-      transition: color 0.2s;
-    }
-    .col-cell a:hover { color: var(--accent); }
+  --orange-deep:  #E64A19;
 
-    /* ─── FOOTER ─── */
-    footer {
-      padding: 32px 36px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-family: var(--mono);
-      font-size: 11px;
-      letter-spacing: 0.1em;
-      color: var(--text-dim);
-      border-top: 1px solid var(--border);
-    }
+  --cream:        #ECE8E1;
 
-    /* Reveal Animations */
-    .reveal {
-      opacity: 0;
-      transform: translateY(18px);
-      transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
-    }
-    .reveal.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  --cream-soft:   #F4F1EA;
 
-    /* Responsive */
-    @media (max-width: 900px) {
-      section { grid-template-columns: 1fr; }
-      .section-sidebar { border-right: none; border-bottom: 1px solid var(--border); padding: 24px 32px; }
-      .section-body { padding: 48px 32px; }
-      .manifesto-cards, .vault-grid, .colophon-grid { grid-template-columns: 1fr; }
-      .m-card, .vault-card, .col-cell { border-right: none; border-bottom: 1px solid var(--border); }
-      .flagship-split { grid-template-columns: 1fr; }
-      .top-nav { display: none; }
-      .hero-sub { grid-template-columns: 1fr; }
-      .hero-specs { grid-template-columns: 1fr; margin: 0 -32px; }
-      .spec-item { border-right: none; border-bottom: 1px solid var(--border); }
-    }
-  </style>
+  --paper-edge:   #D9D3C7;
+
+  --ink:          #1A1614;
+
+  --ink-soft:     #3B342E;
+
+  --ink-mute:     #7A726A;
+
+  --emerald:      #10B981;
+
+  --amber:        #F59E0B;
+
+  /* Type */
+
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+
+  --mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  --serif: 'Iowan Old Style', Palatino, Georgia, serif;
+
+  /* Motion */
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --gutter: clamp(1.25rem, 4vw, 3.5rem);
+
+}
+
+/* ═══════════════ RESET ═══════════════ */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+
+  font-family: var(--sans);
+
+  background: var(--orange);
+
+  color: var(--ink);
+
+  font-size: 16px;
+
+  line-height: 1.5;
+
+  -webkit-font-smoothing: antialiased;
+
+  -moz-osx-font-smoothing: grayscale;
+
+  overflow-x: hidden;
+
+  min-height: 100vh;
+
+}
+
+img, svg, canvas { display: block; max-width: 100%; }
+
+a { color: inherit; text-decoration: none; }
+
+button { font: inherit; background: none; border: none; cursor: pointer; color: inherit; }
+
+ul, ol { list-style: none; }
+
+@media (prefers-reduced-motion: reduce) {
+
+  *, *::before, *::after {
+
+    animation-duration: 0.01ms !important;
+
+    transition-duration: 0.01ms !important;
+
+  }
+
+}
+
+/* ═══════════════ LAYOUT SHELL ═══════════════ */
+
+.outer {
+
+  min-height: 100vh;
+
+  padding: clamp(0.75rem, 2vw, 1.5rem);
+
+}
+
+.paper {
+
+  background: var(--cream);
+
+  border-radius: 24px;
+
+  box-shadow:
+
+    0 0 0 1px rgba(0,0,0,0.06),
+
+    0 30px 60px -20px rgba(80, 20, 0, 0.35);
+
+  overflow: hidden;
+
+  position: relative;
+
+  /* Subtle paper noise via tiny repeating SVG */
+
+  background-image:
+
+    radial-gradient(circle at 20% 30%, rgba(255,255,255,0.5), transparent 40%),
+
+    radial-gradient(circle at 80% 70%, rgba(217,211,199,0.35), transparent 50%);
+
+}
+
+.wrap {
+
+  max-width: 1480px;
+
+  margin: 0 auto;
+
+  padding: 0 var(--gutter);
+
+}
+
+/* ═══════════════ NAV ═══════════════ */
+
+.nav {
+
+  position: sticky;
+
+  top: 0;
+
+  z-index: 100;
+
+  padding: 18px 0;
+
+  background: rgba(236, 232, 225, 0.85);
+
+  backdrop-filter: saturate(150%) blur(14px);
+
+  -webkit-backdrop-filter: saturate(150%) blur(14px);
+
+  border-bottom: 1px solid rgba(26, 22, 20, 0.08);
+
+}
+
+.nav-inner {
+
+  display: grid;
+
+  grid-template-columns: 1fr auto 1fr;
+
+  align-items: center;
+
+  gap: 1.5rem;
+
+}
+
+.nav-links {
+
+  display: flex;
+
+  gap: clamp(0.75rem, 2vw, 1.75rem);
+
+  align-items: center;
+
+}
+
+.nav-links a {
+
+  font-family: var(--mono);
+
+  font-size: 11px;
+
+  font-weight: 600;
+
+  letter-spacing: 0.12em;
+
+  text-transform: uppercase;
+
+  color: var(--ink-soft);
+
+  transition: color 0.2s var(--ease);
+
+  position: relative;
+
+  padding: 4px 0;
+
+}
+
+.nav-links a:hover { color: var(--orange); }
+
+.nav-links a::after {
+
+  content: '';
+
+  position: absolute;
+
+  bottom: 0; left: 0;
+
+  width: 0; height: 1px;
+
+  background: var(--orange);
+
+  transition: width 0.3s var(--ease);
+
+}
+
+.nav-links a:hover::after { width: 100%; }
+
+.nav-brand {
+
+  font-family: var(--mono);
+
+  font-weight: 800;
+
+  font-size: 13px;
+
+  letter-spacing: 0.2em;
+
+  text-transform: uppercase;
+
+  color: var(--ink);
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  justify-self: center;
+
+}
+
+.nav-brand-mark {
+
+  width: 24px; height: 24px;
+
+  background: var(--orange);
+
+  color: var(--cream);
+
+  display: grid;
+
+  place-items: center;
+
+  border-radius: 5px;
+
+  font-weight: 900;
+
+  font-size: 13px;
+
+  font-family: var(--mono);
+
+}
+
+.nav-actions {
+
+  display: flex;
+
+  gap: 8px;
+
+  justify-self: end;
+
+}
+
+.nav-icon {
+
+  width: 36px; height: 36px;
+
+  display: grid;
+
+  place-items: center;
+
+  border: 1px solid rgba(26,22,20,0.12);
+
+  border-radius: 50%;
+
+  color: var(--ink-soft);
+
+  transition: all 0.25s var(--ease);
+
+}
+
+.nav-icon:hover { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+
+@media (max-width: 900px) {
+
+  .nav-inner { grid-template-columns: auto 1fr auto; }
+
+  .nav-links { display: none; }
+
+  .nav-brand { justify-self: start; }
+
+}
+
+/* ═══════════════ HERO — 3 COLUMN EDITORIAL ═══════════════ */
+
+.hero {
+
+  padding: clamp(2.5rem, 6vh, 4rem) 0 clamp(3rem, 8vh, 5rem);
+
+  position: relative;
+
+}
+
+.hero-grid {
+
+  display: grid;
+
+  grid-template-columns: 1.4fr 1fr 0.85fr;
+
+  gap: clamp(1.5rem, 3vw, 3rem);
+
+  align-items: start;
+
+  min-height: 62vh;
+
+}
+
+@media (max-width: 1024px) {
+
+  .hero-grid { grid-template-columns: 1fr; min-height: auto; }
+
+}
+
+/* ── LEFT COLUMN ── */
+
+.hero-left { display: flex; flex-direction: column; gap: 2rem; }
+
+.tag-row { display: flex; gap: 10px; flex-wrap: wrap; }
+
+.tag {
+
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  padding: 7px 14px;
+
+  background: var(--orange);
+
+  color: var(--cream);
+
+  border-radius: 999px;
+
+  font-family: var(--mono);
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.14em;
+
+  text-transform: uppercase;
+
+}
+
+.tag.dark {
+
+  background: var(--ink);
+
+  color: var(--cream);
+
+}
+
+.tag.outline {
+
+  background: transparent;
+
+  color: var(--ink);
+
+  border: 1px solid rgba(26,22,20,0.2);
+
+}
+
+.tag .pulse {
+
+  width: 6px; height: 6px;
+
+  background: var(--cream);
+
+  border-radius: 50%;
+
+  animation: pulse 2s ease-in-out infinite;
+
+}
+
+.tag.dark .pulse { background: var(--emerald); box-shadow: 0 0 8px var(--emerald); }
+
+@keyframes pulse {
+
+  0%, 100% { opacity: 1; }
+
+  50% { opacity: 0.35; }
+
+}
+
+.hero-title {
+
+  font-family: var(--sans);
+
+  font-size: clamp(3rem, 9vw, 7.5rem);
+
+  font-weight: 800;
+
+  line-height: 0.88;
+
+  letter-spacing: -0.05em;
+
+  color: var(--ink);
+
+  text-transform: uppercase;
+
+}
+
+.hero-title .accent {
+
+  font-family: var(--serif);
+
+  font-style: italic;
+
+  font-weight: 400;
+
+  color: var(--orange);
+
+  text-transform: none;
+
+  letter-spacing: -0.02em;
+
+}
+
+.hero-title .outlined {
+
+  -webkit-text-stroke: 2px var(--ink);
+
+  color: transparent;
+
+}
+
+.hero-desc {
+
+  font-size: clamp(0.95rem, 1.4vw, 1.1rem);
+
+  line-height: 1.55;
+
+  color: var(--ink-soft);
+
+  max-width: 44ch;
+
+}
+
+.hero-desc strong { color: var(--ink); font-weight: 600; }
+
+.hero-cta-row {
+
+  display: flex;
+
+  gap: 12px;
+
+  flex-wrap: wrap;
+
+  align-items: center;
+
+}
+
+.btn {
+
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 14px 22px;
+
+  border-radius: 999px;
+
+  font-family: var(--mono);
+
+  font-size: 11px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.14em;
+
+  text-transform: uppercase;
+
+  transition: all 0.25s var(--ease);
+
+  border: 1.5px solid var(--ink);
+
+  background: var(--ink);
+
+  color: var(--cream);
+
+  cursor: pointer;
+
+}
+
+.btn:hover { background: var(--orange); border-color: var(--orange); transform: translateY(-2px); }
+
+.btn.ghost {
+
+  background: transparent;
+
+  color: var(--ink);
+
+}
+
+.btn.ghost:hover { background: var(--ink); color: var(--cream); }
+
+.btn .arrow { transition: transform 0.25s var(--ease); }
+
+.btn:hover .arrow { transform: translateX(3px); }
+
+/* ── MIDDLE COLUMN — TORN PAPER PORTRAIT ── */
+
+.hero-center {
+
+  position: relative;
+
+  aspect-ratio: 4 / 5;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  isolation: isolate;
+
+}
+
+.torn-paper-wrap {
+
+  position: relative;
+
+  width: 100%;
+
+  height: 100%;
+
+  filter: drop-shadow(0 20px 40px rgba(80, 20, 0, 0.18));
+
+}
+
+.torn-paper-wrap svg { width: 100%; height: 100%; }
+
+.portrait {
+
+  position: absolute;
+
+  inset: 8% 10%;
+
+  background:
+
+    radial-gradient(circle at 35% 30%, #FFD9C2 0%, transparent 55%),
+
+    radial-gradient(circle at 65% 65%, #FFA07A 0%, transparent 50%),
+
+    linear-gradient(135deg, #FF8A65 0%, #FF5722 50%, #D84315 100%);
+
+  border-radius: 4px;
+
+  overflow: hidden;
+
+  z-index: 2;
+
+  display: grid;
+
+  place-items: center;
+
+}
+
+.portrait::before {
+
+  content: '';
+
+  position: absolute;
+
+  inset: 0;
+
+  background-image:
+
+    repeating-linear-gradient(45deg, transparent 0, transparent 8px, rgba(0,0,0,0.04) 8px, rgba(0,0,0,0.04) 9px);
+
+  opacity: 0.5;
+
+}
+
+.portrait-mark {
+
+  position: relative;
+
+  z-index: 3;
+
+  font-family: var(--serif);
+
+  font-style: italic;
+
+  font-size: clamp(4rem, 12vw, 8rem);
+
+  color: var(--cream);
+
+  line-height: 0.9;
+
+  text-align: center;
+
+  text-shadow: 0 4px 20px rgba(0,0,0,0.25);
+
+}
+
+.portrait-mark small {
+
+  display: block;
+
+  font-family: var(--mono);
+
+  font-style: normal;
+
+  font-size: 10px;
+
+  letter-spacing: 0.3em;
+
+  margin-top: 12px;
+
+  text-transform: uppercase;
+
+  opacity: 0.85;
+
+}
+
+/* Decorative SVG stars / arrows */
+
+.deco {
+
+  position: absolute;
+
+  pointer-events: none;
+
+  z-index: 5;
+
+  color: var(--ink);
+
+}
+
+.deco-star { top: -4%; right: -6%; width: 64px; animation: spin 24s linear infinite; }
+
+.deco-arrow { bottom: 4%; left: -8%; width: 90px; }
+
+.deco-circle { top: 50%; right: -10%; width: 26px; }
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+@media (prefers-reduced-motion: reduce) { .deco-star { animation: none; } }
+
+/* ── RIGHT COLUMN — STATUS CARD ── */
+
+.hero-right { display: flex; flex-direction: column; gap: 1rem; }
+
+.status-card {
+
+  background: var(--ink);
+
+  color: var(--cream);
+
+  border-radius: 20px;
+
+  padding: 1.5rem 1.5rem 1.25rem;
+
+  position: relative;
+
+  overflow: hidden;
+
+}
+
+.status-card::before {
+
+  content: '';
+
+  position: absolute;
+
+  top: 0; right: 0;
+
+  width: 90px; height: 90px;
+
+  background: radial-gradient(circle, rgba(255,87,34,0.35), transparent 70%);
+
+  transform: translate(30%, -30%);
+
+}
+
+.status-card .k {
+
+  font-family: var(--mono);
+
+  font-size: 10px;
+
+  letter-spacing: 0.2em;
+
+  text-transform: uppercase;
+
+  color: rgba(236,232,225,0.5);
+
+  margin-bottom: 6px;
+
+}
+
+.status-card .v {
+
+  font-family: var(--mono);
+
+  font-size: 28px;
+
+  font-weight: 800;
+
+  letter-spacing: -0.02em;
+
+  color: var(--cream);
+
+  line-height: 1;
+
+}
+
+.status-card .v em { color: var(--emerald); font-style: normal; }
+
+.status-card .sub {
+
+  font-family: var(--mono);
+
+  font-size: 10px;
+
+  letter-spacing: 0.14em;
+
+  text-transform: uppercase;
+
+  color: rgba(236,232,225,0.4);
+
+  margin-top: 8px;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+}
+
+.status-clock {
+
+  font-family: var(--mono);
+
+  font-size: 11px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.15em;
+
+  color: var(--orange-hot);
+
+}
+
+.mini-card {
+
+  background: rgba(26,22,20,0.05);
+
+  border: 1px solid rgba(26,22,20,0.1);
+
+  border-radius: 16px;
+
+  padding: 1.1rem 1.25rem;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+}
+
+.mini-card-icon {
+
+  width: 34px; height: 34px;
+
+  border-radius: 10px;
+
+  background: var(--orange);
+
+  color: var(--cream);
+
+  display: grid;
+
+  place-items: center;
+
+  flex-shrink: 0;
+
+}
+
+.mini-card-body { flex: 1; min-width: 0; }
+
+.mini-card-title {
+
+  font-family: var(--mono);
+
+  font-size: 11px;
+
+  font-weight: 800;
+
+  letter-spacing: 0.12em;
+
+  text-transform: uppercase;
+
+  color: var(--ink);
+
+}
+
+.mini-card-meta {
+
+  font-family: var(--mono);
+
+  font-size: 10px;
+
+  color: var(--ink-mute);
+
+  letter-spacing: 0.06em;
+
+  margin-top: 2px;
+
+}
+
+/* ═══════════════ CANVAS SCROLL SECTION ═══════════════ */
+
+.canvas-section {
+
+  position: relative;
+
+  background: var(--orange);
+
+  padding: clamp(3rem, 8vh, 5rem) 0;
+
+  overflow: hidden;
+
+}
+
+.canvas-stage {
+
+  position: relative;
+
+  width: 100%;
+
+  aspect-ratio: 16 / 10;
+
+  background: var(--ink);
+
+  border-radius: 24px;
+
+  overflow: hidden;
+
+  box-shadow:
+
+    0 40px 80px -20px rgba(80, 20, 0, 0.4),
+
+    inset 0 0 0 1px rgba(255,255,255,0.05);
+
+}
+
+@media (max-width: 720px) { .canvas-stage { aspect-ratio: 4 / 5; border-radius: 16px; } }
+
+.canvas {
+
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+
+  height: 100%;
+
+}
+
+.canvas-overlay {
+
+  position: absolute;
+
+  inset: 0;
+
+  pointer-events: none;
+
+  z-index: 3;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: space-between;
+
+  padding: clamp(1rem, 3vw, 2rem);
+
+}
+
+.canvas-hud-top {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: flex-start;
+
+  gap: 1rem;
+
+  font-family: var(--mono);
+
+  font-size: 10px;
+
+  letter-spacing: 0.18em;
+
+  text-transform: uppercase;
+
+  color: rgba(236,232,225,0.7);
+
+}
+
+.canvas-hud-top .live {
+
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  color: var(--emerald);
+
+}
+
+.canvas-hud-top .live::before {
+
+  content: '';
+
+  width: 6px; height: 6px;
+
+  background: var(--emerald);
+
+  border-radius: 50%;
+
+  box-shadow: 0 0 8px var(--emerald);
+
+  animation: pulse 1.6s ease-in-out infinite;
+
+}
+
+.canvas-hud-bottom {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: flex-end;
+
+  gap: 1rem;
+
+  font-family: var(--mono);
+
+  font-size: 11px;
+
+  letter-spacing: 0.14em;
+
+  text-transform: uppercase;
+
+  color: rgba(236,232,225,0.75);
+
+}
+
+.canvas-hud-bottom .title {
+
+  font-family: var(--serif);
+
+  font-style: italic;
+
+  font-size: clamp(1.25rem, 3vw, 2rem);
+
+  text-transform: none;
+
+  letter-spacing: -0.01em;
+
+  color: var(--cream);
+
+  line-height: 1.1;
+
+}
+
+.canvas-hud-bottom .title em { color: var(--orange-hot); }
+
+.canvas-progress {
+
+  width: 180px;
+
+  height: 2px;
+
+  background: rgba(236,232,225,0.15);
+
+  border-radius: 2px;
+
+  overflow: hidden;
+
+  position: relative;
+
+  margin-bottom: 6px;
+
+}
+
+.canvas-progress-fill {
+
+  position: absolute;
+
+  top: 0; left: 0; bottom: 0;
+
+  width: 0%;
+
+  background: var(--orange-hot);
+
+  transition: width 0.08s linear;
+
+}
+
+.canvas-counter {
+
+  font-family: var(--mono);
+
+  font-size: 10px;
+
+  color: rgba(236,232,225,0.55);
+
+  letter-spacing: 0.12em;
+
+}
+
+.canvas-fallback {
+
+  position: absolute;
+
+  inset: 0;
+
+  display: grid;
+
+  place-items: center;
+
+  z-index: 2;
+
+  background: radial-gradient(circle at 50% 40%, #2A2622 0%, var(--ink) 70%);
+
+  text-align: center;
+
+  padding: 2rem;
+
+  transition: opacity 0.6s var(--ease);
+
+}
+
+.canvas-fallback.hidden { opacity: 0; pointer-events: none; }
+
+.canvas-fallback-inner { max-width: 320px; }
+
+.canvas-fallback-mark {
+
+  width: 68px; height: 68px;
+
+  border: 1px solid rgba(236,232,225,0.2);
+
+  border-radius: 50%;
+
+  display: grid;
+
+  place-items: center;
+
+  margin: 0 auto 20px;
+
+  color: var(--orange-hot);
+
+  animation: fallbackPulse 2s ease-in-out infinite;
+
+}
+
+@keyframes fallbackPulse {
+
+  0%, 100% { transform: scale(1); opacity: 0.7; }
+
+  50% { transform: scale(1.08); opacity: 1; }
+
+}
+
+.canvas-fallback-mark svg { width: 28px; height: 28px; }
+
+.canvas-fallback h4 {
+
+  font-family: var(--mono);
+
+  font-size: 11px;
+
+  letter-spacing: 0.2em;
+
+  text-transform: uppercase;
+
+  color: var(--cream);
+
+  margin-bottom: 8px;
+
+}
+
+.canvas-fallback p {
+
+  font-family: var(--mono);
+
+  font-size: 10px;
+
+  letter-spacing: 0.08em;
+
+  color: rgba(236,232,225,0.45);
+
+  line-height: 1.6;
+
+}
+
+.canvas-loading {
+
+  margin-top: 16px;
+
+  width: 180px;
+
+  height: 2px;
+
+  background: rgba(236,232,225,0.12);
+
+  border-radius: 2px;
+
+  margin-left: auto;
+
+  margin-right: auto;
+
+  overflow: hidden;
+
+  position: relative;
+
+}
+
+.canvas-loading-fill {
+
+  position: absolute;
+
+  inset: 0;
+
+  width: 0%;
+
+  background: var(--orange-hot);
+
+  transition: width 0.2s linear;
+
+}
+
+/* ═══════════════ SECTION SHELL ═══════════════ */
+
+.section {
+
+  padding: clamp(3.5rem, 10vh, 7rem) 0;
+
+  position: relative;
+
+}
+
+.section + .section {
+
+  border-top: 1px solid rgba(26,22,20,0.08);
+
+}
+
+.section-head {
+
+  display: flex;
+
+  align-items: baseline;
+
+  justify-content: space-between;
+
+  gap: 2rem;
+
+  padding-bottom: 2.5rem;
+
+  margin-bottom: 3rem;
+
+  border-bottom: 1px solid rgba(26,22,20,0.1);
+
+  flex-wrap: wrap;
+
+}
+
+.section-num {
+
+  font-family: var(--mono);
+
+  font-size: 11px;
+
+  letter-spacing: 0.22em;
+
+  text-transform: uppercase;
+
+  color: var(--orange);
+
+  font-weight: 700;
+
+}
+
+.section-title {
+
+  font-family: var(--sans);
+
+  font-size: clamp(2rem, 5vw, 3.5rem);
+
+  font-weight: 800;
+
+  line-height: 1;
+
+  letter-spacing: -0.035em;
+
+  margin-top: 1rem;
+
+  max-width: 22ch;
+
+  text-transform: uppercase;
+
+}
+
+.section-title .accent {
+
+  font-family: var(--serif);
+
+  font-style: italic;
+
+  font-weight: 400;
+
+  color: var(--orange);
+
+  text-transform: none;
+
+  letter-spacing: -0.01em;
+
+}
+
+.section-meta {
+
+  font-family: var(--mono);
+
+  font-size: 10px;
+
+  letter-spacing: 0.2em;
+
+  text-transform: uppercase;
+
+  color: var(--ink-mute);
+
+  text-align: right;
+
+  min-width: 160px;
+
+}
+
+@media (max-width: 720px) { .section-meta { text-align: left; } }
+
+/* ═══════════════ MANIFESTO ═══════════════ */
+
+.manifesto-list {
+
+  border-top: 1px solid rgba(26,22,20,0.1);
+
+}
+
+.manifesto-item {
+
+  display: grid;
+
+  grid-template-columns: 80px 1fr 1.5fr;
+
+  gap: clamp(1rem, 4vw, 3rem);
+
+  padding: 2rem 0;
+
+  border-bottom: 1px solid rgba(26,22,20,0.1);
+
+  transition: padding 0.3s var(--ease);
+
+}
+
+.manifesto-item:hover { padding-left: 12px; }
+
+.manifesto-item .num {
+
+  font-family: var(--mono);
+
+  font-size: 11px;
+
+  color: var(--ink-mute);
+
+  letter-spacing: 0.2em;
+
+  padding-top: 6px;
+
+}
+
+.manifesto-item h3 {
+
+  font-family: var(--sans);
+
+  font-size: clamp(1.35rem, 2.5vw, 1.9rem);
+
+  font-weight: 700;
+
+  line-height: 1.15;
+
+  letter-spacing: -0.02em;
+
+  color: var(--ink);
+
+  text-transform: uppercase;
+
+}
+
+.manifesto-item h3 em {
+
+  font-family: var(--serif);
+
+  font-style: italic;
+
+  font-weight: 400;
+
+  text-transform: none;
+
+  color: var(--orange);
+
+  letter-spacing: -0.01em;
+
+}
+
+.manifesto-item p {
+
+  font-size: 15px;
+
+  line-height: 1.6;
+
+  color: var(--ink-soft);
+
+  max-width: 55ch;
+
+}
+
+@media (max-width: 720px) {
+
+  .manifesto-item { grid-template-columns: 1fr; gap: 0.5rem; padding: 1.5rem 0; }
+
+  .manifesto-item .num { padding-top: 0; }
+
+}
+
+/* ═══════════════ KALANLA SPOTLIGHT ═══════════════ */
+
+.kalanla {
+
+  background: var(--ink);
+
+  color: var(--cream);
+
+  margin: 0;
+
+  padding: clamp(4rem, 12vh, 8rem) 0;
+
+  border-radius: 24px;
+
+}
+
+.kalanla .section-head { border-bottom-color: rgba(236,232,225,0.12); }
+
+.kalanla .section-num { color: var(--orange-hot); }
+
+.kalanla .section-title { color: var(--cream); }
+
+.kalanla .section-title .accent { color: var(--orange-hot); }
+
+.kalanla .section-meta { color: rgba(236,232,225,0.5); }
+
+.kalanla-grid {
+
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: clamp(2rem, 6vw, 5rem);
+
+  align-items: center;
+
+}
+
+@media (max-width: 900px) { .kalanla-grid { grid-template-columns: 1fr; } }
+
+.kalanla-pill {
+
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 8px 16px;
+
+  background: rgba(16, 185, 129, 0.12);
+
+  border: 1px solid rgba(16, 185, 129, 0.4);
+
+  border-radius: 999px;
+
+  font-family: var(--mono);
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.18em;
+
+  text-transform: uppercase;
+
+  color: var(--emerald);
+
+  margin-bottom: 1.5rem;
+
+}
+
+.kalanla-pill::before {
+
+  content: '';
+
+  width: 6px; height: 6px;
+
+  background: var(--emerald);
+
+  border-radius: 50%;
+
+  box-shadow: 0 0 8px var(--emerald);
+
+}
+
+.kalanla h2 {
+
+  font-family: var(--sans);
+
+  font-size: clamp(3rem, 8vw, 6rem);
+
+  font-weight: 800;
+
+  line-height: 0.92;
+
+  letter-spacing: -0.045em;
+
+  text-transform: uppercase;
+
+  color: var(--cream);
+
+  margin-bottom: 1rem;
+
+}
+
+.kalanla h2 .accent {
+
+  font-family: var(--serif);
+
+  font-style: italic;
+
+  font-weight: 400;
+
+  color: var(--orange-hot);
+
+  text-transform: none;
+
+}
+
+.kalanla .subtitle {
+
+  font-family: var(--mono);
+
+  font-size: 12px;
+
+  letter-spacing: 0.2em;
+
+  text-transform: uppercase;
+
+  color: rgba(236,232,225,0.45);
+
+  margin-bottom: 2rem;
+
+}
+
+.kalanla p.lede {
+
+  font-size: 17px;
+
+  line-height: 1.6;
+
+  color: rgba(236,232,225,0.75);
+
+  margin-bottom: 2rem;
+
+  max-width: 48ch;
+
+}
+
+.kalanla p.lede strong { color: var(--cream); font-weight: 600; }
+
+.kalanla-features {
+
+  display: grid;
+
+  gap: 1px;
+
+  background: rgba(236,232,225,0.08);
+
+  border: 1px solid rgba(236,232,225,0.08);
+
+  border-radius: 16px;
+
+  overflow: hidden;
+
+  margin-bottom: 2rem;
+
+}
+
+.kalanla-feature {
+
+  background: var(--ink);
+
+  padding: 1.25rem 1.5rem;
+
+  display: grid;
+
+  grid-template-columns: 40px 1fr;
+
+  gap: 1rem;
+
+  align-items: start;
+
+}
+
+.kalanla-feature .n {
+
+  font-family: var(--mono);
+
+  font-size: 10px;
+
+  letter-spacing: 0.2em;
+
+  color: var(--orange-hot);
+
+  padding-top: 4px;
+
+}
+
+.kalanla-feature h4 {
+
+  font-size: 15px;
+
+  font-weight: 700;
+
+  color: var(--cream);
+
+  margin-bottom: 4px;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.02em;
+
+}
+
+.kalanla-feature p {
+
+  font-size: 13px;
+
+  line-height: 1.5;
+
+  color: rgba(236,232,225,0.55);
+
+}
+
+.kalanla-cta {
+
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 14px 22px;
+
+  background: var(--orange);
+
+  color: var(--cream);
+
+  border-radius: 999px;
+
+  font-family: var(--mono);
+
+  font-size: 11px;
+
+  font-weight: 800;
+
+  letter-spacing: 0.14em;
+
+  text-transform: uppercase;
+
+  transition: all 0.25s var(--ease);
+
+  border: 1.5px solid var(--orange);
+
+  cursor: pointer;
+
+}
+
+.kalanla-cta:hover { background: var(--orange-hot); border-color: var(--orange-hot); transform: translateY(-2px); }
+
+/* Phone mockup */
+
+.kalanla-visual {
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  position: relative;
+
+}
+
+.kalanla-phone {
+
+  width: 100%;
+
+  max-width: 320px;
+
+  aspect-ratio: 9 / 19.5;
+
+  background: #050508;
+
+  border-radius: 42px;
+
+  padding: 12px;
+
+  box-shadow:
+
+    0 0 0 1.5px rgba(236,232,225,0.08),
+
+    0 40px 80px rgba(0,0,0,0.5),
+
+    0 0 120px rgba(255,87,34,0.15);
+
+  position: relative;
+
+}
+
+.kalanla-phone::before {
+
+  content: '';
+
+  position: absolute;
+
+  top: 22px; left: 50%;
+
+  transform: translateX(-50%);
+
+  width: 8px; height: 8px;
+
+  border-radius: 50%;
+
+  background: #000;
+
+  box-shadow: inset 0 0 3px #000;
+
+  z-index: 5;
+
+}
+
+.kalanla-screen {
+
+  width: 100%; height: 100%;
+
+  background: linear-gradient(180deg, #0A0A0E 0%, #121217 100%);
+
+  border-radius: 30px;
+
+  padding: 32px 18px 18px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  overflow: hidden;
+
+}
+
+.kalanla-status {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  font-family: var(--mono);
+
+  font-size: 9px;
+
+  color: rgba(236,232,225,0.4);
+
+  letter-spacing: 0.1em;
+
+  margin-bottom: 22px;
+
+}
+
+.kalanla-brand {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  margin-bottom: 6px;
+
+}
+
+.kalanla-mark {
+
+  width: 22px; height: 22px;
+
+  background: var(--orange);
+
+  border-radius: 6px;
+
+  display: grid;
+
+  place-items: center;
+
+  font-family: var(--mono);
+
+  font-weight: 800;
+
+  font-size: 11px;
+
+  color: var(--cream);
+
+}
+
+.kalanla-brand-name {
+
+  font-family: var(--mono);
+
+  font-size: 12px;
+
+  font-weight: 800;
+
+  letter-spacing: 0.14em;
+
+  color: var(--cream);
+
+}
+
+.kalanla-tag {
+
+  font-family: var(--mono);
+
+  font-size: 9px;
+
+  color: rgba(236,232,225,0.35);
+
+  letter-spacing: 0.05em;
+
+  margin-bottom: 16px;
+
+  font-style: italic;
+
+}
+
+.kalanla-radar {
+
+  background: #17171E;
+
+  border: 1px solid rgba(236,232,225,0.08);
+
+  border-radius: 10px;
+
+  padding: 10px;
+
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 6px;
+
+  margin-bottom: 12px;
+
+}
+
+.kalanla-radar .cell { text-align: center; }
+
+.kalanla-radar .k {
+
+  font-family: var(--mono);
+
+  font-size: 7px;
+
+  letter-spacing: 0.1em;
+
+  color: rgba(236,232,225,0.4);
+
+  text-transform: uppercase;
+
+  margin-bottom: 3px;
+
+}
+
+.kalanla-radar .v {
+
+  font-family: var(--mono);
+
+  font-size: 12px;
+
+  font-weight: 800;
+
+  color: var(--cream);
+
+}
+
+.kalanla-radar .cell.risk .v { color: var(--orange-hot); }
+
+.kalanla-radar .cell.good .v { color: var(--emerald); }
+
+.kalanla-banner {
+
+  background: rgba(16,185,129,0.1);
+
+  border: 1px solid rgba(16,185,129,0.3);
+
+  border-radius: 6px;
+
+  padding: 6px 8px;
+
+  text-align: center;
+
+  font-family: var(--mono);
+
+  font-size: 8px;
+
+  letter-spacing: 0.08em;
+
+  color: var(--emerald);
+
+  margin-bottom: 12px;
+
+}
+
+.kalanla-item {
+
+  background: #17171E;
+
+  border: 1px solid rgba(236,232,225,0.06);
+
+  border-radius: 8px;
+
+  padding: 8px 10px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  margin-bottom: 6px;
+
+}
+
+.kalanla-item-img {
+
+  width: 26px; height: 26px;
+
+  border-radius: 5px;
+
+  background: linear-gradient(135deg, var(--orange), #B03520);
+
+  flex-shrink: 0;
+
+}
+
+.kalanla-item-img.green { background: linear-gradient(135deg, var(--emerald), #047857); }
+
+.kalanla-item-info { flex: 1; min-width: 0; }
+
+.kalanla-item-name {
+
+  font-family: var(--sans);
+
+  font-size: 9px;
+
+  font-weight: 600;
+
+  color: var(--cream);
+
+  white-space: nowrap;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+
+}
+
+.kalanla-item-meta {
+
+  font-family: var(--mono);
+
+  font-size: 6.5px;
+
+  letter-spacing: 0.08em;
+
+  color: rgba(236,232,225,0.35);
+
+}
+
+.kalanla-item-badge {
+
+  font-family: var(--mono);
+
+  font-size: 7px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.06em;
+
+  padding: 2px 5px;
+
+  border-radius: 3px;
+
+  background: rgba(255,87,34,0.15);
+
+  color: var(--orange-hot);
+
+  border: 1px solid rgba(255,87,34,0.4);
+
+}
+
+.kalanla-bottom-nav {
+
+  margin-top: auto;
+
+  display: flex;
+
+  justify-content: space-around;
+
+  align-items: center;
+
+  padding-top: 12px;
+
+  border-top: 1px solid rgba(236,232,225,0.06);
+
+}
+
+.kalanla-dot { width: 5px; height: 5px; border-radius: 50%; background: rgba(236,232,225,0.15); }
+
+.kalanla-dot.active { background: var(--orange); }
+
+.kalanla-plus {
+
+  width: 28px; height: 28px;
+
+  border-radius: 50%;
+
+  background: var(--orange);
+
+  color: var(--cream);
+
+  display: grid;
+
+  place-items: center;
+
+  font-size: 16px;
+
+  font-weight: 300;
+
+  box-shadow: 0 0 16px rgba(255,87,34,0.5);
+
+}
+
+/* ═══════════════ VAULT ═══════════════ */
+
+.vault-grid {
+
+  display: grid;
+
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+
+  gap: 1px;
+
+  background: rgba(26,22,20,0.1);
+
+  border: 1px solid rgba(26,22,20,0.1);
+
+  border-radius: 16px;
+
+  overflow: hidden;
+
+}
+
+.vault-card {
+
+  background: var(--cream);
+
+  padding: 2rem 1.5rem;
+
+  min-height: 260px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  transition: background 0.3s var(--ease);
+
+  position: relative;
+
+}
+
+.vault-card:hover { background: var(--cream-soft); }
+
+.vault-card-top {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  margin-bottom: 2rem;
+
+}
+
+.vault-code {
+
+  font-family: var(--mono);
+
+  font-size: 10px;
+
+  letter-spacing: 0.2em;
+
+  color: var(--orange);
+
+  font-weight: 700;
+
+}
+
+.vault-lock {
+
+  font-family: var(--mono);
+
+  font-size: 9px;
+
+  letter-spacing: 0.14em;
+
+  color: var(--ink-mute);
+
+  text-transform: uppercase;
+
+  padding: 3px 8px;
+
+  border: 1px solid rgba(26,22,20,0.15);
+
+  border-radius: 3px;
+
+}
+
+.vault-title {
+
+  font-family: var(--sans);
+
+  font-size: 1.6rem;
+
+  font-weight: 800;
+
+  line-height: 1.05;
+
+  letter-spacing: -0.025em;
+
+  text-transform: uppercase;
+
+  color: var(--ink);
+
+  margin-bottom: 0.75rem;
+
+}
+
+.vault-title .redact {
+
+  display: inline-block;
+
+  background: var(--ink);
+
+  color: var(--cream);
+
+  padding: 0 6px;
+
+  font-family: var(--serif);
+
+  font-style: italic;
+
+  text-transform: none;
+
+  font-weight: 400;
+
+  letter-spacing: 0;
+
+}
+
+.vault-title .accent {
+
+  font-family: var(--serif);
+
+  font-style: italic;
+
+  font-weight: 400;
+
+  text-transform: none;
+
+  color: var(--orange);
+
+}
+
+.vault-desc {
+
+  font-size: 13px;
+
+  line-height: 1.6;
+
+  color: var(--ink-soft);
+
+  margin-top: auto;
+
+}
+
+.vault-desc em { color: var(--orange); font-style: italic; }
+
+/* ═══════════════ COLOPHON ═══════════════ */
+
+.colophon-grid {
+
+  display: grid;
+
+  grid-template-columns: 1.5fr 1fr 1fr;
+
+  gap: clamp(2rem, 6vw, 5rem);
+
+  padding-bottom: 3.5rem;
+
+  border-bottom: 1px solid rgba(26,22,20,0.1);
+
+  margin-bottom: 2rem;
+
+}
+
+@media (max-width: 720px) { .colophon-grid { grid-template-columns: 1fr; gap: 2.5rem; } }
+
+.colophon-intro h3 {
+
+  font-family: var(--sans);
+
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+
+  font-weight: 800;
+
+  line-height: 1.05;
+
+  letter-spacing: -0.03em;
+
+  text-transform: uppercase;
+
+  margin-bottom: 1rem;
+
+  max-width: 16ch;
+
+}
+
+.colophon-intro h3 .accent {
+
+  font-family: var(--serif);
+
+  font-style: italic;
+
+  font-weight: 400;
+
+  color: var(--orange);
+
+  text-transform: none;
+
+  letter-spacing: 0;
+
+}
+
+.colophon-intro p {
+
+  font-size: 14px;
+
+  line-height: 1.6;
+
+  color: var(--ink-soft);
+
+  max-width: 40ch;
+
+}
+
+.colophon-col h4 {
+
+  font-family: var(--mono);
+
+  font-size: 10px;
+
+  letter-spacing: 0.22em;
+
+  text-transform: uppercase;
+
+  color: var(--ink-mute);
+
+  margin-bottom: 1rem;
+
+}
+
+.colophon-col ul { display: flex; flex-direction: column; gap: 10px; }
+
+.colophon-col a {
+
+  font-size: 14px;
+
+  color: var(--ink-soft);
+
+  transition: color 0.2s var(--ease);
+
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+}
+
+.colophon-col a::before {
+
+  content: '→';
+
+  font-family: var(--mono);
+
+  color: var(--ink-mute);
+
+  transition: color 0.2s var(--ease);
+
+}
+
+.colophon-col a:hover { color: var(--orange); }
+
+.colophon-col a:hover::before { color: var(--orange); }
+
+.colophon-bottom {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  gap: 1.5rem;
+
+  flex-wrap: wrap;
+
+  font-family: var(--mono);
+
+  font-size: 10px;
+
+  letter-spacing: 0.18em;
+
+  text-transform: uppercase;
+
+  color: var(--ink-mute);
+
+  padding-bottom: 2rem;
+
+}
+
+.colophon-bottom .sig { color: var(--ink-soft); }
+
+.colophon-bottom .sig em { color: var(--orange); font-style: italic; }
+
+/* ═══════════════ REVEAL ═══════════════ */
+
+.reveal {
+
+  opacity: 0;
+
+  transform: translateY(28px);
+
+  transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+
+}
+
+.reveal.in { opacity: 1; transform: translateY(0); }
+
+/* Focus */
+
+:focus-visible {
+
+  outline: 2px solid var(--orange);
+
+  outline-offset: 3px;
+
+  border-radius: 3px;
+
+}
+
+</style>
+
 </head>
+
 <body>
 
-  <!-- Top Progress Bar -->
-  <div class="progress-line" id="progressBar"></div>
+<div class="outer">
 
-  <div class="wrap">
-    <!-- Top Wire Header -->
-    <header class="top-wire">
-      <a href="#" class="brand-mark">
-        <span class="brand-box">R</span>
-        <span>RYNIA STUDIOS</span>
-      </a>
-      <nav class="top-nav">
-        <a href="#manifesto">Manifesto</a>
-        <a href="#flagship">KALANLA</a>
-        <a href="#vault">The Vault</a>
-        <a href="#contact">Contact</a>
-      </nav>
-      <div class="status-badge">
-        <span class="dot"></span>
-        <span>SYSTEMS: ONLINE</span>
-      </div>
-    </header>
+  <div class="paper">
 
-    <main>
-      <!-- Hero -->
-      <div class="hero">
-        <div class="hero-meta-row">
-          <span>EST. 2025 // TURKEY</span>
-          <span>DISCIPLINE: <b>SOFTWARE &amp; GAMES</b></span>
-          <span>ARCHITECTURE: <b>LOCAL-FIRST</b></span>
+    <!-- ═══════════════ NAV ═══════════════ -->
+
+    <nav class="nav" aria-label="Primary">
+
+      <div class="wrap nav-inner">
+
+        <ul class="nav-links">
+
+          <li><a href="#top">Home</a></li>
+
+          <li><a href="#manifesto">About Us</a></li>
+
+          <li><a href="#vault">Services</a></li>
+
+          <li><a href="#contact">Contact</a></li>
+
+        </ul>
+
+        <a href="#top" class="nav-brand">
+
+          <span class="nav-brand-mark">R</span>
+
+          <span>Rynia Studios</span>
+
+        </a>
+
+        <div class="nav-actions">
+
+          <a class="nav-icon" href="https://x.com/RyniaStudio" target="_blank" rel="noopener" aria-label="X (Twitter)">
+
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.9 2h3.3l-7.2 8.2L23.5 22h-6.6l-5.2-6.8L5.7 22H2.4l7.7-8.8L1.5 2h6.7l4.7 6.2L18.9 2Zm-1.2 18h1.8L7.4 3.9H5.4L17.7 20Z"/></svg>
+
+          </a>
+
+          <a class="nav-icon" href="https://instagram.com/ryniastudio" target="_blank" rel="noopener" aria-label="Instagram">
+
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor"/></svg>
+
+          </a>
+
+          <a class="nav-icon" href="https://github.com/RyniaStudios" target="_blank" rel="noopener" aria-label="GitHub">
+
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5A11.5 11.5 0 0 0 .5 12c0 5.1 3.3 9.4 7.8 10.9.6.1.8-.2.8-.6v-2c-3.2.7-3.8-1.5-3.8-1.5-.5-1.3-1.3-1.6-1.3-1.6-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.8-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11 11 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5Z"/></svg>
+
+          </a>
+
         </div>
 
-        <h1>
-          Craft over<br>
-          <em>bloat</em>.
-        </h1>
-
-        <div class="hero-sub">
-          <p class="hero-desc">
-            Rynia Studios, kullanıcıyı gözetlemeyen, harici bulutlara bağımlı kalmayan ve <strong>doğrudan fiziksel cihazda çalışan</strong> yerel öncelikli yazılımlar ve bağımsız oyun mekanikleri üreten bir teknoloji laboratuvarıdır.
-          </p>
-          <div class="hero-actions">
-            <a href="#flagship" class="btn primary">Ürünü İncele ➔</a>
-            <a href="#manifesto" class="btn ghost">Stüdyo Manifestosu ↓</a>
-          </div>
-        </div>
-
-        <div class="hero-specs">
-          <div class="spec-item">
-            <div class="spec-k">AKTİF PROJE</div>
-            <div class="spec-v">KALANLA <em>v1.0</em></div>
-          </div>
-          <div class="spec-item">
-            <div class="spec-k">VERİ MODELİ</div>
-            <div class="spec-v">100% <em>Local-First</em></div>
-          </div>
-          <div class="spec-item">
-            <div class="spec-k">TAKİP &amp; REKLAM</div>
-            <div class="spec-v">Sıfır <em>(0%)</em></div>
-          </div>
-        </div>
       </div>
 
-      <!-- Industrial Marquee -->
-      <div class="ticker" aria-hidden="true">
-        <div class="ticker-content">
-          CRAFT OVER BLOAT /// LOCAL DATA ONLY /// ZERO TRACKING /// NO MANDATORY ACCOUNTS /// SUSTAINABLE CODE /// CRAFT OVER BLOAT /// LOCAL DATA ONLY /// ZERO TRACKING /// NO MANDATORY ACCOUNTS /// SUSTAINABLE CODE /// 
+    </nav>
+
+    <!-- ═══════════════ HERO ═══════════════ -->
+
+    <section class="hero" id="top" aria-labelledby="hero-title">
+
+      <div class="wrap">
+
+        <div class="hero-grid">
+
+          <!-- LEFT -->
+
+          <div class="hero-left reveal">
+
+            <div class="tag-row">
+
+              <span class="tag dark"><span class="pulse"></span>Studio Online</span>
+
+              <span class="tag outline">Est. 2025 · Turkey</span>
+
+              <span class="tag outline">Vol. 01 / 2026</span>
+
+            </div>
+
+            <h1 class="hero-title" id="hero-title">
+
+              Craft<br>
+
+              <span class="accent">over</span><br>
+
+              <span class="outlined">bloat.</span>
+
+            </h1>
+
+            <p class="hero-desc">
+
+              Rynia Studios is an independent <strong>software &amp; game laboratory</strong>.
+
+              We build local-first tools that respect users, code, and the planet —
+
+              no trackers, no dark patterns, no compromises.
+
+            </p>
+
+            <div class="hero-cta-row">
+
+              <a class="btn" href="#kalanla">
+
+                View Flagship <span class="arrow">→</span>
+
+              </a>
+
+              <a class="btn ghost" href="#manifesto">
+
+                Read Manifesto
+
+              </a>
+
+            </div>
+
+          </div>
+
+          <!-- CENTER — Torn paper portrait -->
+
+          <div class="hero-center reveal" aria-hidden="true">
+
+            <div class="torn-paper-wrap">
+
+              <!-- Torn paper SVG -->
+
+              <svg viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+
+                <defs>
+
+                  <filter id="paperTexture" x="-10%" y="-10%" width="120%" height="120%">
+
+                    <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="4"/>
+
+                    <feColorMatrix values="0 0 0 0 0.85
+
+                                           0 0 0 0 0.82
+
+                                           0 0 0 0 0.76
+
+                                           0 0 0 0.06 0"/>
+
+                  </filter>
+
+                </defs>
+
+                <path d="
+
+                  M 8,20
+
+                  L 32,14 L 48,24 L 72,10 L 100,22 L 128,12 L 158,26
+
+                  L 184,16 L 212,24 L 240,14 L 268,22 L 296,12 L 324,24
+
+                  L 350,16 L 372,26 L 392,18 L 396,60
+
+                  L 388,96 L 398,132 L 386,168 L 394,204 L 388,240
+
+                  L 396,278 L 384,314 L 394,350 L 386,386 L 392,422
+
+                  L 384,458 L 392,488 L 370,496 L 342,486 L 314,494
+
+                  L 286,484 L 258,492 L 230,484 L 202,492 L 174,486
+
+                  L 146,494 L 118,484 L 90,492 L 62,484 L 34,494 L 8,484
+
+                  L 14,448 L 4,414 L 16,382 L 6,350 L 14,318 L 6,286
+
+                  L 16,254 L 6,222 L 14,190 L 6,158 L 16,126 L 6,94
+
+                  L 16,62 Z"
+
+                  fill="#F4F1EA"
+
+                  stroke="#D9D3C7"
+
+                  stroke-width="1"/>
+
+                <path d="
+
+                  M 8,20 L 32,14 L 48,24 L 72,10 L 100,22 L 128,12 L 158,26
+
+                  L 184,16 L 212,24 L 240,14 L 268,22 L 296,12 L 324,24
+
+                  L 350,16 L 372,26 L 392,18 L 396,60 L 388,96"
+
+                  fill="none" stroke="rgba(26,22,20,0.18)" stroke-width="1"/>
+
+                <rect width="400" height="500" filter="url(#paperTexture)" opacity="0.9"/>
+
+              </svg>
+
+            </div>
+
+            <!-- Portrait visual -->
+
+            <div class="portrait">
+
+              <div class="portrait-mark">
+
+                R<br>
+
+                <small>Studio · 2026</small>
+
+              </div>
+
+            </div>
+
+            <!-- Decorations -->
+
+            <svg class="deco deco-star" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+
+              <path d="M50 4 L58 42 L96 50 L58 58 L50 96 L42 58 L4 50 L42 42 Z"
+
+                    fill="currentColor"/>
+
+            </svg>
+
+            <svg class="deco deco-circle" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+
+              <circle cx="50" cy="50" r="42" fill="none" stroke="currentColor" stroke-width="4"/>
+
+            </svg>
+
+            <svg class="deco deco-arrow" viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true">
+
+              <path d="M 10,100 C 40,40 90,20 160,30"/>
+
+              <path d="M 140,14 L 168,28 L 150,50"/>
+
+            </svg>
+
+          </div>
+
+          <!-- RIGHT — Status -->
+
+          <div class="hero-right reveal">
+
+            <div class="status-card">
+
+              <div class="k">Studio status</div>
+
+              <div class="v">Live <em>01</em></div>
+
+              <div class="sub">
+
+                <span>Products shipping</span>
+
+                <span class="status-clock" id="clock">--:--:--</span>
+
+              </div>
+
+            </div>
+
+            <a class="mini-card" href="#kalanla">
+
+              <div class="mini-card-icon">
+
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+
+                  <path d="M3 7 L5 3 H19 L21 7 V20 H3 Z"/>
+
+                  <path d="M3 7 H21"/>
+
+                </svg>
+
+              </div>
+
+              <div class="mini-card-body">
+
+                <div class="mini-card-title">KALANLA</div>
+
+                <div class="mini-card-meta">Kitchen OS · iOS</div>
+
+              </div>
+
+            </a>
+
+            <a class="mini-card" href="#vault">
+
+              <div class="mini-card-icon" style="background: var(--ink);">
+
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+
+                  <rect x="4" y="11" width="16" height="10" rx="2"/>
+
+                  <path d="M8 11 V7 a4 4 0 0 1 8 0 v4"/>
+
+                </svg>
+
+              </div>
+
+              <div class="mini-card-body">
+
+                <div class="mini-card-title">The Vault</div>
+
+                <div class="mini-card-meta">3 classified projects</div>
+
+              </div>
+
+            </a>
+
+            <a class="mini-card" href="#contact">
+
+              <div class="mini-card-icon" style="background: var(--emerald);">
+
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+
+                  <path d="M3 6 L12 13 L21 6"/>
+
+                  <rect x="3" y="5" width="18" height="14" rx="2"/>
+
+                </svg>
+
+              </div>
+
+              <div class="mini-card-body">
+
+                <div class="mini-card-title">Direct Wire</div>
+
+                <div class="mini-card-meta">hello@ryniastudios.com.tr</div>
+
+              </div>
+
+            </a>
+
+          </div>
+
         </div>
-        <div class="ticker-content">
-          CRAFT OVER BLOAT /// LOCAL DATA ONLY /// ZERO TRACKING /// NO MANDATORY ACCOUNTS /// SUSTAINABLE CODE /// CRAFT OVER BLOAT /// LOCAL DATA ONLY /// ZERO TRACKING /// NO MANDATORY ACCOUNTS /// SUSTAINABLE CODE /// 
-        </div>
+
       </div>
 
-      <!-- 01 // MANIFESTO -->
-      <section id="manifesto">
-        <div class="section-sidebar">
-          <b>01 // MANIFESTO</b>
-          <span>Stüdyo İlkeleri</span>
-        </div>
-        <div class="section-body">
-          <h2 class="reveal">Az yazılım. Doğru yazılım.<br><em>Senin cihazında.</em></h2>
-          <p class="lead-text reveal">
-            Rynia Studios, kullanıcıyı metalaştıran gözetim yazılımlarını reddeder. Her satır kod tek bir hedefe hizmet eder: kullanıcının egemenliği.
-          </p>
+    </section>
 
-          <div class="manifesto-cards reveal">
-            <div class="m-card">
-              <div class="m-num">01 / EGEMENLİK</div>
-              <h3>Yerel Öncelik (Local-First)</h3>
-              <p>Verin yalnızca senin cihazında yaşar. Sunucu arızaları veya internet kesintileri temel fonksiyonları asla durduramaz.</p>
+    <!-- ═══════════════ CANVAS SCROLL — FRAME-BY-FRAME TEARDOWN ═══════════════ -->
+
+    <section class="canvas-section" id="teardown" aria-label="Product teardown">
+
+      <div class="wrap">
+
+        <div class="canvas-stage" id="canvasStage">
+
+          <canvas class="canvas" id="teardownCanvas" aria-hidden="true"></canvas>
+
+          <!-- Fallback (visible until frames load) -->
+
+          <div class="canvas-fallback" id="canvasFallback">
+
+            <div class="canvas-fallback-inner">
+
+              <div class="canvas-fallback-mark">
+
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+
+                  <circle cx="12" cy="12" r="9"/>
+
+                  <path d="M12 3 a9 9 0 0 1 0 18"/>
+
+                  <path d="M3 12 H21"/>
+
+                </svg>
+
+              </div>
+
+              <h4>Preparing Teardown</h4>
+
+              <p>Loading frame sequence. This preview will begin playing as you scroll.</p>
+
+              <div class="canvas-loading">
+
+                <div class="canvas-loading-fill" id="canvasLoadingFill"></div>
+
+              </div>
+
             </div>
-            <div class="m-card">
-              <div class="m-num">02 / ŞEFFAFLIK</div>
-              <h3>Sıfır Telemetri</h3>
-              <p>Kullanıcı davranışı optimize edilecek bir veri noktası değildir. Sıfır analitik, sıfır gizli profil oluşturma.</p>
-            </div>
-            <div class="m-card">
-              <div class="m-num">03 / DOKUNSALLIK</div>
-              <h3>Mekanik Estetik</h3>
-              <p>Jenerik kurumsal şablonlar yerine; Teenage Engineering ve Braun felsefesinden ilham alan keskin, dokunsal arayüzler.</p>
-            </div>
+
           </div>
-        </div>
-      </section>
 
-      <!-- 02 // FLAGSHIP: KALANLA -->
-      <section id="flagship">
-        <div class="section-sidebar">
-          <b>02 // FLAGSHIP</b>
-          <span>Canlı Ürün</span>
+          <!-- HUD overlay -->
+
+          <div class="canvas-overlay">
+
+            <div class="canvas-hud-top">
+
+              <span class="live">Sequence Live</span>
+
+              <span>Teardown · RYN-01</span>
+
+            </div>
+
+            <div class="canvas-hud-bottom">
+
+              <div>
+
+                <div class="title">Exploded <em>assembly</em></div>
+
+                <div class="canvas-progress" style="margin-top:12px;">
+
+                  <div class="canvas-progress-fill" id="canvasProgressFill"></div>
+
+                </div>
+
+              </div>
+
+              <div class="canvas-counter" id="canvasCounter">FRAME 000 / 040</div>
+
+            </div>
+
+          </div>
+
         </div>
-        <div class="section-body">
-          <div class="flagship-split">
+
+      </div>
+
+    </section>
+
+    <!-- ═══════════════ MANIFESTO ═══════════════ -->
+
+    <section class="section" id="manifesto" aria-labelledby="manifesto-title">
+
+      <div class="wrap">
+
+        <div class="section-head reveal">
+
+          <div>
+
+            <div class="section-num">01 / Manifesto</div>
+
+            <h2 class="section-title" id="manifesto-title">
+
+              Five principles.<br><span class="accent">Zero</span> compromises.
+
+            </h2>
+
+          </div>
+
+          <div class="section-meta">Applied in every release</div>
+
+        </div>
+
+        <ol class="manifesto-list">
+
+          <li class="manifesto-item reveal">
+
+            <span class="num">01</span>
+
+            <h3>Local-first, <em>by default.</em></h3>
+
+            <p>Data lives on your device. It stays on your device. If an app can work offline, it must work offline. The cloud is a feature, never a requirement.</p>
+
+          </li>
+
+          <li class="manifesto-item reveal">
+
+            <span class="num">02</span>
+
+            <h3>Zero tracking. <em>Zero</em> telemetry.</h3>
+
+            <p>No analytics SDKs. No crash reporters that phone home. No "anonymous usage data." Your behaviour is not a data point for us to optimise.</p>
+
+          </li>
+
+          <li class="manifesto-item reveal">
+
+            <span class="num">03</span>
+
+            <h3>Craft <em>over</em> velocity.</h3>
+
+            <p>We ship when it's right, not when a roadmap says so. Every animation, every word, every pixel is deliberate. Speed without polish is noise.</p>
+
+          </li>
+
+          <li class="manifesto-item reveal">
+
+            <span class="num">04</span>
+
+            <h3>Software as a <em>public good.</em></h3>
+
+            <p>Core functionality is never paywalled. Monetisation, when it happens, targets comfort — never access. No dark patterns, no artificial scarcity.</p>
+
+          </li>
+
+          <li class="manifesto-item reveal">
+
+            <span class="num">05</span>
+
+            <h3>Sustainably <em>built.</em></h3>
+
+            <p>Small binaries. Low power draw. Long device compatibility. Software that ages gracefully respects both the planet and your hardware.</p>
+
+          </li>
+
+        </ol>
+
+      </div>
+
+    </section>
+
+    <!-- ═══════════════ KALANLA SPOTLIGHT ═══════════════ -->
+
+    <div style="padding: 0 clamp(0.75rem, 2vw, 1.5rem);">
+
+      <section class="kalanla" id="kalanla" aria-labelledby="kalanla-title">
+
+        <div class="wrap">
+
+          <div class="section-head reveal">
+
+            <div>
+
+              <div class="section-num">02 / Flagship</div>
+
+              <h2 class="section-title" id="kalanla-title">
+
+                The current <span class="accent">obsession.</span>
+
+              </h2>
+
+            </div>
+
+            <div class="section-meta">Shipped 2026 · iOS</div>
+
+          </div>
+
+          <div class="kalanla-grid">
+
             <div class="reveal">
-              <span class="pill">
-                <span class="dot-amber"></span>
-                <span>iOS · App Store İncelemesinde</span>
-              </span>
-              <h2>KALANLA<br><em>Kitchen OS</em></h2>
-              <p class="lead-text" style="margin-bottom: 24px;">
-                Markete gitmeden önce buzdolabındaki son gıdaları kurtaran, 48 saatlik risk radarıyla israfı önleyen ve tasarrufunu termal fişe döken sıfır atık mutfak işletim sistemi.
+
+              <span class="kalanla-pill">Live on the App Store</span>
+
+              <h2>KALANLA<span class="accent">.</span></h2>
+
+              <div class="subtitle">Kitchen OS · Sıfır Atık Mutfak</div>
+
+              <p class="lede">
+
+                A <strong>zero-waste kitchen operating system</strong> for Turkish households.
+
+                Track what's in your fridge, rescue ingredients before they spoil, and turn
+
+                leftovers into meals — with a thermal-receipt simulator that quantifies every lira you save.
+
               </p>
 
-              <ul class="flagship-features">
-                <li>
-                  <b>48 Saat Radarı</b>
-                  <span>Bozulmaya yüz tutan malzemeleri anında tespit eder.</span>
-                </li>
-                <li>
-                  <b>Deterministik Şef</b>
-                  <span>Evde ne kaldıysa tam ona göre yerel Türk reçeteleri üretir.</span>
-                </li>
-                <li>
-                  <b>Termal Telemetri</b>
-                  <span>Kurtarılan her öğün için paylaşılabilir termal fiş simülatörü.</span>
-                </li>
-                <li>
-                  <b>%100 Gizlilik</b>
-                  <span>Hesap yok, bulut zorunluluğu yok, sıfır veri transferi.</span>
-                </li>
-              </ul>
+              <div class="kalanla-features">
 
-              <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-                <a href="https://rynia.github.io/KALANLA/" target="_blank" rel="noopener" class="btn primary">
-                  Simülatörü Keşfet ↗
-                </a>
-                <a href="https://rynia.github.io/KALANLA/privacy-policy.html" target="_blank" rel="noopener" class="btn ghost">
-                  Gizlilik Politikası ↗
-                </a>
-              </div>
-            </div>
+                <div class="kalanla-feature">
 
-            <!-- Photorealistic Thermal Receipt Visual -->
-            <div class="receipt-wrapper reveal" aria-label="KALANLA Termal Fiş Önizlemesi">
-              <div class="receipt">
-                <div class="r-head">
-                  <h4>KALANLA ZERO-WASTE</h4>
-                  <span>TERMİNAL #04 • KITCHEN OS</span>
-                </div>
-                <div style="font-weight: 700; margin-bottom: 8px;">TARİF: TAVADA ÇITIR EKMEK</div>
-                <div class="r-row"><span>01. Bayat Ekmek</span><span>₺25.00 [✓]</span></div>
-                <div class="r-row"><span>02. Yarım Kaşar</span><span>₺120.00 [✓]</span></div>
-                <div class="r-row"><span>03. Domates</span><span>₺45.00 [✓]</span></div>
-                <div class="r-divider">
-                  <div class="r-total">
-                    <span>KURTARILAN:</span>
-                    <span style="color: #10B981;">₺190.00</span>
+                  <span class="n">01</span>
+
+                  <div>
+
+                    <h4>Pantry Radar</h4>
+
+                    <p>48-hour risk window. Auto-flagged items that need rescue now.</p>
+
                   </div>
+
                 </div>
-                <div class="r-durum">
-                  🌯 ~0.9 TAVUK DÜRÜM DEĞERİNDE
+
+                <div class="kalanla-feature">
+
+                  <span class="n">02</span>
+
+                  <div>
+
+                    <h4>Deterministic Recipe Engine</h4>
+
+                    <p>Matches what you have. Synthesises recipes when nothing fits. 100% offline.</p>
+
+                  </div>
+
                 </div>
-                <div style="text-align: center; margin-top: 12px; font-size: 8px; color: #6E685E; font-style: italic;">
-                  "Ne kaldıysa, ondan başla."
+
+                <div class="kalanla-feature">
+
+                  <span class="n">03</span>
+
+                  <div>
+
+                    <h4>Thermal Savings Receipt</h4>
+
+                    <p>Every rescued meal becomes a shareable receipt. Dürüm Index included.</p>
+
+                  </div>
+
                 </div>
+
               </div>
+
+              <a class="kalanla-cta" href="https://apps.apple.com/app/id6817786741" target="_blank" rel="noopener">
+
+                Download on iOS <span class="arrow">↗</span>
+
+              </a>
+
             </div>
+
+            <!-- Phone mockup -->
+
+            <div class="kalanla-visual reveal" aria-hidden="true">
+
+              <div class="kalanla-phone">
+
+                <div class="kalanla-screen">
+
+                  <div class="kalanla-status">
+
+                    <span>23:56</span>
+
+                    <span>5G · 100%</span>
+
+                  </div>
+
+                  <div class="kalanla-brand">
+
+                    <span class="kalanla-mark">K</span>
+
+                    <span class="kalanla-brand-name">KALANLA</span>
+
+                  </div>
+
+                  <div class="kalanla-tag">"Ne kaldıysa, ondan başla."</div>
+
+                  <div class="kalanla-radar">
+
+                    <div class="cell">
+
+                      <div class="k">Dolap</div>
+
+                      <div class="v">₺580</div>
+
+                    </div>
+
+                    <div class="cell risk">
+
+                      <div class="k">Risk</div>
+
+                      <div class="v">₺120</div>
+
+                    </div>
+
+                    <div class="cell good">
+
+                      <div class="k">Saved</div>
+
+                      <div class="v">₺1.8k</div>
+
+                    </div>
+
+                  </div>
+
+                  <div class="kalanla-banner">✓ 48 saatlik acil risk yok</div>
+
+                  <div class="kalanla-item">
+
+                    <div class="kalanla-item-img"></div>
+
+                    <div class="kalanla-item-info">
+
+                      <div class="kalanla-item-name">Yarım Kaşar Peyniri</div>
+
+                      <div class="kalanla-item-meta">250g · BUZDOLABI</div>
+
+                    </div>
+
+                    <span class="kalanla-item-badge">18 SAAT</span>
+
+                  </div>
+
+                  <div class="kalanla-item">
+
+                    <div class="kalanla-item-img green"></div>
+
+                    <div class="kalanla-item-info">
+
+                      <div class="kalanla-item-name">Salkım Domates</div>
+
+                      <div class="kalanla-item-meta">3 Adet · BUZDOLABI</div>
+
+                    </div>
+
+                    <span class="kalanla-item-badge">36 SAAT</span>
+
+                  </div>
+
+                  <div class="kalanla-bottom-nav">
+
+                    <span class="kalanla-dot active"></span>
+
+                    <span class="kalanla-dot"></span>
+
+                    <span class="kalanla-plus">+</span>
+
+                    <span class="kalanla-dot"></span>
+
+                    <span class="kalanla-dot"></span>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
           </div>
+
         </div>
+
       </section>
 
-      <!-- 03 // THE VAULT (GAMES & EXPERIMENTS) -->
-      <section id="vault">
-        <div class="section-sidebar">
-          <b>03 // THE VAULT</b>
-          <span>Gizli Deneyler</span>
-        </div>
-        <div class="section-body">
-          <h2 class="reveal">Kapı kilitli.<br><em>Sistemler devrede.</em></h2>
-          <p class="lead-text reveal">
-            Stüdyo tezgahında geliştirilen prototipler ve bağımsız oyun konseptleri. Şimdilik mühürlü.
-          </p>
+    </div>
 
-          <div class="vault-grid reveal">
-            <div class="vault-card">
-              <div class="vault-top">
-                <span>EXP // 001</span>
-                <span>KONSEPT</span>
-              </div>
-              <h3><span class="redact">████████</span> Protokolü</h3>
-              <p>Düşük frekanslı radyo dalgalarıyla çalışan, atmosferik ve karanlık bir post-apokaliptik kaynak yönetimi simülasyonu.</p>
-              <div style="font-family: var(--mono); font-size: 10px; color: var(--text-dim); margin-top: 24px;">HEDEF: PC / STEAM</div>
-            </div>
+    <!-- ═══════════════ VAULT ═══════════════ -->
 
-            <div class="vault-card">
-              <div class="vault-top">
-                <span>EXP // 002</span>
-                <span>PROTOTİP</span>
-              </div>
-              <h3>Sessiz <span class="redact">██████</span></h3>
-              <p>Mekanik sekme fiziği ve dokunsal haptik geri bildirimlerin başrolde olduğu, mikro-oturumluk taktiksel mobil deney.</p>
-              <div style="font-family: var(--mono); font-size: 10px; color: var(--text-dim); margin-top: 24px;">HEDEF: IOS / HAPTIC</div>
-            </div>
+    <section class="section" id="vault" aria-labelledby="vault-title">
 
-            <div class="vault-card">
-              <div class="vault-top">
-                <span>EXP // 003</span>
-                <span>MÜHENDİSLİK</span>
-              </div>
-              <h3>Yerel Vision OCR</h3>
-              <p>Görselleri dış sunuculara sızdırmadan, doğrudan cihaz NPU'sunda Türk market fişlerini ayrıştıran açık çekirdek motoru.</p>
-              <div style="font-family: var(--mono); font-size: 10px; color: var(--text-dim); margin-top: 24px;">HEDEF: CORE OS // v1.1</div>
-            </div>
+      <div class="wrap">
+
+        <div class="section-head reveal">
+
+          <div>
+
+            <div class="section-num">03 / The Vault</div>
+
+            <h2 class="section-title" id="vault-title">
+
+              Prototypes. Experiments.<br><span class="accent">Secrets.</span>
+
+            </h2>
+
           </div>
-        </div>
-      </section>
 
-      <!-- 04 // COLOPHON & DIRECT WIRE -->
-      <section id="contact">
-        <div class="section-sidebar">
-          <b>04 // DIRECT WIRE</b>
-          <span>Doğrudan Hat</span>
-        </div>
-        <div class="section-body">
-          <h2 class="reveal">Birlikte üretelim.</h2>
-          <p class="lead-text reveal">
-            Yayıncılık, ortaklık veya basın talepleri için doğrudan stüdyo masamıza bağlanın.
-          </p>
+          <div class="section-meta">Classified · 2026</div>
 
-          <div class="colophon-grid reveal">
-            <div class="col-cell">
-              <h4>İLETİŞİM</h4>
-              <a href="mailto:ryniastudios@gmail.com">ryniastudios@gmail.com ↗</a>
-              <a href="mailto:ryniastudios@gmail.com?subject=Basin%20Kiti%20Talebi">Basın Kiti İste ↗</a>
+        </div>
+
+        <div class="vault-grid reveal">
+
+          <article class="vault-card">
+
+            <div class="vault-card-top">
+
+              <span class="vault-code">PRJ-001</span>
+
+              <span class="vault-lock">Sealed</span>
+
             </div>
-            <div class="col-cell">
-              <h4>SOSYAL AĞLAR</h4>
-              <a href="https://x.com/RyniaStudio" target="_blank" rel="noopener">X / Twitter ↗</a>
-              <a href="https://instagram.com/ryniastudio" target="_blank" rel="noopener">Instagram ↗</a>
-              <a href="https://youtube.com/@RyniaStudio" target="_blank" rel="noopener">YouTube ↗</a>
+
+            <h3 class="vault-title"><span class="redact">[Redacted]</span><br>Project</h3>
+
+            <p class="vault-desc">
+
+              A tactical card battler. Deterministic combat, kinetic physics,
+
+              and a world built from <em>obsessive</em> hand-crafted systems.
+
+            </p>
+
+          </article>
+
+          <article class="vault-card">
+
+            <div class="vault-card-top">
+
+              <span class="vault-code">PRJ-002</span>
+
+              <span class="vault-lock">In Forge</span>
+
             </div>
-            <div class="col-cell">
-              <h4>KOD &amp; YASAL</h4>
-              <a href="https://github.com/RyniaStudios" target="_blank" rel="noopener">GitHub / RyniaStudios ↗</a>
-              <a href="https://rynia.github.io/KALANLA/privacy-policy.html" target="_blank" rel="noopener">Gizlilik Politikası ↗</a>
-              <a href="https://rynia.github.io/KALANLA/terms-of-service.html" target="_blank" rel="noopener">Kullanım Şartları ↗</a>
+
+            <h3 class="vault-title">Untitled<br><span class="accent">Narrative</span></h3>
+
+            <p class="vault-desc">
+
+              A short-form story experiment. Built to be completed in a
+
+              single evening. No save files. No second chances.
+
+            </p>
+
+          </article>
+
+          <article class="vault-card">
+
+            <div class="vault-card-top">
+
+              <span class="vault-code">PRJ-003</span>
+
+              <span class="vault-lock">Research</span>
+
             </div>
+
+            <h3 class="vault-title">Utility<br><span class="accent">R&amp;D</span></h3>
+
+            <p class="vault-desc">
+
+              A family of small, single-purpose tools. Zero accounts.
+
+              Zero cloud. Built for people who value <em>their own</em> time.
+
+            </p>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ═══════════════ COLOPHON ═══════════════ -->
+
+    <footer class="section" id="contact">
+
+      <div class="wrap">
+
+        <div class="colophon-grid">
+
+          <div class="colophon-intro reveal">
+
+            <h3>Let's build something <span class="accent">worth keeping.</span></h3>
+
+            <p>Collaborations, publishing inquiries, press requests — or just a note. We read everything.</p>
+
           </div>
-        </div>
-      </section>
-    </main>
 
-    <!-- Footer -->
-    <footer>
-      <span>© <span id="year">2026</span> RYNIA STUDIOS // ALL RIGHTS RESERVED.</span>
-      <span>BUILT IN TURKEY • SHIPPED GLOBALLY</span>
+          <div class="colophon-col reveal">
+
+            <h4>Direct Wire</h4>
+
+            <ul>
+
+              <li><a href="mailto:hello@ryniastudios.com.tr">hello@ryniastudios.com.tr</a></li>
+
+              <li><a href="mailto:press@ryniastudios.com.tr">press@ryniastudios.com.tr</a></li>
+
+              <li><a href="/press-kit.zip">Press Kit</a></li>
+
+            </ul>
+
+          </div>
+
+          <div class="colophon-col reveal">
+
+            <h4>Follow</h4>
+
+            <ul>
+
+              <li><a href="https://x.com/RyniaStudio" target="_blank" rel="noopener">X / Twitter</a></li>
+
+              <li><a href="https://instagram.com/ryniastudio" target="_blank" rel="noopener">Instagram</a></li>
+
+              <li><a href="https://youtube.com/@RyniaStudio" target="_blank" rel="noopener">YouTube</a></li>
+
+              <li><a href="https://github.com/RyniaStudios" target="_blank" rel="noopener">GitHub</a></li>
+
+            </ul>
+
+          </div>
+
+        </div>
+
+        <div class="colophon-bottom">
+
+          <span class="sig">© <span id="year">2026</span> Rynia Studios — <em>Craft over bloat.</em></span>
+
+          <span>Built in Turkey · Shipped worldwide</span>
+
+        </div>
+
+      </div>
+
     </footer>
+
   </div>
 
-  <script>
-    // Scroll progress bar
-    window.addEventListener('scroll', function() {
-      var h = document.documentElement;
-      var st = h.scrollTop || document.body.scrollTop;
-      var sh = h.scrollHeight || document.body.scrollHeight;
-      var percent = (st / (sh - h.clientHeight)) * 100;
-      document.getElementById('progressBar').style.width = percent + '%';
-    }, { passive: true });
+</div>
 
-    // Intersection Observer for smooth reveal
-    var observer = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
+<!-- ═══════════════ SCRIPTS ═══════════════ -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+<script>
+
+(function () {
+
+  'use strict';
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ────────────────────────────────────────────
+
+  // 1. YEAR + CLOCK
+
+  // ────────────────────────────────────────────
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const clock = document.getElementById('clock');
+
+  function tick() {
+
+    const d = new Date();
+
+    const p = (n) => String(n).padStart(2, '0');
+
+    clock.textContent = `${p(d.getHours())}:${p(d.getMinutes())}:${p(d.getSeconds())}`;
+
+  }
+
+  tick();
+
+  setInterval(tick, 1000);
+
+  // ────────────────────────────────────────────
+
+  // 2. REVEAL ON SCROLL
+
+  // ────────────────────────────────────────────
+
+  const reveals = document.querySelectorAll('.reveal');
+
+  if ('IntersectionObserver' in window && !prefersReducedMotion) {
+
+    const io = new IntersectionObserver((entries) => {
+
+      entries.forEach((entry) => {
+
         if (entry.isIntersecting) {
-          entry.target.classList.add('active');
-        }
-      });
-    }, { threshold: 0.1 });
 
-    document.querySelectorAll('.reveal').forEach(function(el) {
-      observer.observe(el);
+          entry.target.classList.add('in');
+
+          io.unobserve(entry.target);
+
+        }
+
+      });
+
+    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+
+    reveals.forEach((el) => io.observe(el));
+
+  } else {
+
+    reveals.forEach((el) => el.classList.add('in'));
+
+  }
+
+  // ────────────────────────────────────────────
+
+  // 3. CANVAS FRAME SEQUENCE ENGINE
+
+  // ────────────────────────────────────────────
+
+  // Frame path pattern — customize here if needed.
+
+  // Expects: /frames/frame_001.webp … /frames/frame_040.webp
+
+  const FRAME_COUNT = 40;
+
+  const FRAME_PATH = (i) => `/frames/frame_${String(i).padStart(3, '0')}.webp`;
+
+  const canvas = document.getElementById('teardownCanvas');
+
+  const fallback = document.getElementById('canvasFallback');
+
+  const loadingFill = document.getElementById('canvasLoadingFill');
+
+  const progressFill = document.getElementById('canvasProgressFill');
+
+  const counter = document.getElementById('canvasCounter');
+
+  const stage = document.getElementById('canvasStage');
+
+  if (!canvas || !stage) return;
+
+  const ctx = canvas.getContext('2d', { alpha: true });
+
+  const frames = new Array(FRAME_COUNT);
+  let loadedCount = 0;
+  let successfulFrames = 0;
+  let isReady = false;
+  let currentFrame = 0;
+
+  // Size canvas with DPR handling
+
+  function resizeCanvas() {
+
+    const rect = stage.getBoundingClientRect();
+
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+    canvas.width  = Math.round(rect.width  * dpr);
+
+    canvas.height = Math.round(rect.height * dpr);
+
+    canvas.style.width  = rect.width + 'px';
+
+    canvas.style.height = rect.height + 'px';
+
+    if (isReady) drawFrame(currentFrame);
+
+  }
+
+  // Cover-fit drawing (like CSS object-fit: cover)
+
+  function drawFrame(index) {
+
+    const img = frames[index];
+
+    if (!img || !img.complete || !img.naturalWidth) return;
+
+    const cw = canvas.width;
+
+    const ch = canvas.height;
+
+    const iw = img.naturalWidth;
+
+    const ih = img.naturalHeight;
+
+    const scale = Math.max(cw / iw, ch / ih);
+
+    const dw = iw * scale;
+
+    const dh = ih * scale;
+
+    const dx = (cw - dw) / 2;
+
+    const dy = (ch - dh) / 2;
+
+    ctx.clearRect(0, 0, cw, ch);
+
+    ctx.drawImage(img, dx, dy, dw, dh);
+
+  }
+
+  // Preload frames
+
+  function preloadFrames() {
+    for (let i = 1; i <= FRAME_COUNT; i++) {
+      const img = new Image();
+      img.decoding = 'async';
+      img.loading = 'eager';
+      img.onload = () => {
+        loadedCount++;
+        successfulFrames++;
+        const pct = Math.round((loadedCount / FRAME_COUNT) * 100);
+        if (loadingFill) loadingFill.style.width = pct + '%';
+        if (loadedCount === FRAME_COUNT) onAllLoaded();
+      };
+      img.onerror = () => {
+        loadedCount++;
+        const pct = Math.round((loadedCount / FRAME_COUNT) * 100);
+        if (loadingFill) loadingFill.style.width = pct + '%';
+        if (loadedCount === FRAME_COUNT) onAllLoaded();
+      };
+      img.src = FRAME_PATH(i);
+      frames[i - 1] = img;
+    }
+  }
+
+  function onAllLoaded() {
+    if (successfulFrames > 0) {
+      isReady = true;
+      if (fallback) fallback.classList.add('hidden');
+      resizeCanvas();
+      drawFrame(0);
+      setupScrollTrigger();
+    } else {
+      if (fallback) {
+        fallback.classList.remove('hidden');
+        const h4 = fallback.querySelector('h4');
+        if (h4) h4.textContent = '3D Hardware Teardown';
+        const p = fallback.querySelector('p');
+        if (p) p.textContent = 'Drop /frames/frame_001.webp..frame_040.webp to trigger Apple-style scroll teardown.';
+      }
+    }
+  }
+
+  // ────────────────────────────────────────────
+
+  // 4. GSAP SCROLLTRIGGER SCRUB
+
+  // ────────────────────────────────────────────
+
+  function setupScrollTrigger() {
+
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+
+      // Fallback: if GSAP failed to load, still show first frame
+
+      drawFrame(0);
+
+      return;
+
+    }
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    if (prefersReducedMotion) {
+
+      // Respect reduced motion: just show mid-frame, no scrub
+
+      drawFrame(Math.floor(FRAME_COUNT / 2));
+
+      return;
+
+    }
+
+    const state = { frame: 0 };
+
+    gsap.to(state, {
+
+      frame: FRAME_COUNT - 1,
+
+      ease: 'none',
+
+      snap: 'frame',
+
+      scrollTrigger: {
+
+        trigger: stage,
+
+        start: 'top top',
+
+        end: '+=200%',      // 2 viewport heights of scroll = 40 frames
+
+        pin: true,
+
+        pinSpacing: true,
+
+        scrub: 1,           // 1s smoothing for butter-smooth motion
+
+        anticipatePin: 1,
+
+        invalidateOnRefresh: true,
+
+        onUpdate: (self) => {
+
+          const pct = Math.round(self.progress * 100);
+
+          if (progressFill) progressFill.style.width = pct + '%';
+
+        }
+
+      },
+
+      onUpdate: () => {
+
+        const idx = Math.round(state.frame);
+
+        if (idx !== currentFrame) {
+
+          currentFrame = idx;
+
+          drawFrame(idx);
+
+          if (counter) {
+
+            counter.textContent = `FRAME ${String(idx + 1).padStart(3, '0')} / ${String(FRAME_COUNT).padStart(3, '0')}`;
+
+          }
+
+        }
+
+      }
+
     });
 
-    // Dynamic year
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+  }
+
+  // ────────────────────────────────────────────
+
+  // 5. BOOT
+
+  // ────────────────────────────────────────────
+
+  window.addEventListener('resize', () => {
+
+    // Debounced resize
+
+    clearTimeout(window.__rynResizeT);
+
+    window.__rynResizeT = setTimeout(resizeCanvas, 150);
+
+  });
+
+  resizeCanvas();
+
+  preloadFrames();
+
+  // ────────────────────────────────────────────
+
+  // 6. SMOOTH ANCHOR (older browsers)
+
+  // ────────────────────────────────────────────
+
+  document.querySelectorAll('a[href^="#"]').forEach((a) => {
+
+    a.addEventListener('click', (e) => {
+
+      const id = a.getAttribute('href');
+
+      if (id && id.length > 1) {
+
+        const t = document.querySelector(id);
+
+        if (t) {
+
+          e.preventDefault();
+
+          t.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' });
+
+          history.replaceState(null, '', id);
+
+        }
+
+      }
+
+    });
+
+  });
+
+})();
+
+</script>
+
 </body>
+
 </html>
