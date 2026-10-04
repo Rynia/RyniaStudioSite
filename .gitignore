@@ -1,0 +1,8 @@
+node_modules/
+.DS_Store
+*.log
+scratch/
+find_*.py
+inspect_*.py
+claude_*.html
+claude_*.txt
