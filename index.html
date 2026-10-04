@@ -199,7 +199,7 @@ h2{font:300 clamp(40px,7.4vw,120px)/.92 var(--sans);letter-spacing:-.055em;margi
 
 .v small{font:700 11px var(--mono);letter-spacing:.16em;color:var(--or)}.v h3{position:relative;font:300 clamp(28px,3vw,40px)/1 var(--sans);letter-spacing:-.04em;margin:14px 0 12px}.v p{position:relative;color:#8f897f;font-size:14px}
 
-.red{background:#EFEBE3;color:transparent;transition:background .4s,color .4s}.v:hover .red,.v:focus-visible .red{background:transparent;color:var(--or)}
+
 
 .big{font:900 clamp(56px,15vw,260px)/.82 var(--sans);letter-spacing:-.07em;text-transform:uppercase;margin:0 0 56px}.big span{color:transparent;-webkit-text-stroke:1.5px #EFEBE3}
 
@@ -281,7 +281,7 @@ h2{font:300 clamp(40px,7.4vw,120px)/.92 var(--sans);letter-spacing:-.055em;margi
 <div class="sc">
   <div class="isl"></div>
   <header class="os-head">
-    <div class="os-brand"><img src="assets/kalanla-icon.png" alt="KALANLA" style="width:22px;height:22px;border-radius:6px;object-fit:cover;box-shadow:0 2px 6px rgba(0,0,0,0.4);display:block"><span>KALANLA</span></div>
+    <div class="os-brand"><img src="kalanla-icon.png" alt="KALANLA" style="width:22px;height:22px;border-radius:6px;object-fit:cover;box-shadow:0 2px 6px rgba(0,0,0,0.4);display:block"><span>KALANLA</span></div>
     <div style="font-size:9.5px;color:#8f887c;letter-spacing:.05em">KITCHEN OS</div>
   </header>
   <main class="os-content" id="osContent" aria-live="polite"></main>
@@ -314,11 +314,11 @@ h2{font:300 clamp(40px,7.4vw,120px)/.92 var(--sans);letter-spacing:-.055em;margi
 
 <div class="g3 rv">
 
-<div class="v" tabindex="0"><div><small>PRJ-001 · PC / STEAM</small><h3><span class="red">██████</span> Protokolü</h3></div><p data-i="v1"></p></div>
+<div class="v" tabindex="0"><div><small>PRJ-001 · PC / STEAM</small><h3 data-i="v1t">Null Protokolü</h3></div><p data-i="v1"></p></div>
 
-<div class="v" tabindex="0"><div><small data-i="vm">PRJ-002 · MOBİL</small><h3><span data-i="vs">Sessiz</span> <span class="red">█████</span></h3></div><p data-i="v2"></p></div>
+<div class="v" tabindex="0"><div><small data-i="vm">PRJ-002 · MOBİL</small><h3 data-i="v2t">Sessiz Nabız</h3></div><p data-i="v2"></p></div>
 
-<div class="v" tabindex="0"><div><small data-i="vt">PRJ-003 · ARAÇ</small><h3><span class="red">███</span> Lab</h3></div><p data-i="v3"></p></div></div></div></section>
+<div class="v" tabindex="0"><div><small data-i="vt">PRJ-003 · ARAÇ</small><h3 data-i="v3t">vibe-to-store Lab</h3></div><p data-i="v3"></p></div></div></div></section>
 
 
 
@@ -360,7 +360,7 @@ p1t:'Cihazda kalan egemen veri',p1d:'Verin senin cihazında kalır. Sunucu, hesa
 
 fs:'iOS · App Store incelemesinde',fk:'Flagship · ürün 01',fh:'<b>Ne kaldıysa,</b><br>ondan <em>başla.</em>',fl:'KALANLA (Kitchen OS): dolabındaki son malzemeleri kurtaran, 48 saatlik risk radarıyla israfı önleyen ve tasarrufunu termal fişe döken Local-First akıllı mutfak işletim sistemi. Hesap yok, takip yok.',fb1:'KALANLA sayfası',fb2:'Gizlilik',tap:'Dokun ve kurtar',
 
-vh:'Kapı <b>kapalı.</b>',vl:'Geliştirmedeki prototipler ve kavramlar. Şimdilik gizli. Üzerine gel.',v1:'Karanlık bir sistemin içinde kural bükme üzerine bir bulmaca fikri.',v2:'Tek elle oynanan, ritim odaklı kısa seanslık bir deney.',v3:'Stüdyonun kendi iş akışı için küçük bir araç prototipi.',vm:'PRJ-002 · MOBİL',vs:'Sessiz',vt:'PRJ-003 · ARAÇ',
+vh:'Kapı <b>kapalı.</b>',vl:'Geliştirmedeki prototipler ve kavramlar. Şimdilik gizli.',v1t:'Null Protokolü',v1:'Karanlık bir sistemin içinde kural bükme üzerine bir bulmaca fikri.',v2t:'Sessiz Nabız',v2:'Tek elle oynanan, ritim odaklı kısa seanslık bir deney.',v3t:'vibe-to-store Lab',v3:'Stüdyonun kendi iş akışı için açık kaynak araç prototipi.',vm:'PRJ-002 · MOBİL',vt:'PRJ-003 · ARAÇ',
 
 f1:'İlkeler',f1t:'Yerel veri.<br>Sıfır takip.<br>Tavizsiz zanaat.',f2:'Takip et',f3:'Yaz &amp; yasal',lp:'Gizlilik politikası',lt:'Kullanım şartları',
 
@@ -382,7 +382,7 @@ p1t:'Sovereign data, on your device',p1d:'Your data stays on your device. No ser
 
 fs:'iOS · In App Store review',fk:'Flagship · product 01',fh:'<b>Start with</b><br>what\'s <em>left.</em>',fl:'KALANLA (Kitchen OS): a Local-First smart kitchen OS that rescues the last ingredients in your fridge, prevents waste with a 48-hour risk radar and turns your savings into a thermal receipt. No account, no tracking.',fb1:'KALANLA page',fb2:'Privacy',tap:'Tap to rescue',
 
-vh:'Door\'s <b>locked.</b>',vl:'Prototypes and concepts in development. Classified for now. Hover to peek.',v1:'A puzzle concept about bending the rules inside a dark system.',v2:'A one-handed, rhythm-driven short-session experiment.',v3:'A small tool prototype for the studio\'s own workflow.',vm:'PRJ-002 · MOBILE',vs:'Silent',vt:'PRJ-003 · TOOL',
+vh:'Door\'s <b>locked.</b>',vl:'Prototypes and concepts in development. Classified for now.',v1t:'Null Protocol',v1:'A puzzle concept about bending the rules inside a dark system.',v2t:'Silent Pulse',v2:'A one-handed, rhythm-driven short-session experiment.',v3t:'vibe-to-store Lab',v3:'A small open-source tool prototype for the studio\'s own workflow.',vm:'PRJ-002 · MOBILE',vt:'PRJ-003 · TOOL',
 
 f1:'Principles',f1t:'Local data.<br>Zero tracking.<br>Uncompromising craft.',f2:'Follow',f3:'Write &amp; legal',lp:'Privacy policy',lt:'Terms of service',
 
